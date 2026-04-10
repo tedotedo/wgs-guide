@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resources — WGS Guide</title>
+  <meta name="description" content="Curated links to authoritative UK genomics resources including NHS, Genomics England, patient support, and insurance guidance.">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
+</head>
+<body>
+  <a href="#main" class="skip-to-content">Skip to main content</a>
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__brand"><div class="nav__brand-icon">🧬</div><div class="nav__brand-text"><span>WGS</span> Guide</div></a>
+      <ul class="nav__links" id="nav-links" role="menubar">
+        <li role="none"><a href="index.html" class="nav__link" role="menuitem">Home</a></li>
+        <li role="none"><a href="understanding-wgs.html" class="nav__link" role="menuitem">Understanding WGS</a></li>
+        <li role="none"><a href="pitfalls.html" class="nav__link" role="menuitem">Important Information</a></li>
+        <li role="none"><a href="form.html" class="nav__link" role="menuitem">Complete Form</a></li>
+        <li role="none"><a href="faq.html" class="nav__link" role="menuitem">FAQ</a></li>
+        <li role="none"><a href="resources.html" class="nav__link" role="menuitem">Resources</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-moon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+        <button class="nav__hamburger" id="nav-hamburger" aria-label="Menu" aria-expanded="false"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <div class="page-header">
+      <div class="page-header__content">
+        <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>Resources</span></div>
+        <h1>UK Genomics Resources</h1>
+        <p>Curated links to authoritative UK genomics resources for patients, families, and healthcare professionals.</p>
+      </div>
+    </div>
+
+    <div class="container" style="max-width:1000px;padding-top:var(--space-8);padding-bottom:var(--space-16)">
+
+      <!-- NHS & Government -->
+      <div class="resource-category animate-on-scroll">
+        <div class="resource-category__title">
+          <h3>🏥 NHS & Government</h3>
+        </div>
+        <div class="resource-grid">
+          <a href="https://www.nhs.uk/conditions/genetics/" target="_blank" rel="noopener" class="resource-card" id="res-nhs-genetics">
+            <div class="resource-card__icon">🏥</div>
+            <div class="resource-card__content">
+              <div class="resource-card__title">NHS — Genetic and Genomic Testing</div>
+              <p class="resource-card__desc">Official NHS patient information about genetic testing, including what it involves, results, insurance implications, and genetic counselling.</p>
+            </div>
+            <span class="resource-card__badge">NHS.uk</span>
+          </a>
+          <a href="https://www.england.nhs.uk/genomics/nhs-genomic-med-service/" target="_blank" rel="noopener" class="resource-card" id="res-nhs-gms">
+            <div class="resource-card__icon">🧬</div>
+            <div class="resource-card__content">
+              <div class="resource-card__title">NHS Genomic Medicine Service</div>
+              <p class="resource-card__desc">About the NHS GMS, which brings together genomic testing and clinical care through seven Genomic Laboratory Hubs across England.</p>
+            </div>
+            <span class="resource-card__badge">NHS England</span>
+          </a>
+          <a href="https://www.england.nhs.uk/publication/national-genomic-test-directories/" target="_blank" rel="noopener" class="resource-card" id="res-test-dir">
+            <div class="resource-card__icon">📖</div>
+            <div class="resource-card__content">
+              <div class="resource-card__title">National Genomic Test Directory</div>
+              <p class="resource-card__desc">The official list of genomic tests available through the NHS, including which conditions are eligible for WGS.</p>
+            </div>
+            <span class="resource-card__badge">NHS England</span>
+          </a>
+          <a href="https://www.england.nhs.uk/contact-us/privacy-notice/" target="_blank" rel="noopener" class="resource-card" id="res-privacy">
+            <div class="resource-card__icon">🔒</div>
+            <div class="resource-card__content">
+              <div class="resource-card__title">NHS England Privacy Notice</div>
+              <p class="resource-card__desc">How the NHS manages your data, including genomic data storage, sharing, and your rights regarding personal information.</p>
+            </div>
+            <span class="resource-card__badge">Privacy</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Genomics England -->
+      <div class="resource-category animate-on-scroll">
+        <div class="resource-category__title">
+          <h3>🔬 Genomics England</h3>
+        </div>
+        <div class="resource-grid">
+          <a href="https://www.genomicsengland.co.uk/understanding-genomics" target="_blank" rel="noopener" class="resource-card" id="res-ge-understanding">
+            <div class="resource-card__icon" style="background:var(--color-secondary-100);color:var(--color-secondary-600)">🧬</div>
+            <div class="resource-card__content">
+              <div class="resource-card__title">Understanding Genomics</div>
+              <p class="resource-card__desc">Learn about genomes, how genome sequencing works, and why we sequence genomes. Includes educational videos and infographics.</p>
+            </div>
+            <span class="resource-card__badge">Genomics England</span>
+          </a>
+          <a href="https://www.genomicsengland.co.uk/patients-participants/taking-part" target="_blank" rel="noopener" class="resource-card" id="res-ge-taking-part">
+            <div class="resource-card__icon" style="background:var(--color-secondary-100);color:var(--color-secondary-600)">🤝</div>
+            <div class="resource-card__content">
+              <div class="resource-card__title">Taking Part in Research</div>
+              <p class="resource-card__desc">Information about contributing to the National Genomic Research Library, what it means, and how your data is used for research.</p>
+            </div>
+            <span class="resource-card__badge">Genomics England</span>
+          </a>
+          <a href="https://www.genomicsengland.co.uk/patients-participants/stories" target="_blank" rel="noopener" class="resource-card" id="res-ge-stories">
+            <div class="resource-card__icon" style="background:var(--color-secondary-100);color:var(--color-secondary-600)">📖</div>
+            <div class="resource-card__content">
+              <div class="resource-card__title">Participant Stories</div>
+              <p class="resource-card__desc">Real stories from people who have taken part in genomic research, sharing their experiences and outcomes.</p>
+            </div>
+            <span class="resource-card__badge">Genomics England</span>
+          </a>
+          <a href="https://www.genomicsengland.co.uk/privacy-policy/" target="_blank" rel="noopener" class="resource-card" id="res-ge-privacy">
+            <div class="resource-card__icon" style="background:var(--color-secondary-100);color:var(--color-secondary-600)">🔒</div>
+            <div class="resource-card__content">
+              <div class="resource-card__title">Genomics England Privacy Policy</div>
+              <p class="resource-card__desc">Details of how Genomics England collects, stores, and uses health data from participants.</p>
+            </div>
+            <span class="resource-card__badge">Privacy</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="resource-category animate-on-scroll">
+        <div class="resource-category__title">
+          <h3>🎓 Education</h3>
+        </div>
+        <div class="resource-grid">
+          <a href="https://www.genomicseducation.hee.nhs.uk/" target="_blank" rel="noopener" class="resource-card" id="res-hee">
+            <div class="resource-card__icon" style="background:var(--color-warning-bg);color:#B8860B">🎓</div>
+            <div class="resource-card__content">
+              <div class="resource-card__title">Genomics Education Programme (HEE)</div>
+              <p class="resource-card__desc">NHS Health Education England's genomics education resources for healthcare professionals and patients. Includes courses, videos, and learning materials.</p>
+            </div>
+            <span class="resource-card__badge">HEE</span>
+          </a>
+          <a href="https://www.yourgenome.org/" target="_blank" rel="noopener" class="resource-card" id="res-yourgenome">
+            <div class="resource-card__icon" style="background:var(--color-warning-bg);color:#B8860B">🧪</div>
+            <div class="resource-card__content">
+              <div class="resource-card__title">Your Genome (Wellcome)</div>
+              <p class="resource-card__desc">Educational website by the Wellcome Genome Campus, explaining genetics and genomics in an accessible way with interactive tools.</p>
+            </div>
+            <span class="resource-card__badge">Wellcome</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Patient Support -->
+      <div class="resource-category animate-on-scroll">
+        <div class="resource-category__title">
+          <h3>💙 Patient Support</h3>
+        </div>
+        <div class="resource-grid">
+          <a href="https://www.geneticalliance.org.uk/" target="_blank" rel="noopener" class="resource-card" id="res-genetic-alliance">
+            <div class="resource-card__icon" style="background:var(--color-info-bg);color:var(--color-info)">💙</div>
+            <div class="resource-card__content">
+              <div class="resource-card__title">Genetic Alliance UK</div>
+              <p class="resource-card__desc">National charity supporting people affected by genetic conditions. Provides information on genetic testing, benefits and risks, and peer support.</p>
+            </div>
+            <span class="resource-card__badge">Charity</span>
+          </a>
+          <a href="https://www.geneticalliance.org.uk/information/service-and-testing/benefits-and-risks-of-genetic-testing/" target="_blank" rel="noopener" class="resource-card" id="res-benefits-risks">
+            <div class="resource-card__icon" style="background:var(--color-info-bg);color:var(--color-info)">⚖️</div>
+            <div class="resource-card__content">
+              <div class="resource-card__title">Benefits and Risks of Genetic Testing</div>
+              <p class="resource-card__desc">Detailed guide from Genetic Alliance UK about what to consider before genetic testing, including emotional and practical impacts.</p>
+            </div>
+            <span class="resource-card__badge">Genetic Alliance</span>
+          </a>
+          <a href="http://www.bsgm.org.uk/public-patients-families/" target="_blank" rel="noopener" class="resource-card" id="res-bsgm">
+            <div class="resource-card__icon" style="background:var(--color-info-bg);color:var(--color-info)">🏛️</div>
+            <div class="resource-card__content">
+              <div class="resource-card__title">British Society for Genetic Medicine</div>
+              <p class="resource-card__desc">Lists of support organisations for patients and families affected by genetic conditions. Includes links to condition-specific charities.</p>
+            </div>
+            <span class="resource-card__badge">BSGM</span>
+          </a>
+          <a href="https://www.raredisease.org.uk/" target="_blank" rel="noopener" class="resource-card" id="res-rare-disease">
+            <div class="resource-card__icon" style="background:var(--color-info-bg);color:var(--color-info)">🦋</div>
+            <div class="resource-card__content">
+              <div class="resource-card__title">Rare Disease UK</div>
+              <p class="resource-card__desc">National alliance of people with rare diseases and their families, campaigning for equitable access to diagnosis and treatment.</p>
+            </div>
+            <span class="resource-card__badge">Charity</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Insurance -->
+      <div class="resource-category animate-on-scroll">
+        <div class="resource-category__title">
+          <h3>🛡️ Insurance</h3>
+        </div>
+        <div class="resource-grid">
+          <a href="https://www.abi.org.uk/data-and-resources/tools-and-resources/genetics/code-on-genetic-testing-and-insurance/" target="_blank" rel="noopener" class="resource-card" id="res-abi">
+            <div class="resource-card__icon" style="background:var(--color-success-bg);color:var(--color-success)">🛡️</div>
+            <div class="resource-card__content">
+              <div class="resource-card__title">ABI Code on Genetic Testing and Insurance</div>
+              <p class="resource-card__desc">The official code governing how insurers can use genetic test results. Key protection: predictive genetic test results do not usually need to be disclosed to insurers.</p>
+            </div>
+            <span class="resource-card__badge">ABI</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Videos -->
+      <div class="resource-category animate-on-scroll">
+        <div class="resource-category__title">
+          <h3>🎥 Video Resources</h3>
+        </div>
+        <div class="alert alert--info">
+          <div class="alert__icon">🎥</div>
+          <div class="alert__content">
+            <div class="alert__title">Video links coming soon</div>
+            <p class="alert__text" style="margin-bottom:0">Video explanations for each section of the Record of Discussion form will be added here. These will cover what WGS is, trio testing, unexpected findings, non-paternity disclosure, insurance, and more.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div><div class="footer__brand">🧬 WGS Guide</div><p class="footer__desc">A companion guide for the NHS Record of Discussion form.</p></div>
+      <div><div class="footer__heading">Navigate</div><ul class="footer__list"><li><a href="understanding-wgs.html">Understanding WGS</a></li><li><a href="pitfalls.html">Important Information</a></li><li><a href="form.html">Complete Form</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+      <div><div class="footer__heading">Resources</div><ul class="footer__list"><li><a href="https://www.nhs.uk/conditions/genetics/" target="_blank" rel="noopener">NHS Genetics</a></li><li><a href="https://www.genomicsengland.co.uk/" target="_blank" rel="noopener">Genomics England</a></li></ul></div>
+      <div><div class="footer__heading">Support</div><ul class="footer__list"><li><a href="https://www.geneticalliance.org.uk/" target="_blank" rel="noopener">Genetic Alliance UK</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><p>For educational purposes. Based on NHS RoD form (01-NGIS-ROD v4.03).</p></div>
+  </footer>
+  <div class="cookie-banner" id="cookie-banner"><div class="cookie-banner__inner"><p class="cookie-banner__text">This site uses local storage. No data is sent externally.</p><div class="cookie-banner__actions"><button class="btn btn--primary btn--sm" id="cookie-accept">Accept</button></div></div></div>
+  <script src="js/app.js"></script>
+</body>
+</html>

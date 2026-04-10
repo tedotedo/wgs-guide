@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complete the Record of Discussion — WGS Guide</title>
+  <meta name="description" content="Work through the NHS Record of Discussion Regarding Genomic Testing form step by step, with plain-English explanations and PDF download.">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
+</head>
+<body>
+  <a href="#main" class="skip-to-content">Skip to main content</a>
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__brand"><div class="nav__brand-icon">🧬</div><div class="nav__brand-text"><span>WGS</span> Guide</div></a>
+      <ul class="nav__links" id="nav-links" role="menubar">
+        <li role="none"><a href="index.html" class="nav__link" role="menuitem">Home</a></li>
+        <li role="none"><a href="understanding-wgs.html" class="nav__link" role="menuitem">Understanding WGS</a></li>
+        <li role="none"><a href="pitfalls.html" class="nav__link" role="menuitem">Important Information</a></li>
+        <li role="none"><a href="form.html" class="nav__link" role="menuitem">Complete Form</a></li>
+        <li role="none"><a href="faq.html" class="nav__link" role="menuitem">FAQ</a></li>
+        <li role="none"><a href="resources.html" class="nav__link" role="menuitem">Resources</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-moon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+        <button class="nav__hamburger" id="nav-hamburger" aria-label="Menu" aria-expanded="false"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <div class="page-header">
+      <div class="page-header__content">
+        <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>Complete Form</span></div>
+        <h1>Record of Discussion Form</h1>
+        <p>Work through each section of the NHS Record of Discussion Regarding Genomic Testing (v4.03). Click "Explain this" for plain-English guidance on each point.</p>
+      </div>
+    </div>
+
+    <div class="container form-page" style="padding-top:var(--space-8);padding-bottom:var(--space-16)">
+
+      <!-- Privacy Notice -->
+      <div class="alert alert--success mb-6" id="privacy-notice">
+        <div class="alert__icon">🔒</div>
+        <div class="alert__content">
+          <div class="alert__title">Your Privacy — No Data Is Collected</div>
+          <p class="alert__text" style="margin-bottom:0">This website does <strong>not collect, store, or transmit any of your personal data</strong>. All information you enter is kept only in your browser (localStorage) and is never sent to any server. When you are finished, you can <strong>download a PDF</strong> to email to your consultant. You may clear your browser data at any time to remove all saved information.</p>
+        </div>
+      </div>
+      <!-- Progress -->
+      <div class="progress-bar"><div class="progress-bar__fill" id="progress-fill" style="width:33%"></div></div>
+      <div class="steps" id="step-indicators">
+        <div class="step active" data-step="1">
+          <div class="step__circle">1</div>
+          <div class="step__label">Discussion Points</div>
+        </div>
+        <div class="step__connector"></div>
+        <div class="step" data-step="2">
+          <div class="step__circle">2</div>
+          <div class="step__label">Research Choices</div>
+        </div>
+        <div class="step__connector"></div>
+        <div class="step" data-step="3">
+          <div class="step__circle">3</div>
+          <div class="step__label">Confirmation</div>
+        </div>
+      </div>
+
+      <!-- STEP 1: Patient Details & Discussion Points -->
+      <div class="form-step active" id="step-1">
+        <!-- Who is this form for? -->
+        <div class="form-section mb-6">
+          <div class="form-section__title">
+            <h3>📝 Who Is This Form For?</h3>
+          </div>
+          <p class="text-muted text-sm mb-4">Please indicate your relationship to the person being tested. This determines the basis on which choices are being made.</p>
+          <div style="display:flex;flex-direction:column;gap:var(--space-3)">
+            <label class="form-check">
+              <input type="radio" name="consent-basis" value="self" id="consent-self" required>
+              <span class="form-check__label"><strong>I am the patient</strong> — I am making choices for myself</span>
+            </label>
+            <label class="form-check">
+              <input type="radio" name="consent-basis" value="child" id="consent-child">
+              <span class="form-check__label"><strong>I am a parent / guardian</strong> — I am making choices on behalf of my child</span>
+            </label>
+            <label class="form-check">
+              <input type="radio" name="consent-basis" value="best-interests" id="consent-bestinterest">
+              <span class="form-check__label"><strong>Best interests / consultee</strong> — I am advising on behalf of an adult who lacks capacity to make their own decision</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section__title">
+            <h3>👤 Patient Details</h3>
+          </div>
+          <p class="text-muted text-sm mb-6">Details of the person being tested. One form is required for each person.</p>
+          <div class="patient-details">
+            <div class="form-group">
+              <label class="form-label" for="first-name">First name <span class="required">*</span></label>
+              <input class="form-input" type="text" id="first-name" name="first-name" required autocomplete="given-name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="last-name">Last name <span class="required">*</span></label>
+              <input class="form-input" type="text" id="last-name" name="last-name" required autocomplete="family-name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="nhs-number">NHS number (or postcode if not known)</label>
+              <input class="form-input" type="text" id="nhs-number" name="nhs-number" placeholder="e.g. 123 456 7890">
+              <p class="form-hint">Your 10-digit NHS number can be found on prescriptions or hospital letters</p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="dob">Date of birth <span class="required">*</span></label>
+              <input class="form-input" type="date" id="dob" name="dob" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section" style="margin-top:var(--space-6)">
+          <div class="form-section__title">
+            <h3>📋 Discussion Points</h3>
+          </div>
+          <p class="text-muted text-sm mb-6"><strong>I have discussed genomic testing with my health professional and understand the following.</strong> Please read each point and tick to confirm you understand. Click "Explain this to me" for a plain-English explanation.</p>
+          <p class="text-muted text-sm mb-6"><em>All of the statements below remain relevant even if the test relates to someone other than yourself, for example your child.</em></p>
+
+          <!-- Point 1 -->
+          <div class="discussion-point" id="dp-1">
+            <div class="discussion-point__header">
+              <div class="discussion-point__number">1</div>
+              <div>
+                <div class="discussion-point__title">Family and wider implications</div>
+                <p class="discussion-point__statement">The results of my test may have implications for me and members of my family. I understand that my results may also be used to help the healthcare of members of my family and others nationally and internationally. This could be done in discussion with me or through a process that will not personally identify me.</p>
+              </div>
+            </div>
+            <button class="discussion-point__expand" data-target="explain-1">💡 Explain this to me ▼</button>
+            <div class="discussion-point__explanation" id="explain-1">
+              <div class="discussion-point__explanation-inner">
+                <p><strong>What this means:</strong> Your genetic results don't just affect you — they can provide important health information for your blood relatives too. For example, if a genetic variant is found that causes a condition, your siblings or children may also carry it.</p>
+                <p>Your anonymised data may also be compared with other patients' data nationally and internationally to help scientists better understand genetic conditions. This comparison helps determine whether a genetic change is significant or common and harmless.</p>
+                <p>If comparison involves discussion about specific results, this will happen with you directly. If it's done through databases, you won't be personally identified.</p>
+                <p><a href="understanding-wgs.html#family-impact">Learn more about family implications →</a></p>
+              </div>
+            </div>
+            <div class="discussion-point__actions">
+              <button class="discussion-point__video-link" data-video="family-implications">🎥 Watch video</button>
+              <label class="form-check" style="padding:0">
+                <input type="checkbox" class="dp-check" data-point="1">
+                <span class="form-check__label" style="font-weight:600;color:var(--color-success)">I understand this</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Point 2 -->
+          <div class="discussion-point" id="dp-2">
+            <div class="discussion-point__header">
+              <div class="discussion-point__number">2</div>
+              <div>
+                <div class="discussion-point__title">Uncertainty</div>
+                <p class="discussion-point__statement">The results of my test may have findings that are uncertain and not yet fully understood. To decide whether findings are significant for myself or others, my data may be compared to other patients' results across the country and internationally. I understand that this could change what my results mean for me and my treatment over time.</p>
+              </div>
+            </div>
+            <button class="discussion-point__expand" data-target="explain-2">💡 Explain this to me ▼</button>
+            <div class="discussion-point__explanation" id="explain-2">
+              <div class="discussion-point__explanation-inner">
+                <p><strong>What this means:</strong> Genomic science is still evolving. Your test may find changes in your DNA called <strong>Variants of Uncertain Significance (VUS)</strong> — changes whose impact on health isn't yet fully understood.</p>
+                <p>As more people have WGS and more research is done, the significance of these variants may become clearer. This means your results could potentially be re-interpreted in the future, which might change your diagnosis or treatment.</p>
+                <p><a href="pitfalls.html#uncertain-results">Learn more about uncertain results →</a></p>
+              </div>
+            </div>
+            <div class="discussion-point__actions">
+              <button class="discussion-point__video-link" data-video="uncertainty">🎥 Watch video</button>
+              <label class="form-check" style="padding:0">
+                <input type="checkbox" class="dp-check" data-point="2">
+                <span class="form-check__label" style="font-weight:600;color:var(--color-success)">I understand this</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Point 3 -->
+          <div class="discussion-point" id="dp-3">
+            <div class="discussion-point__header">
+              <div class="discussion-point__number">3</div>
+              <div>
+                <div class="discussion-point__title">Unexpected information</div>
+                <p class="discussion-point__statement">The results of my test may also reveal unexpected results that are not related to why I am having this test. These may be found by chance and I may need further tests or investigations to understand their significance.</p>
+              </div>
+            </div>
+            <button class="discussion-point__expand" data-target="explain-3">💡 Explain this to me ▼</button>
+            <div class="discussion-point__explanation" id="explain-3">
+              <div class="discussion-point__explanation-inner">
+                <p><strong>What this means:</strong> Because WGS reads all of your DNA, it may discover genetic changes unrelated to the original reason for your test. For example, it might find you carry a gene associated with a different health condition.</p>
+                <p>These are sometimes called "incidental" or "secondary" findings. If something significant is found, you may need additional tests or specialist referrals to understand what it means for your health.</p>
+                <p><strong>This also includes the possibility of discovering unexpected family relationships</strong> (such as non-paternity), particularly when trio testing is performed. <a href="pitfalls.html#non-paternity">Read more about this →</a></p>
+                <p><a href="pitfalls.html#unexpected-findings">Learn more about unexpected findings →</a></p>
+              </div>
+            </div>
+            <div class="discussion-point__actions">
+              <button class="discussion-point__video-link" data-video="unexpected">🎥 Watch video</button>
+              <label class="form-check" style="padding:0">
+                <input type="checkbox" class="dp-check" data-point="3">
+                <span class="form-check__label" style="font-weight:600;color:var(--color-success)">I understand this</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Point 4 -->
+          <div class="discussion-point" id="dp-4">
+            <div class="discussion-point__header">
+              <div class="discussion-point__number">4</div>
+              <div>
+                <div class="discussion-point__title">DNA storage</div>
+                <p class="discussion-point__statement">Normal NHS laboratory practice is to store the DNA extracted from my sample even after my current testing is complete. My DNA might be used for future analysis and/or to ensure that other testing (for example that of family members) is of high quality.</p>
+              </div>
+            </div>
+            <button class="discussion-point__expand" data-target="explain-4">💡 Explain this to me ▼</button>
+            <div class="discussion-point__explanation" id="explain-4">
+              <div class="discussion-point__explanation-inner">
+                <p><strong>What this means:</strong> After your test is complete, the NHS laboratory will keep the DNA they extracted from your sample. This is standard practice and serves two purposes:</p>
+                <ul><li><strong>Future re-analysis:</strong> As genomic science advances, your stored DNA can be re-analysed with updated knowledge, potentially leading to new findings without needing a new sample.</li>
+                <li><strong>Quality assurance:</strong> When family members are tested later, your stored DNA can be used to verify results and ensure accuracy.</li></ul>
+                <p><a href="pitfalls.html#data-storage">Learn more about data storage →</a></p>
+              </div>
+            </div>
+            <div class="discussion-point__actions">
+              <button class="discussion-point__video-link" data-video="dna-storage">🎥 Watch video</button>
+              <label class="form-check" style="padding:0">
+                <input type="checkbox" class="dp-check" data-point="4">
+                <span class="form-check__label" style="font-weight:600;color:var(--color-success)">I understand this</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Point 5 -->
+          <div class="discussion-point" id="dp-5">
+            <div class="discussion-point__header">
+              <div class="discussion-point__number">5</div>
+              <div>
+                <div class="discussion-point__title">Data storage</div>
+                <p class="discussion-point__statement">The data from my genomic test will be securely stored so that it can be looked at again in the future if necessary.</p>
+              </div>
+            </div>
+            <button class="discussion-point__expand" data-target="explain-5">💡 Explain this to me ▼</button>
+            <div class="discussion-point__explanation" id="explain-5">
+              <div class="discussion-point__explanation-inner">
+                <p><strong>What this means:</strong> Your genomic data (the digital results from sequencing your DNA) will be stored in a secure national database. This is separate from your physical DNA sample.</p>
+                <p>Key points:</p>
+                <ul><li>Data is stored securely with strict access controls</li>
+                <li>Only approved staff can access your data</li>
+                <li>Where possible, identifying information is separated from the genomic data</li>
+                <li><strong>Important:</strong> You cannot opt out of having your genomic data stored, even if you have an NHS data opt-out in place</li></ul>
+                <p><a href="pitfalls.html#data-storage">Learn more about data storage →</a></p>
+              </div>
+            </div>
+            <div class="discussion-point__actions">
+              <button class="discussion-point__video-link" data-video="data-storage">🎥 Watch video</button>
+              <label class="form-check" style="padding:0">
+                <input type="checkbox" class="dp-check" data-point="5">
+                <span class="form-check__label" style="font-weight:600;color:var(--color-success)">I understand this</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Point 6 -->
+          <div class="discussion-point" id="dp-6">
+            <div class="discussion-point__header">
+              <div class="discussion-point__number">6</div>
+              <div>
+                <div class="discussion-point__title">Health records</div>
+                <p class="discussion-point__statement">Results from my genomic test will be part of my patient record, a copy of which is held in a national system only available to healthcare professionals.</p>
+              </div>
+            </div>
+            <button class="discussion-point__expand" data-target="explain-6">💡 Explain this to me ▼</button>
+            <div class="discussion-point__explanation" id="explain-6">
+              <div class="discussion-point__explanation-inner">
+                <p><strong>What this means:</strong> Just like any other medical test, the results of your genomic test will become part of your medical record. This means:</p>
+                <ul><li>Your clinical team (doctors, nurses, genetic counsellors) can access your results to inform your care</li>
+                <li>A copy is held on the National Genomic Medicine Service database, accessible only to authorised healthcare professionals</li>
+                <li>This helps ensure continuity of care if you see different specialists or move to a different area</li></ul>
+              </div>
+            </div>
+            <div class="discussion-point__actions">
+              <button class="discussion-point__video-link" data-video="health-records">🎥 Watch video</button>
+              <label class="form-check" style="padding:0">
+                <input type="checkbox" class="dp-check" data-point="6">
+                <span class="form-check__label" style="font-weight:600;color:var(--color-success)">I understand this</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Point 7 -->
+          <div class="discussion-point" id="dp-7">
+            <div class="discussion-point__header">
+              <div class="discussion-point__number">7</div>
+              <div>
+                <div class="discussion-point__title">Research</div>
+                <p class="discussion-point__statement">I understand that I have the opportunity to take part in research which may benefit myself or others, now or in the future. An offer to join a national research opportunity is available on the following page.</p>
+              </div>
+            </div>
+            <button class="discussion-point__expand" data-target="explain-7">💡 Explain this to me ▼</button>
+            <div class="discussion-point__explanation" id="explain-7">
+              <div class="discussion-point__explanation-inner">
+                <p><strong>What this means:</strong> On the next page of this form, you'll be invited to consider contributing your data to the <strong>National Genomic Research Library</strong>, managed by Genomics England.</p>
+                <p>This is <strong>entirely voluntary</strong> — you can say yes or no, and it will not affect your clinical care or test results. If you're unsure, you can discuss this further with your healthcare professional.</p>
+                <p><a href="pitfalls.html#research">Learn more about research participation →</a></p>
+              </div>
+            </div>
+            <div class="discussion-point__actions">
+              <button class="discussion-point__video-link" data-video="research">🎥 Watch video</button>
+              <label class="form-check" style="padding:0">
+                <input type="checkbox" class="dp-check" data-point="7">
+                <span class="form-check__label" style="font-weight:600;color:var(--color-success)">I understand this</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="alert alert--info mt-6" id="step1-incomplete" style="display:none">
+            <div class="alert__icon">ℹ️</div>
+            <div class="alert__content">
+              <p class="alert__text" style="margin-bottom:0">Please complete all required fields and confirm you understand all 7 discussion points before proceeding.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-nav">
+          <div class="form-nav__info">Step 1 of 3 — Discussion Points</div>
+          <button class="btn btn--primary" id="next-to-2">Continue to Research Choices →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Research Choices -->
+      <div class="form-step" id="step-2">
+        <div class="form-section">
+          <div class="form-section__title"><h3>🔬 The National Genomic Research Library</h3></div>
+
+          <div class="alert alert--info mb-6">
+            <div class="alert__icon">ℹ️</div>
+            <div class="alert__content">
+              <p class="alert__text" style="margin-bottom:0"><strong>The NHS invites you to contribute to the National Genomic Research Library, managed by Genomics England.</strong> Participation is voluntary and will not affect your clinical care. Please read the information below and then make your choice.</p>
+            </div>
+          </div>
+
+          <p>Genomics England was set up in 2013 by the Department of Health and Social Care to work with the NHS to build a library of human genomes for researchers to study. Combining data from many different patients helps researchers to better understand disease and spot patterns in the data.</p>
+          <p>By agreeing to share your data you might get results which could lead to your own diagnosis, a new treatment, or offers to take part in clinical trials. Your taking part could enable diagnoses for people who don't have one.</p>
+
+          <h4 class="mt-6 mb-4">By saying 'yes' to research, I understand the following:</h4>
+
+          <!-- Research Points -->
+          <div class="accordion" id="rp-1">
+            <button class="accordion__header"><div class="accordion__number">1</div><span>The National Genomic Research Library</span><svg class="accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="accordion__body"><div class="accordion__content"><p>NHS England, on behalf of the Trusts that provided your genomic test, will allow Genomics England to access my personal data including my genomic record.</p><p><strong>What this means:</strong> Genomics England will be able to see your test results and relevant medical information so they can include it in their research database.</p></div></div>
+          </div>
+          <div class="accordion" id="rp-2">
+            <button class="accordion__header"><div class="accordion__number">2</div><span>Security</span><svg class="accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="accordion__body"><div class="accordion__content"><p>Any samples and data stored by Genomics England and the NHS will always be stored securely. Genomics England will take all reasonable steps to ensure that I cannot be personally identified.</p></div></div>
+          </div>
+          <div class="accordion" id="rp-3">
+            <button class="accordion__header"><div class="accordion__number">3</div><span>Re-contact</span><svg class="accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="accordion__body"><div class="accordion__content"><p>My clinical team or Genomics England together with my clinical team, can contact me if the data or samples reveals any clinical trials or other research that I might benefit from.</p></div></div>
+          </div>
+          <div class="accordion" id="rp-4">
+            <button class="accordion__header"><div class="accordion__number">4</div><span>Sharing relevant findings</span><svg class="accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="accordion__body"><div class="accordion__content"><p>If something is relevant to me or my family, there is a process by which this will be shared with my NHS clinical team.</p></div></div>
+          </div>
+          <div class="accordion" id="rp-5">
+            <button class="accordion__header"><div class="accordion__number">5</div><span>Data and sample usage</span><svg class="accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="accordion__body"><div class="accordion__content"><p>Researchers may include national or international scientists, healthcare companies and NHS staff. To access the data, these researchers must all be approved by an independent committee of experts, including health professionals, clinical academics and patients. <strong>There will be no access to the data by personal insurers and marketing companies.</strong></p></div></div>
+          </div>
+          <div class="accordion" id="rp-6">
+            <button class="accordion__header"><div class="accordion__number">6</div><span>Data storage</span><svg class="accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="accordion__body"><div class="accordion__content"><p>Genomics England will collect different aspects of my health data from the NHS and other data from organisations listed at <a href="https://www.genomicsengland.co.uk/privacy-policy/" target="_blank" rel="noopener">genomicsengland.co.uk/privacy-policy</a>. The collection and analysis of my health data for research will continue across my entire lifetime and beyond.</p></div></div>
+          </div>
+          <div class="accordion" id="rp-7">
+            <button class="accordion__header"><div class="accordion__number">7</div><span>Withdrawal</span><svg class="accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="accordion__body"><div class="accordion__content"><p>I can change my mind about taking part at any time.</p><p>More information regarding research in the National Genomic Research Library can be found at <a href="https://www.genomicsengland.co.uk" target="_blank" rel="noopener">www.genomicsengland.co.uk</a>. For any further questions, my healthcare professional can provide information.</p></div></div>
+          </div>
+        </div>
+
+        <div class="form-nav">
+          <button class="btn btn--ghost" id="back-to-1">← Back</button>
+          <div class="form-nav__info">Step 2 of 3 — Research Choices</div>
+          <button class="btn btn--primary" id="next-to-3">Continue to Confirmation →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Confirmation -->
+      <div class="form-step" id="step-3">
+        <div class="form-section">
+          <div class="form-section__title"><h3>✅ Confirmation of Your Genomic Test and Research Choices</h3></div>
+          <p><strong>I confirm that I have had the opportunity to discuss information about genomic testing, I agree to the genomic test, and my research choice is indicated below.</strong></p>
+
+          <div class="choice-card mt-6" id="choice-a">
+            <p class="choice-card__question">A. I have discussed taking part in the National Genomic Research Library</p>
+            <div class="choice-card__options">
+              <button class="choice-btn" data-choice="a" data-value="yes" id="choice-a-yes">YES</button>
+              <button class="choice-btn" data-choice="a" data-value="no" id="choice-a-no">NO</button>
+            </div>
+          </div>
+
+          <div id="choice-b-wrapper">
+            <p class="text-muted text-sm mt-4 mb-2"><em>If your answer to A is NO then please ignore B and sign directly below.</em></p>
+            <div class="choice-card" id="choice-b">
+              <p class="choice-card__question">B. I agree that my data and remainder sample may contribute to the National Genomic Research Library</p>
+              <div class="choice-card__options">
+                <button class="choice-btn" data-choice="b" data-value="yes" id="choice-b-yes">YES</button>
+                <button class="choice-btn" data-choice="b" data-value="no" id="choice-b-no">NO</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Patient Signature -->
+        <div class="form-section mt-6">
+          <div class="form-section__title"><h3>✍️ Patient Signature</h3></div>
+          <div class="patient-details mb-6">
+            <div class="form-group">
+              <label class="form-label">Patient name</label>
+              <input class="form-input" type="text" id="sig-patient-name" readonly>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="sig-date">Date</label>
+              <input class="form-input" type="date" id="sig-date">
+            </div>
+          </div>
+          <label class="form-label">Signature</label>
+          <div class="signature-pad" id="patient-sig-pad">
+            <canvas id="patient-sig-canvas"></canvas>
+            <span class="signature-pad__label">Sign here with mouse or touch</span>
+            <div class="signature-pad__actions">
+              <button class="btn btn--ghost btn--sm" id="patient-sig-clear" type="button">Clear</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guardian Section -->
+        <div class="form-section mt-6">
+          <div class="form-section__title"><h3>👨‍👩‍👧 Parent / Guardian / Consultee</h3></div>
+          <p class="text-muted text-sm mb-4">Complete this section only if you are signing on behalf of someone else (children, adults without capacity, or deceased patients).</p>
+          <div class="form-group">
+            <label class="form-label" for="guardian-name">Parent / Guardian / Consultee name</label>
+            <input class="form-input" type="text" id="guardian-name">
+          </div>
+          <label class="form-label">Signature</label>
+          <div class="signature-pad" id="guardian-sig-pad">
+            <canvas id="guardian-sig-canvas"></canvas>
+            <span class="signature-pad__label">Sign here if applicable</span>
+            <div class="signature-pad__actions">
+              <button class="btn btn--ghost btn--sm" id="guardian-sig-clear" type="button">Clear</button>
+            </div>
+          </div>
+          <div class="form-group mt-4">
+            <label class="form-label" for="guardian-date">Date</label>
+            <input class="form-input" type="date" id="guardian-date">
+          </div>
+        </div>
+
+        <!-- HCP Section -->
+        <div class="hcp-section">
+          <h3 class="hcp-section__title">🩺 Healthcare Professional Use Only</h3>
+          <p class="hcp-section__subtitle">To be completed by the healthcare professional recording the patient's choices.</p>
+
+          <div class="form-group">
+            <label class="form-label">Patient category</label>
+            <div style="display:flex;flex-direction:column;gap:var(--space-2)">
+              <label class="form-check"><input type="checkbox" name="patient-cat" value="adult"><span class="form-check__label">Adult (made their own choices)</span></label>
+              <label class="form-check"><input type="checkbox" name="patient-cat" value="adult-lacking"><span class="form-check__label">Adult lacking capacity (choices advised by consultee)</span></label>
+              <label class="form-check"><input type="checkbox" name="patient-cat" value="child"><span class="form-check__label">Child (parent or guardian choices)</span></label>
+              <label class="form-check"><input type="checkbox" name="patient-cat" value="clinician-agreed"><span class="form-check__label">Clinician has agreed to the test (in the patient's best interests)</span></label>
+              <label class="form-check"><input type="checkbox" name="patient-cat" value="deceased"><span class="form-check__label">Deceased (choices made on behalf of deceased individual)</span></label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Test type</label>
+            <div style="display:flex;flex-direction:column;gap:var(--space-2)">
+              <label class="form-check"><input type="radio" name="test-type" value="rare-disease"><span class="form-check__label">Rare and Inherited Diseases — WGS</span></label>
+              <label class="form-check"><input type="radio" name="test-type" value="cancer"><span class="form-check__label">Cancer (paired tumour normal) — WGS</span></label>
+            </div>
+          </div>
+
+          <div class="form-group" id="research-no-reason" style="display:none">
+            <label class="form-label">If answer to research choice A is NO</label>
+            <div style="display:flex;flex-direction:column;gap:var(--space-2)">
+              <label class="form-check"><input type="checkbox" name="research-no" value="discuss-later"><span class="form-check__label">Patient would like to discuss at a later date</span></label>
+              <label class="form-check"><input type="checkbox" name="research-no" value="inappropriate"><span class="form-check__label">Inappropriate to have discussion</span></label>
+              <label class="form-check"><input type="checkbox" name="research-no" value="lacks-capacity"><span class="form-check__label">Patient lacks capacity and no consultee available</span></label>
+              <label class="form-check"><input type="checkbox" name="research-no" value="other"><span class="form-check__label">Other</span></label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-check"><input type="checkbox" name="remote-consent" id="remote-consent"><span class="form-check__label">Remote consent — Recorded remotely by clinician, no patient signature</span></label>
+          </div>
+
+          <div class="hcp-grid">
+            <div class="form-group">
+              <label class="form-label" for="hcp-clinician">Responsible clinician</label>
+              <input class="form-input" type="text" id="hcp-clinician">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="hcp-hospital">Hospital number</label>
+              <input class="form-input" type="text" id="hcp-hospital">
+            </div>
+          </div>
+
+          <div class="hcp-grid mt-4">
+            <div class="form-group">
+              <label class="form-label" for="hcp-name">Healthcare professional name</label>
+              <input class="form-input" type="text" id="hcp-name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="hcp-date">Date</label>
+              <input class="form-input" type="date" id="hcp-date">
+            </div>
+          </div>
+
+          <label class="form-label mt-4">Healthcare professional signature</label>
+          <div class="signature-pad" id="hcp-sig-pad">
+            <canvas id="hcp-sig-canvas"></canvas>
+            <span class="signature-pad__label">Sign here</span>
+            <div class="signature-pad__actions">
+              <button class="btn btn--ghost btn--sm" id="hcp-sig-clear" type="button">Clear</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-nav mt-6">
+          <button class="btn btn--ghost" id="back-to-2">← Back</button>
+          <div style="display:flex;gap:var(--space-3);flex-wrap:wrap">
+            <button class="btn btn--secondary" id="save-draft">💾 Save Draft</button>
+            <button class="btn btn--primary" id="download-pdf">📄 Download PDF</button>
+            <button class="btn btn--primary" id="email-pdf" style="background:var(--color-secondary-500)">📧 Email to Consultant</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div><div class="footer__brand">🧬 WGS Guide</div><p class="footer__desc">A companion guide for the NHS Record of Discussion form.</p></div>
+      <div><div class="footer__heading">Navigate</div><ul class="footer__list"><li><a href="understanding-wgs.html">Understanding WGS</a></li><li><a href="pitfalls.html">Important Information</a></li><li><a href="form.html">Complete Form</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+      <div><div class="footer__heading">Resources</div><ul class="footer__list"><li><a href="https://www.nhs.uk/conditions/genetics/" target="_blank" rel="noopener">NHS Genetics</a></li><li><a href="https://www.genomicsengland.co.uk/" target="_blank" rel="noopener">Genomics England</a></li><li><a href="resources.html">All Resources</a></li></ul></div>
+      <div><div class="footer__heading">Support</div><ul class="footer__list"><li><a href="https://www.geneticalliance.org.uk/" target="_blank" rel="noopener">Genetic Alliance UK</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><p>For educational purposes. Based on NHS RoD form (01-NGIS-ROD v4.03).</p></div>
+  </footer>
+  <div class="cookie-banner" id="cookie-banner"><div class="cookie-banner__inner"><p class="cookie-banner__text">This site uses local storage. No data is sent externally.</p><div class="cookie-banner__actions"><button class="btn btn--primary btn--sm" id="cookie-accept">Accept</button></div></div></div>
+  <script src="js/app.js"></script>
+  <script src="js/form.js"></script>
+</body>
+</html>

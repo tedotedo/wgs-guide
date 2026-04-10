@@ -1,0 +1,335 @@
+[
+  {
+    "id": 1,
+    "question": "What is whole genome sequencing (WGS)?",
+    "answer": "Whole genome sequencing (WGS) is a genetic test that reads all of your DNA — approximately 3 billion base pairs — at once. Unlike older genetic tests that only look at specific genes, WGS analyses your entire genome, making it much more comprehensive. It can identify changes (variants) that may cause or contribute to health conditions.",
+    "source": "NHS.uk",
+    "sourceUrl": "https://www.nhs.uk/conditions/genetics/",
+    "tags": ["wgs", "genome", "dna", "sequencing", "test", "what is", "basics"],
+    "related": [2, 3, 4]
+  },
+  {
+    "id": 2,
+    "question": "Is WGS free on the NHS?",
+    "answer": "Yes. Whole genome sequencing is free on the NHS when you are referred for it by a hospital specialist. You will only be referred if you have a suspected genetic health condition or a particular type of cancer. You do not need to pay for the test.",
+    "source": "NHS.uk",
+    "sourceUrl": "https://www.nhs.uk/conditions/genetics/",
+    "tags": ["cost", "free", "nhs", "pay", "money", "price"],
+    "related": [1, 3]
+  },
+  {
+    "id": 3,
+    "question": "Why has WGS been recommended for me?",
+    "answer": "WGS is offered through the NHS Genomic Medicine Service for specific clinical reasons. You may have been referred because: you or your child has a rare or inherited disease not diagnosed by other tests; you have a cancer that may benefit from genomic analysis to guide treatment; or a family member has been diagnosed with a genetic condition and testing can determine if you carry the same variant.",
+    "source": "NHS England",
+    "sourceUrl": "https://www.england.nhs.uk/genomics/nhs-genomic-med-service/",
+    "tags": ["why", "recommended", "referred", "reason", "referral", "rare disease", "cancer"],
+    "related": [1, 4]
+  },
+  {
+    "id": 4,
+    "question": "How does WGS differ from other genetic tests?",
+    "answer": "Traditional genetic tests look at specific genes or small sections of DNA — like searching one chapter of a book for a typo. WGS reads the entire book. This means WGS can detect a wider range of genetic changes, including in genes that might not have been specifically tested otherwise. It's the most comprehensive genetic test available.",
+    "source": "Genomics England",
+    "sourceUrl": "https://www.genomicsengland.co.uk/understanding-genomics",
+    "tags": ["differ", "difference", "comparison", "panel", "targeted", "comprehensive"],
+    "related": [1, 5]
+  },
+  {
+    "id": 5,
+    "question": "What is trio testing?",
+    "answer": "Trio testing means sequencing the genomes of the patient and both biological parents at the same time. It is the gold standard for rare disease WGS because it helps identify de novo (new) variants, filter inherited variants, and determine inheritance patterns. Trio testing significantly increases the likelihood of finding a diagnosis compared to testing the patient alone (around 30-50% diagnostic rate vs 20-25% for singleton testing).",
+    "source": "NHS Genomic Medicine Service",
+    "sourceUrl": "https://www.england.nhs.uk/genomics/nhs-genomic-med-service/",
+    "tags": ["trio", "parents", "family", "mother", "father", "both parents", "de novo", "gold standard"],
+    "related": [6, 7, 8]
+  },
+  {
+    "id": 6,
+    "question": "Why are both parents asked to give samples?",
+    "answer": "Both parents are asked to provide samples for trio testing because comparing your genome to both parents helps scientists: identify new (de novo) mutations not inherited from either parent; filter out thousands of benign inherited variants; determine whether a variant came from your mother or father; and significantly increase the chances of finding a diagnosis. Trio testing is considered the most effective approach for rare disease WGS.",
+    "source": "NHS Genomic Medicine Service",
+    "sourceUrl": "https://www.england.nhs.uk/genomics/nhs-genomic-med-service/",
+    "tags": ["parents", "samples", "why", "both", "trio", "mother", "father"],
+    "related": [5, 7, 8]
+  },
+  {
+    "id": 7,
+    "question": "What if both parents can't be tested?",
+    "answer": "If both parents can't be tested (e.g. if a parent is deceased, uncontactable, or unwilling), alternatives include: duo testing (patient plus one biological parent), singleton testing (patient only, though this has a lower diagnostic rate and is more complex), or testing other family members such as siblings. Your clinical team will advise on the best approach.",
+    "source": "NHS Genomic Medicine Service",
+    "sourceUrl": "https://www.england.nhs.uk/genomics/nhs-genomic-med-service/",
+    "tags": ["duo", "singleton", "alternative", "one parent", "can't", "unavailable", "deceased"],
+    "related": [5, 6]
+  },
+  {
+    "id": 8,
+    "question": "Can trio testing reveal non-paternity?",
+    "answer": "Yes. Because trio testing compares the patient's genome directly with both parents, it will clearly show if a stated biological parent is not the true biological parent. A child inherits approximately half their DNA from each parent, so the analysis makes it straightforward to detect non-paternity (misattributed parentage). Both parents should be aware of this before providing samples.",
+    "source": "NHS.uk",
+    "sourceUrl": "https://www.nhs.uk/conditions/genetics/",
+    "tags": ["non-paternity", "trio", "reveal", "discover", "parentage", "biological", "father"],
+    "related": [5, 9, 10]
+  },
+  {
+    "id": 9,
+    "question": "What happens if non-paternity is discovered?",
+    "answer": "If genomic testing reveals misattributed parentage (non-paternity), the clinical team has a duty to share this information. This is because: accurate biological relationships are essential for correct interpretation of test results; it affects recurrence risk assessment and genetic counselling for family members; and the NHS has a duty of candour. This will be handled sensitively and confidentially, with support including genetic counselling offered.",
+    "source": "NHS.uk",
+    "sourceUrl": "https://www.nhs.uk/conditions/genetics/",
+    "tags": ["non-paternity", "discovered", "disclosure", "must tell", "duty", "candour", "confidential"],
+    "related": [8, 10]
+  },
+  {
+    "id": 10,
+    "question": "Does non-paternity have to be disclosed?",
+    "answer": "Yes. Under current UK guidance, if genomic testing reveals that biological relationships are different from those assumed, the clinical team must share this information. This is because understanding true biological relationships is essential for clinical accuracy, correct interpretation of genetic results, family health implications, and recurrence risk assessment. The information will always be handled sensitively and confidentially.",
+    "source": "NHS.uk",
+    "sourceUrl": "https://www.nhs.uk/conditions/genetics/",
+    "tags": ["disclosure", "must", "required", "non-paternity", "paternity", "tell", "duty"],
+    "related": [8, 9]
+  },
+  {
+    "id": 11,
+    "question": "Will my test results affect my insurance?",
+    "answer": "Generally no. Under the ABI Code on Genetic Testing and Insurance, you do NOT usually have to disclose predictive genetic test results to insurers. If a genetic test confirms a condition you have, you must disclose the condition itself (as with any diagnosis), but not the genetic test specifically. No insurer can require you to take a genetic test, and they cannot ask for your raw genomic data. The NHS will not share your results with insurers without your consent.",
+    "source": "ABI / NHS.uk",
+    "sourceUrl": "https://www.abi.org.uk/data-and-resources/tools-and-resources/genetics/code-on-genetic-testing-and-insurance/",
+    "tags": ["insurance", "affect", "life insurance", "disclose", "tell", "abi", "code"],
+    "related": [12]
+  },
+  {
+    "id": 12,
+    "question": "Do I have to tell my insurer about genetic test results?",
+    "answer": "You do not usually have to disclose predictive genetic test results to insurers. However, if you have a diagnosed medical condition (whether confirmed by genetic testing or other means), you must disclose the condition if asked on an insurance application — this is the same as for any medical diagnosis. The ABI Code on Genetic Testing and Insurance provides these protections.",
+    "source": "ABI",
+    "sourceUrl": "https://www.abi.org.uk/data-and-resources/tools-and-resources/genetics/code-on-genetic-testing-and-insurance/",
+    "tags": ["insurance", "tell", "disclose", "predictive", "diagnosed", "abi"],
+    "related": [11]
+  },
+  {
+    "id": 13,
+    "question": "What are unexpected or secondary findings?",
+    "answer": "Because WGS reads all of your DNA, it may discover genetic changes unrelated to the original reason for your test. These are called secondary or incidental findings. Examples include: discovering you are a carrier for a genetic condition, finding a predisposition to certain cancers, or identifying a pharmacogenomic variant that affects how your body processes medications. You may need further tests to understand their significance.",
+    "source": "NHS.uk",
+    "sourceUrl": "https://www.nhs.uk/conditions/genetics/",
+    "tags": ["unexpected", "secondary", "incidental", "findings", "surprise", "unrelated", "carrier"],
+    "related": [14, 15]
+  },
+  {
+    "id": 14,
+    "question": "What is a variant of uncertain significance (VUS)?",
+    "answer": "A Variant of Uncertain Significance (VUS) is a genetic change found during testing whose impact on health is not yet fully understood. A VUS is not a diagnosis — it means more information is needed. As scientific knowledge advances, a VUS may be reclassified as either harmful (pathogenic) or harmless (benign). Your results may be re-analysed in the future, and you may be asked to return for follow-up.",
+    "source": "Genomics England",
+    "sourceUrl": "https://www.genomicsengland.co.uk/understanding-genomics",
+    "tags": ["vus", "uncertain", "variant", "significance", "unknown", "unclear"],
+    "related": [13, 15]
+  },
+  {
+    "id": 15,
+    "question": "How long do WGS results take?",
+    "answer": "Results typically take several weeks to months, depending on the complexity of the case and whether it's trio, duo, or singleton testing. Your clinical team will let you know when to expect your results. Some urgent cases (such as certain cancer tests) may be prioritised.",
+    "source": "NHS.uk",
+    "sourceUrl": "https://www.nhs.uk/conditions/genetics/",
+    "tags": ["how long", "time", "wait", "weeks", "months", "results", "timeline"],
+    "related": [1, 16]
+  },
+  {
+    "id": 16,
+    "question": "What types of results can WGS show?",
+    "answer": "WGS results may show: a clear diagnosis (a known disease-causing variant is found); a variant of uncertain significance (VUS — the impact is not yet clear); no significant result (no variant found, though this doesn't rule out a genetic cause); or unexpected/additional findings unrelated to the original reason for testing.",
+    "source": "NHS.uk",
+    "sourceUrl": "https://www.nhs.uk/conditions/genetics/",
+    "tags": ["results", "types", "diagnosis", "outcome", "what", "show", "find"],
+    "related": [14, 13, 15]
+  },
+  {
+    "id": 17,
+    "question": "How is my DNA stored?",
+    "answer": "The NHS laboratory will store the DNA extracted from your sample even after testing is complete. This is standard practice. Your stored DNA may be used for future re-analysis as genomic science advances, or to ensure quality when family members are tested later. The physical DNA sample is stored separately from the digital genomic data.",
+    "source": "NHS.uk",
+    "sourceUrl": "https://www.nhs.uk/conditions/genetics/",
+    "tags": ["dna", "storage", "stored", "sample", "blood", "laboratory", "kept"],
+    "related": [18, 19]
+  },
+  {
+    "id": 18,
+    "question": "Can I opt out of having my genomic data stored?",
+    "answer": "No. If you have a WGS test on the NHS, it is not possible to stop your genomic data being stored and shared. Even if you have an NHS data opt-out in place, this does not apply to genomic test data. This is because the data is necessary for clinical care, service planning, and research.",
+    "source": "NHS.uk",
+    "sourceUrl": "https://www.nhs.uk/conditions/genetics/",
+    "tags": ["opt out", "refuse", "stop", "data", "storage", "sharing", "gdpr"],
+    "related": [17, 19]
+  },
+  {
+    "id": 19,
+    "question": "Who can see my genomic data?",
+    "answer": "Your genomic data can only be accessed by approved staff. This includes your clinical team and authorised healthcare professionals. Where necessary, identifying information (such as your name and address) is removed or separated from the genomic data. If you agree to research participation, approved researchers may also access de-identified data through strict governance processes.",
+    "source": "NHS.uk",
+    "sourceUrl": "https://www.nhs.uk/conditions/genetics/",
+    "tags": ["access", "who", "see", "data", "privacy", "confidential", "staff"],
+    "related": [17, 18, 20]
+  },
+  {
+    "id": 20,
+    "question": "What is the National Genomic Research Library?",
+    "answer": "The National Genomic Research Library is managed by Genomics England and combines genomic data from many NHS patients to help researchers better understand disease and develop new treatments. By agreeing to participate, you may receive results that lead to new diagnoses or treatment options. Participation is voluntary and will not affect your clinical care. You can withdraw at any time.",
+    "source": "Genomics England",
+    "sourceUrl": "https://www.genomicsengland.co.uk/patients-participants/taking-part",
+    "tags": ["research library", "genomics england", "national", "research", "participate"],
+    "related": [21, 22, 23]
+  },
+  {
+    "id": 21,
+    "question": "Is research participation voluntary?",
+    "answer": "Yes, participation in the National Genomic Research Library is entirely voluntary. You can choose to say yes or no, and it will not affect your clinical care or the quality of your genomic test. If you say no, you will still receive the same standard of care. You can also change your mind and withdraw from research at any time.",
+    "source": "Genomics England",
+    "sourceUrl": "https://www.genomicsengland.co.uk/patients-participants/taking-part",
+    "tags": ["voluntary", "choice", "optional", "must", "required", "refuse"],
+    "related": [20, 22, 23]
+  },
+  {
+    "id": 22,
+    "question": "Can I withdraw from research later?",
+    "answer": "Yes. You can change your mind about participating in the National Genomic Research Library at any time. Contact Genomics England or your clinical team to withdraw. However, any research that has already been completed using your de-identified data before withdrawal cannot be undone.",
+    "source": "Genomics England",
+    "sourceUrl": "https://www.genomicsengland.co.uk/patients-participants/taking-part",
+    "tags": ["withdraw", "change mind", "stop", "cancel", "remove", "later"],
+    "related": [20, 21]
+  },
+  {
+    "id": 23,
+    "question": "Will insurers or marketing companies have access to my research data?",
+    "answer": "No. There will be no access to the data by personal insurers and marketing companies. Only researchers approved by an independent committee (including health professionals, clinical academics, and patients) can access the data. This is a strict governance requirement of the National Genomic Research Library.",
+    "source": "Genomics England",
+    "sourceUrl": "https://www.genomicsengland.co.uk/patients-participants/taking-part",
+    "tags": ["insurers", "marketing", "companies", "access", "data", "research"],
+    "related": [11, 20]
+  },
+  {
+    "id": 24,
+    "question": "How will test results affect my family?",
+    "answer": "Because your genome is inherited, results may affect your blood relatives. If a genetic condition is found, other family members may also carry the variant and could be offered cascade testing. Results could inform family planning decisions. In some cases, WGS may reveal unexpected family relationships (such as non-paternity), particularly when trio testing is performed.",
+    "source": "NHS.uk",
+    "sourceUrl": "https://www.nhs.uk/conditions/genetics/",
+    "tags": ["family", "relatives", "siblings", "children", "parents", "affect", "implications", "cascade"],
+    "related": [5, 8, 25]
+  },
+  {
+    "id": 25,
+    "question": "What is genetic counselling?",
+    "answer": "A genetic counsellor is a healthcare professional who helps you understand what genetic testing and results mean for you and your family. They can explain: the risks and benefits of testing, what results mean, how family members may be affected, options for family planning, and the risk of passing conditions to children. The British Society for Genetic Medicine and Genetic Alliance UK can help you find support.",
+    "source": "NHS.uk",
+    "sourceUrl": "https://www.nhs.uk/conditions/genetics/",
+    "tags": ["counselling", "counsellor", "support", "help", "emotional", "psychological", "understand"],
+    "related": [24, 26]
+  },
+  {
+    "id": 26,
+    "question": "What if I decide not to have the test?",
+    "answer": "If you decide not to have a genetic test, you will still receive care and support from healthcare professionals. Your clinical team will continue to manage your condition using other available tools and approaches. You can always reconsider and be referred again in the future.",
+    "source": "NHS.uk",
+    "sourceUrl": "https://www.nhs.uk/conditions/genetics/",
+    "tags": ["refuse", "decline", "not have", "say no", "don't want", "cancel"],
+    "related": [25, 3]
+  },
+  {
+    "id": 27,
+    "question": "What is the Record of Discussion form?",
+    "answer": "The Record of Discussion (RoD) form is the official NHS consent document for whole genome sequencing. Version 4.03 (01-NGIS-ROD) has three pages covering: the discussion points you should understand before testing (7 points), information about the National Genomic Research Library, and confirmation of your test and research choices with signatures.",
+    "source": "NHS Genomic Medicine Service",
+    "sourceUrl": "https://www.england.nhs.uk/genomics/nhs-genomic-med-service/",
+    "tags": ["rod", "form", "record of discussion", "consent", "document", "pages"],
+    "related": [28, 1]
+  },
+  {
+    "id": 28,
+    "question": "Do I need to sign the form?",
+    "answer": "Yes. The Record of Discussion form requires your signature (or that of a parent/guardian/consultee if signing on behalf of someone else) to confirm you have understood the discussion points and agree to the genomic test. Your healthcare professional will also sign the form. In some cases, remote consent may be recorded by the clinician without a physical signature.",
+    "source": "NHS Genomic Medicine Service",
+    "sourceUrl": "https://www.england.nhs.uk/genomics/nhs-genomic-med-service/",
+    "tags": ["sign", "signature", "consent", "agree", "form", "required"],
+    "related": [27]
+  },
+  {
+    "id": 29,
+    "question": "What is Genomics England?",
+    "answer": "Genomics England was set up in 2013 by the Department of Health and Social Care to work with the NHS to build a library of human genomes for researchers to study. It manages the National Genomic Research Library and ran the 100,000 Genomes Project. Genomics England helps advance genomic medicine to improve diagnosis and treatment for NHS patients.",
+    "source": "Genomics England",
+    "sourceUrl": "https://www.genomicsengland.co.uk/about-us",
+    "tags": ["genomics england", "organisation", "who", "100000", "genomes project"],
+    "related": [20, 30]
+  },
+  {
+    "id": 30,
+    "question": "What is the NHS Genomic Medicine Service?",
+    "answer": "The NHS Genomic Medicine Service brings together genomic testing and clinical care across England. It operates through seven Genomic Laboratory Hubs that process WGS tests and deliver results. The service makes whole genome sequencing available as part of routine NHS care for eligible patients with rare diseases and cancer.",
+    "source": "NHS England",
+    "sourceUrl": "https://www.england.nhs.uk/genomics/nhs-genomic-med-service/",
+    "tags": ["nhs", "genomic medicine service", "gms", "laboratory", "hubs", "england"],
+    "related": [29, 1]
+  },
+  {
+    "id": 31,
+    "question": "How is the blood sample taken?",
+    "answer": "A blood sample is taken by a healthcare professional, usually from a vein in your arm. It's the same process as a routine blood test. For some patients, a saliva sample may be used instead. For cancer patients, a tumour sample already removed during treatment is used alongside a blood sample (for paired tumour-normal analysis).",
+    "source": "NHS.uk",
+    "sourceUrl": "https://www.nhs.uk/conditions/genetics/",
+    "tags": ["blood", "sample", "saliva", "taken", "how", "procedure", "needle", "test"],
+    "related": [1, 15]
+  },
+  {
+    "id": 32,
+    "question": "Can my genomic data be re-analysed in the future?",
+    "answer": "Yes. Because your genomic data and DNA sample are stored, they can be re-analysed as scientific knowledge advances. A variant classified as 'uncertain significance' today might be reclassified later as the scientific community learns more. This is one of the benefits of NHS data storage — your results can improve over time without needing a new sample.",
+    "source": "NHS.uk",
+    "sourceUrl": "https://www.nhs.uk/conditions/genetics/",
+    "tags": ["re-analyse", "future", "again", "retest", "update", "reclassify", "new analysis"],
+    "related": [14, 17]
+  },
+  {
+    "id": 33,
+    "question": "What happens to my data after I die?",
+    "answer": "If you agreed to participate in the National Genomic Research Library, the collection and analysis of your health data for research will continue beyond your lifetime. Your genomic data remains in the NHS databases and can continue to benefit research and the care of family members after your death.",
+    "source": "Genomics England",
+    "sourceUrl": "https://www.genomicsengland.co.uk/patients-participants/taking-part",
+    "tags": ["death", "die", "after", "lifetime", "beyond", "deceased"],
+    "related": [17, 20]
+  },
+  {
+    "id": 34,
+    "question": "Can I get a second opinion on my results?",
+    "answer": "Yes. If you have questions or concerns about your results, you can discuss them with your clinical team or ask to be referred to a genetic counsellor. You may also request referral to a different clinical genetics service for a second opinion. Organisations like Genetic Alliance UK can also provide information and support.",
+    "source": "Genetic Alliance UK",
+    "sourceUrl": "https://www.geneticalliance.org.uk/",
+    "tags": ["second opinion", "disagree", "question", "another doctor", "review"],
+    "related": [25, 16]
+  },
+  {
+    "id": 35,
+    "question": "Is WGS safe?",
+    "answer": "The physical process of WGS is very safe — it only requires a blood sample or saliva swab, with the same minimal risks as a routine blood test. The main considerations are psychological: receiving unexpected results, uncertain findings, or information about family relationships can be emotionally challenging. Genetic counselling support is available to help you through this.",
+    "source": "NHS.uk",
+    "sourceUrl": "https://www.nhs.uk/conditions/genetics/",
+    "tags": ["safe", "safety", "risk", "dangerous", "harm", "side effects"],
+    "related": [13, 25]
+  },
+  {
+    "id": 36,
+    "question": "What does the test involve for cancer patients?",
+    "answer": "For cancer patients, WGS analyses both the tumour and normal tissue (called paired tumour-normal analysis). A tumour sample already removed during treatment is used alongside a blood sample of your normal DNA. This helps identify the specific genetic changes driving the cancer and can guide treatment decisions, including whether targeted therapies may be effective.",
+    "source": "NHS Genomic Medicine Service",
+    "sourceUrl": "https://www.england.nhs.uk/genomics/nhs-genomic-med-service/",
+    "tags": ["cancer", "tumour", "tumor", "paired", "normal", "oncology", "treatment"],
+    "related": [1, 3]
+  },
+  {
+    "id": 37,
+    "question": "Where can I find more information about genomic testing in the UK?",
+    "answer": "Key UK resources include: NHS.uk (nhs.uk/conditions/genetics) for patient information; Genomics England (genomicsengland.co.uk) for research and participation; the Genomics Education Programme (genomicseducation.hee.nhs.uk) for educational materials; Genetic Alliance UK (geneticalliance.org.uk) for patient support; and the ABI (abi.org.uk) for insurance guidance.",
+    "source": "Multiple",
+    "sourceUrl": "https://www.nhs.uk/conditions/genetics/",
+    "tags": ["more information", "resources", "links", "websites", "help", "where", "find"],
+    "related": [29, 30]
+  }
+]

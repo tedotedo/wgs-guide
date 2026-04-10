@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WGS Guide — Understanding Your Genomic Test</title>
+  <meta name="description" content="A companion guide for the NHS Record of Discussion Regarding Genomic Testing. Understand whole genome sequencing, its implications, and complete your RoD form.">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
+</head>
+<body>
+  <a href="#main" class="skip-to-content">Skip to main content</a>
+
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__brand" aria-label="WGS Guide Home">
+        <div class="nav__brand-icon">🧬</div>
+        <div class="nav__brand-text"><span>WGS</span> Guide</div>
+      </a>
+      <ul class="nav__links" id="nav-links" role="menubar">
+        <li role="none"><a href="index.html" class="nav__link" role="menuitem">Home</a></li>
+        <li role="none"><a href="understanding-wgs.html" class="nav__link" role="menuitem">Understanding WGS</a></li>
+        <li role="none"><a href="pitfalls.html" class="nav__link" role="menuitem">Important Information</a></li>
+        <li role="none"><a href="form.html" class="nav__link" role="menuitem">Complete Form</a></li>
+        <li role="none"><a href="faq.html" class="nav__link" role="menuitem">FAQ</a></li>
+        <li role="none"><a href="resources.html" class="nav__link" role="menuitem">Resources</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-moon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+        <button class="nav__hamburger" id="nav-hamburger" aria-label="Menu" aria-expanded="false">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero__bg"></div>
+      <div class="hero__particles" aria-hidden="true">
+        <div class="hero__particle" style="top:15%;left:10%;animation-delay:0s;animation-duration:5s"></div>
+        <div class="hero__particle" style="top:40%;left:25%;animation-delay:1s;animation-duration:7s"></div>
+        <div class="hero__particle" style="top:60%;left:60%;animation-delay:2s;animation-duration:4s"></div>
+        <div class="hero__particle" style="top:25%;left:75%;animation-delay:0.5s;animation-duration:6s"></div>
+        <div class="hero__particle" style="top:70%;left:85%;animation-delay:1.5s;animation-duration:5.5s"></div>
+        <div class="hero__particle" style="top:80%;left:40%;animation-delay:3s;animation-duration:8s"></div>
+        <div class="hero__particle" style="top:10%;left:50%;animation-delay:2.5s;animation-duration:6.5s"></div>
+        <div class="hero__particle" style="top:50%;left:90%;animation-delay:0.8s;animation-duration:7.5s"></div>
+      </div>
+
+      <div class="hero__content">
+        <div class="hero__text">
+          <h1>Understanding Your Genomic Test</h1>
+          <p>A step-by-step guide to help you understand whole genome sequencing (WGS) and complete your NHS Record of Discussion form with confidence.</p>
+          <div class="hero__actions">
+            <a href="understanding-wgs.html" class="btn btn--primary btn--lg" id="hero-learn-btn">
+              Learn About WGS
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="form.html" class="btn btn--secondary btn--lg" id="hero-form-btn" style="background:rgba(255,255,255,0.15);color:white;border-color:rgba(255,255,255,0.4)">
+              Complete the Form
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="hero__visual" aria-hidden="true">
+          <div class="dna-helix">
+            <div class="dna-strand" id="dna-strand"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <section class="section--sm" style="background:var(--surface-secondary);border-bottom:1px solid var(--color-neutral-100)">
+      <div class="container text-center">
+        <p class="text-muted text-sm" style="margin-bottom:0">
+          📋 Based on the <strong>NHS Genomic Medicine Service — Record of Discussion Form v4.03</strong> &nbsp;|&nbsp;
+          🏥 Information sourced from <a href="https://www.nhs.uk/conditions/genetics/" target="_blank" rel="noopener">NHS.uk</a>,
+          <a href="https://www.genomicsengland.co.uk/" target="_blank" rel="noopener">Genomics England</a>, and the
+          <a href="https://www.genomicseducation.hee.nhs.uk/" target="_blank" rel="noopener">Genomics Education Programme</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Overview Cards -->
+    <section class="section" id="overview">
+      <div class="container">
+        <div class="text-center mb-8">
+          <h2 class="mb-4">How This Guide Helps You</h2>
+          <p class="text-muted" style="max-width:600px;margin:0 auto">Before having a whole genome sequencing test on the NHS, you need to complete a Record of Discussion form. This guide walks you through every step.</p>
+        </div>
+
+        <div class="grid grid-4 gap-6">
+          <a href="understanding-wgs.html" class="card card--interactive animate-on-scroll" id="card-understanding">
+            <div class="card__icon card__icon--blue">🧬</div>
+            <h4 class="card__title">What is WGS?</h4>
+            <p class="card__desc">Learn what whole genome sequencing is, why it's been recommended, and what results can show — explained in plain English.</p>
+          </a>
+
+          <a href="pitfalls.html" class="card card--interactive animate-on-scroll delay-1" id="card-pitfalls">
+            <div class="card__icon card__icon--amber">⚠️</div>
+            <h4 class="card__title">Important Things to Know</h4>
+            <p class="card__desc">Understand unexpected findings, non-paternity disclosure, uncertain results, insurance implications, and data storage.</p>
+          </a>
+
+          <a href="form.html" class="card card--interactive animate-on-scroll delay-2" id="card-form">
+            <div class="card__icon card__icon--teal">📋</div>
+            <h4 class="card__title">Complete the Form</h4>
+            <p class="card__desc">Work through the Record of Discussion form step by step, with explanations for each point and PDF download.</p>
+          </a>
+
+          <a href="faq.html" class="card card--interactive animate-on-scroll delay-3" id="card-faq">
+            <div class="card__icon card__icon--blue">💬</div>
+            <h4 class="card__title">Ask Questions</h4>
+            <p class="card__desc">Get answers to common questions about genomic testing in the UK from our AI-powered FAQ, sourced from NHS guidance.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- What to Expect -->
+    <section class="section" style="background:var(--surface-secondary)">
+      <div class="container">
+        <div class="text-center mb-8">
+          <h2 class="mb-4">What to Expect</h2>
+          <p class="text-muted" style="max-width:600px;margin:0 auto">The Record of Discussion form covers three key areas. Here's a quick overview of what you'll be asked about.</p>
+        </div>
+
+        <div class="grid grid-3 gap-6">
+          <div class="card animate-on-scroll" id="expect-discussion">
+            <div style="display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-4)">
+              <div style="width:36px;height:36px;border-radius:50%;background:var(--color-primary-600);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.875rem">1</div>
+              <h4 style="margin-bottom:0">Discussion Points</h4>
+            </div>
+            <p class="card__desc">Seven key topics your healthcare professional will discuss with you, covering family implications, uncertainty, unexpected findings, DNA & data storage, health records, and research.</p>
+          </div>
+
+          <div class="card animate-on-scroll delay-1" id="expect-research">
+            <div style="display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-4)">
+              <div style="width:36px;height:36px;border-radius:50%;background:var(--color-secondary-600);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.875rem">2</div>
+              <h4 style="margin-bottom:0">Research Choices</h4>
+            </div>
+            <p class="card__desc">The NHS invites you to contribute to the National Genomic Research Library managed by Genomics England. You'll learn what this means and decide whether to take part.</p>
+          </div>
+
+          <div class="card animate-on-scroll delay-2" id="expect-confirm">
+            <div style="display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-4)">
+              <div style="width:36px;height:36px;border-radius:50%;background:var(--color-success);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.875rem">3</div>
+              <h4 style="margin-bottom:0">Confirmation</h4>
+            </div>
+            <p class="card__desc">Confirm your genomic test and research choices with your signature. Your healthcare professional will also complete their section of the form.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container text-center">
+        <div class="animate-on-scroll" style="max-width:700px;margin:0 auto">
+          <h2 class="mb-4">Ready to Learn More?</h2>
+          <p class="text-muted mb-6">Start by understanding what whole genome sequencing is and why it's been recommended for you, or jump straight to the form if you're ready.</p>
+          <div style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap">
+            <a href="understanding-wgs.html" class="btn btn--primary btn--lg" id="cta-learn-btn">
+              Start Learning
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="pitfalls.html" class="btn btn--secondary btn--lg" id="cta-pitfalls-btn">
+              Important Considerations
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div>
+        <div class="footer__brand">🧬 WGS Guide</div>
+        <p class="footer__desc">A companion guide for the NHS Record of Discussion Regarding Genomic Testing form, helping patients and healthcare professionals understand whole genome sequencing.</p>
+      </div>
+      <div>
+        <div class="footer__heading">Navigate</div>
+        <ul class="footer__list">
+          <li><a href="understanding-wgs.html">Understanding WGS</a></li>
+          <li><a href="pitfalls.html">Important Information</a></li>
+          <li><a href="form.html">Complete Form</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__heading">Resources</div>
+        <ul class="footer__list">
+          <li><a href="https://www.nhs.uk/conditions/genetics/" target="_blank" rel="noopener">NHS Genetics</a></li>
+          <li><a href="https://www.genomicsengland.co.uk/" target="_blank" rel="noopener">Genomics England</a></li>
+          <li><a href="https://www.genomicseducation.hee.nhs.uk/" target="_blank" rel="noopener">Genomics Education</a></li>
+          <li><a href="resources.html">All Resources</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__heading">Support</div>
+        <ul class="footer__list">
+          <li><a href="https://www.geneticalliance.org.uk/" target="_blank" rel="noopener">Genetic Alliance UK</a></li>
+          <li><a href="https://www.raredisease.org.uk/" target="_blank" rel="noopener">Rare Disease UK</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>This website is for educational purposes. Based on the NHS Genomic Medicine Service Record of Discussion form (01-NGIS-ROD v4.03). Always consult your healthcare professional for personalised advice.</p>
+    </div>
+  </footer>
+
+  <div class="cookie-banner" id="cookie-banner">
+    <div class="cookie-banner__inner">
+      <p class="cookie-banner__text">This site uses local storage to save your form progress and theme preference. No data is sent to external servers.</p>
+      <div class="cookie-banner__actions">
+        <button class="btn btn--primary btn--sm" id="cookie-accept">Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    // DNA Helix Animation
+    const strand = document.getElementById('dna-strand');
+    if (strand) {
+      const bases = 12;
+      for (let i = 0; i < bases; i++) {
+        const base = document.createElement('div');
+        base.className = 'dna-base';
+        base.style.top = `${(i / bases) * 100}%`;
+        base.style.transform = `translateX(-50%) rotateY(${(i / bases) * 360}deg)`;
+        base.style.background = `linear-gradient(90deg, var(--color-primary-400), var(--color-secondary-400))`;
+        base.style.opacity = 0.6 + (i % 3) * 0.15;
+        strand.appendChild(base);
+      }
+    }
+  </script>
+</body>
+</html>
