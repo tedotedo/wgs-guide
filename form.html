@@ -52,6 +52,19 @@
           <p class="alert__text" style="margin-bottom:0">This website does <strong>not collect, store, or transmit any of your personal data</strong>. All information you enter is kept only in your browser (localStorage) and is never sent to any server. When you are finished, you can <strong>download a PDF</strong> to email to your consultant. You may clear your browser data at any time to remove all saved information.</p>
         </div>
       </div>
+
+      <!-- Trio Testing Info -->
+      <div class="alert alert--info mb-6" id="trio-notice">
+        <div class="alert__icon">🧬</div>
+        <div class="alert__content">
+          <div class="alert__title">Are You Completing Forms for a Trio Test?</div>
+          <p class="alert__text" style="margin-bottom:0">If your child is being tested, the test works best when <strong>both parents also provide a DNA sample</strong> (called a <strong>trio test</strong>). This means you may need to complete <strong>two forms</strong>:<br>
+          <strong>1.</strong> One for <strong>yourself</strong> (as a participant in the trio — select "I am the patient")<br>
+          <strong>2.</strong> One <strong>on behalf of your child</strong> (select "I am a parent / guardian")<br>
+          Complete your first form, download the PDF, then use the <strong>"Start a New Form"</strong> button at the bottom to begin the second one.</p>
+        </div>
+      </div>
+
       <!-- Progress -->
       <div class="progress-bar"><div class="progress-bar__fill" id="progress-fill" style="width:33%"></div></div>
       <div class="steps" id="step-indicators">
@@ -534,6 +547,16 @@
             <button class="btn btn--secondary" id="save-draft">💾 Save Draft</button>
             <button class="btn btn--primary" id="download-pdf">📄 Download PDF</button>
             <button class="btn btn--primary" id="email-pdf" style="background:var(--color-secondary-500)">📧 Email to Consultant</button>
+          </div>
+        </div>
+
+        <!-- Start New Form (for trio) -->
+        <div class="alert alert--info mt-6" id="new-form-prompt" style="display:none">
+          <div class="alert__icon">🔄</div>
+          <div class="alert__content">
+            <div class="alert__title">Need to complete another form?</div>
+            <p class="alert__text">If you are completing forms for a trio test, you can now start a new form for yourself or on behalf of your child.</p>
+            <button class="btn btn--primary btn--sm mt-3" id="start-new-form">Start a New Form</button>
           </div>
         </div>
       </div>

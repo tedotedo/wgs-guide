@@ -318,8 +318,51 @@ function loadSavedData() {
 
 /* ============ PDF DOWNLOAD & EMAIL ============ */
 function initPdfDownload() {
-  document.getElementById('download-pdf')?.addEventListener('click', generatePdf);
+  document.getElementById('download-pdf')?.addEventListener('click', () => {
+    generatePdf();
+    // Show the "Start New Form" prompt after downloading
+    const prompt = document.getElementById('new-form-prompt');
+    if (prompt) prompt.style.display = 'flex';
+  });
   document.getElementById('email-pdf')?.addEventListener('click', emailPdf);
+  document.getElementById('start-new-form')?.addEventListener('click', startNewForm);
+}
+
+function startNewForm() {
+  if (!confirm('This will clear all current form data so you can start a new form (e.g. for a trio test). Make sure you have downloaded your PDF first.\n\nClear the form and start again?')) return;
+
+  // Clear localStorage
+  localStorage.removeItem('wgs-rod-form');
+
+  // Reset all form fields
+  document.querySelectorAll('input[type="text"], input[type="date"]').forEach(f => f.value = '');
+  document.querySelectorAll('.dp-check').forEach(c => c.checked = false);
+  document.querySelectorAll('input[name="consent-basis"]').forEach(r => r.checked = false);
+  document.querySelectorAll('.discussion-point').forEach(dp => dp.classList.remove('understood'));
+  document.querySelectorAll('.choice-btn').forEach(b => {
+    b.classList.remove('selected', 'selected-no');
+  });
+
+  // Reset signature canvases
+  document.querySelectorAll('.signature-pad canvas').forEach(canvas => {
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    canvas.closest('.signature-pad')?.classList.remove('has-signature');
+  });
+
+  // Hide new-form prompt
+  document.getElementById('new-form-prompt').style.display = 'none';
+
+  // Go back to step 1
+  document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step-1').classList.add('active');
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active', 'completed'));
+  document.querySelector('.step[data-step="1"]').classList.add('active');
+  document.getElementById('progress-fill').style.width = '33%';
+
+  // Scroll to top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  showToast('Form cleared — ready for a new entry');
 }
 
 function getConsentBasis() {
