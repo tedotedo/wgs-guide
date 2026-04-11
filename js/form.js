@@ -328,7 +328,7 @@ function getConsentBasis() {
   const labels = {
     'self': 'The patient (making choices for themselves)',
     'child': 'A parent / guardian (making choices on behalf of their child)',
-    'best-interests': 'A consultee (advising on behalf of an adult who lacks capacity, in their best interests)'
+    'best-interests': 'A consultee (advising on behalf of an adult who lacks capacity, in their best interests, and confirming legal authority to do so)'
   };
   return { value: sel.value, label: labels[sel.value] || sel.value };
 }
@@ -389,7 +389,7 @@ function buildPdfHtml(data) {
   } else if (consentBasis.value === 'child') {
     consentDesc = `<strong>${guardianName || '[Parent/Guardian name]'}</strong> confirms that they are making these choices <strong>on behalf of their child</strong>, <strong>${firstName} ${lastName}</strong> (the patient).`;
   } else {
-    consentDesc = `<strong>${guardianName || '[Consultee name]'}</strong> confirms that they are advising <strong>in the best interests</strong> of <strong>${firstName} ${lastName}</strong> (the patient), who lacks capacity to make their own decision.`;
+    consentDesc = `<strong>${guardianName || '[Consultee name]'}</strong> confirms that they are advising <strong>in the best interests</strong> of <strong>${firstName} ${lastName}</strong> (the patient), who lacks capacity to make their own decision. <strong>They confirm that they have the legal authority to act in this capacity.</strong>`;
   }
 
   return `<!DOCTYPE html><html><head><title>Record of Discussion - ${firstName} ${lastName}</title>
