@@ -20,11 +20,11 @@
   {
     "id": 3,
     "question": "Why has WGS been recommended for me?",
-    "answer": "WGS is offered through the NHS Genomic Medicine Service for specific clinical reasons. You may have been referred because: you or your child has a rare or inherited disease not diagnosed by other tests; you have a cancer that may benefit from genomic analysis to guide treatment; or a family member has been diagnosed with a genetic condition and testing can determine if you carry the same variant.",
-    "source": "NHS England",
+    "answer": "Your clinician has recommended whole genome sequencing because there may be a genetic reason for the health problems affecting you or your child. WGS can look across all of your genes to try to find a cause that hasn't been identified by other tests. Finding a genetic diagnosis can help your clinical team understand your condition better, guide treatment decisions, and identify whether other family members may also be affected.",
+    "source": "NHS Genomic Medicine Service",
     "sourceUrl": "https://www.england.nhs.uk/genomics/nhs-genomic-med-service/",
-    "tags": ["why", "recommended", "referred", "reason", "referral", "rare disease", "cancer"],
-    "related": [1, 4]
+    "tags": ["why", "recommended", "referred", "reason", "referral", "rare disease", "genetic cause", "diagnosis"],
+    "related": [1, 4, 5]
   },
   {
     "id": 4,
