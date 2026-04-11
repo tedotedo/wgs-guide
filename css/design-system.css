@@ -134,3 +134,16 @@ img{max-width:100%;height:auto;display:block}
   .nav,.theme-toggle,.skip-to-content,footer{display:none!important}
   .container{max-width:100%;padding:0}.section{padding:1rem 0}
 }
+
+/* Respect users who have asked the OS to reduce motion. */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:0.001ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:0.001ms!important;
+    scroll-behavior:auto!important;
+  }
+  .animate-on-scroll{opacity:1!important;transform:none!important}
+  .hero__particle,.dna-strand{animation:none!important}
+  .hero__particles{display:none}
+}

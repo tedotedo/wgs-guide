@@ -87,14 +87,16 @@ function initScrollAnimations() {
 /* ============ ACCORDIONS ============ */
 function initAccordions() {
   document.querySelectorAll('.accordion__header').forEach(header => {
+    // Ensure accessibility attributes start in sync with visual state
+    const accordion = header.closest('.accordion');
+    const initiallyOpen = accordion?.classList.contains('open') || false;
+    header.setAttribute('aria-expanded', String(initiallyOpen));
+
     header.addEventListener('click', () => {
-      const accordion = header.closest('.accordion');
+      if (!accordion) return;
       const wasOpen = accordion.classList.contains('open');
-
-      // Close siblings (optional — remove if you want multiple open)
-      // accordion.parentElement.querySelectorAll('.accordion.open').forEach(a => a.classList.remove('open'));
-
       accordion.classList.toggle('open', !wasOpen);
+      header.setAttribute('aria-expanded', String(!wasOpen));
     });
   });
 }
