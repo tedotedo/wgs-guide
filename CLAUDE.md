@@ -49,7 +49,8 @@ Initial walk-through of the codebase surfaced the following findings. Items mark
 - `js/signature-pads.js` — signature canvas setup with toDataURL snapshot-before-resize
 - `js/persistence.js` — `rod-form-data` autosave / load (including HCP-only fields)
 - `js/pdf-render.js` — jsPDF lazy loader, A4 render path, print fallback, email-to-clinician wiring
-- `js/faq.js` — hand-rolled scoring search over 37 Q&A pairs with Levenshtein fuzzy matching
+- `js/faq.js` — FAQ chat/search over 37 Q&A pairs, backed by Fuse.js
+- `js/vendor/fuse.min.js` — Fuse.js 6.6.2 UMD build (vendored, Apache 2.0, see `fuse.LICENSE`)
 - `assets/` — images + the ROD PDF reference
 
 ### Form module loading
@@ -109,6 +110,13 @@ Two paths exist:
 - Colors are arrays: `BLUE`, `GREEN`, `RED`, `BLACK`. Helpers: `setColor` (text), `setDraw` (stroke), `setFill` (fill).
 - `ensureSpace(h)` handles page breaks; always call it before any multi-line block you're about to draw.
 
+## FAQ search (`js/faq.js`)
+- Backed by **Fuse.js 6.6.2**, vendored at `js/vendor/fuse.min.js` (UMD, ~23 kB, Apache 2.0).
+- `faq.html` loads `js/vendor/fuse.min.js` **before** `js/faq.js`. Fuse attaches itself to `window.Fuse`; `loadFaqData` builds a `new Fuse(...)` after the knowledge base arrives.
+- Fuse config: `{ ignoreLocation: true, threshold: 0.4, minMatchCharLength: 2, keys: [question 0.6, tags 0.3, answer 0.1] }`. `ignoreLocation` is load-bearing — without it short queries like `wgs` or `cost` miss because Fuse penalises matches that aren't near the start of long answer text.
+- **Do not pick Fuse.js 7.x.** That release dropped the UMD build; only CJS and ESM are shipped. ESM modules don't work under `file://` so we'd have to ship our own wrapper. 6.6.2 is the last UMD-friendly version, which is why it's pinned.
+- There is a substring fallback in `searchFaq` for the case where Fuse fails to load. Keep it — it lets the chat degrade gracefully rather than going silent if the vendor file is blocked or corrupt.
+
 ## Accessibility
 - `prefers-reduced-motion` disables animations, particles, DNA helix, scroll-reveal (block lives at the end of `design-system.css`).
 - Accordions and discussion-point expand buttons sync `aria-expanded` on toggle.
@@ -120,7 +128,6 @@ There is no in-repo test harness. The bugfix session ran a Node smoke harness fr
 If you re-create it, the important part is the verification step: use `pdftotext -layout <file> -` to catch glyph-encoding regressions. The WinAnsi issue (see "jsPDF gotchas" above) is invisible in visual inspection but shows up immediately in extracted text. Any future smoke harness should live under `pdftest/` at the repo root.
 
 ## Known future work
-- Replace `faq.js` scoring search with Fuse.js (vendored locally, not via CDN)
 - Deduplicate `<nav>` / `<footer>` across the 6 pages (currently copy-pasted) — must preserve `file://` behaviour, so DOM injection, not `fetch`-based includes
 - PWA / service worker for fully offline use — gate registration on `https:` / `localhost` so `file://` is unaffected
 - Vendor jsPDF locally under `js/vendor/` and drop the cdnjs load path
