@@ -17,20 +17,20 @@
   <main id="main">
     <div class="page-header">
       <div class="page-header__content">
-        <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>Complete Form</span></div>
+        <div class="breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">›</span><span>Complete Form</span></div>
         <h1>Record of Discussion Form</h1>
         <p>Work through each section of the NHS Record of Discussion Regarding Genomic Testing (v4.03). Click "Explain this" for plain-English guidance on each point.</p>
       </div>
     </div>
 
-    <div class="container form-page" style="padding-top:var(--space-8);padding-bottom:var(--space-16)">
+    <div class="container form-page page-content">
 
       <!-- Privacy Notice -->
       <div class="alert alert--success mb-6" id="privacy-notice">
         <div class="alert__icon">🔒</div>
         <div class="alert__content">
           <div class="alert__title">Your Privacy — No Data Is Collected</div>
-          <p class="alert__text" style="margin-bottom:0">This website does <strong>not collect, store, or transmit any of your personal data</strong>. All information you enter is kept only in your browser (localStorage) and is never sent to any server. When you are finished, you can <strong>download a PDF</strong> to email to your consultant. You may clear your browser data at any time to remove all saved information.</p>
+          <p class="alert__text mb-0">This website does <strong>not collect, store, or transmit any of your personal data</strong>. All information you enter is kept only in your browser (localStorage) and is never sent to any server. When you are finished, you can <strong>download a PDF</strong> to email to your consultant. You may clear your browser data at any time to remove all saved information.</p>
         </div>
       </div>
 
@@ -39,7 +39,7 @@
         <div class="alert__icon">🧬</div>
         <div class="alert__content">
           <div class="alert__title">Are You Completing Forms for a Trio Test?</div>
-          <p class="alert__text" style="margin-bottom:0">If your child is being tested, the test works best when <strong>both parents also provide a DNA sample</strong> (called a <strong>trio test</strong>). You can fill out a separate form for each person and switch between them from the <a href="dashboard.html"><strong>Trio Dashboard</strong></a>. Each form is saved independently in your browser, so editing one does not overwrite the others.</p>
+          <p class="alert__text mb-0">If your child is being tested, the test works best when <strong>both parents also provide a DNA sample</strong> (called a <strong>trio test</strong>). You can fill out a separate form for each person and switch between them from the <a href="dashboard.html"><strong>Trio Dashboard</strong></a>. Each form is saved independently in your browser, so editing one does not overwrite the others.</p>
         </div>
       </div>
 
@@ -47,7 +47,8 @@
       <div id="form-id-badge" class="alert alert--warning mb-6" style="display:none;font-weight:600"></div>
 
       <!-- Progress -->
-      <div class="progress-bar"><div class="progress-bar__fill" id="progress-fill" style="width:0%"></div></div>
+      <div class="progress-bar__label" id="progress-label">Step 1 of 3 — Discussion Points</div>
+      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Form progress: Step 1 of 3"><div class="progress-bar__fill" id="progress-fill" style="width:0%"></div></div>
       <div class="steps" id="step-indicators">
         <div class="step active" data-step="1">
           <div class="step__circle">1</div>
@@ -73,7 +74,7 @@
             <h3>📝 Who Is This Form For?</h3>
           </div>
           <p class="text-muted text-sm mb-4">Please indicate your relationship to the person being tested. This determines the basis on which choices are being made.</p>
-          <div style="display:flex;flex-direction:column;gap:var(--space-3)">
+          <div class="form-options">
             <label class="form-check">
               <input type="radio" name="consent-basis" value="self" id="consent-self" required>
               <span class="form-check__label"><strong>I am the patient</strong> — I am making choices for myself</span>
@@ -115,7 +116,7 @@
           </div>
         </div>
 
-        <div class="form-section" style="margin-top:var(--space-6)">
+        <div class="form-section mt-6">
           <div class="form-section__title">
             <h3>📋 Discussion Points</h3>
           </div>
@@ -142,9 +143,9 @@
             </div>
             <div class="discussion-point__actions">
               <button class="discussion-point__video-link" data-video="family-implications">🎥 Watch video</button>
-              <label class="form-check" style="padding:0">
+              <label class="form-check form-check--inline">
                 <input type="checkbox" class="dp-check" data-point="1">
-                <span class="form-check__label" style="font-weight:600;color:var(--color-success)">I understand this</span>
+                <span class="form-check__label form-check__label--success">I understand this</span>
               </label>
             </div>
           </div>
@@ -168,9 +169,9 @@
             </div>
             <div class="discussion-point__actions">
               <button class="discussion-point__video-link" data-video="uncertainty">🎥 Watch video</button>
-              <label class="form-check" style="padding:0">
+              <label class="form-check form-check--inline">
                 <input type="checkbox" class="dp-check" data-point="2">
-                <span class="form-check__label" style="font-weight:600;color:var(--color-success)">I understand this</span>
+                <span class="form-check__label form-check__label--success">I understand this</span>
               </label>
             </div>
           </div>
@@ -195,9 +196,9 @@
             </div>
             <div class="discussion-point__actions">
               <button class="discussion-point__video-link" data-video="unexpected">🎥 Watch video</button>
-              <label class="form-check" style="padding:0">
+              <label class="form-check form-check--inline">
                 <input type="checkbox" class="dp-check" data-point="3">
-                <span class="form-check__label" style="font-weight:600;color:var(--color-success)">I understand this</span>
+                <span class="form-check__label form-check__label--success">I understand this</span>
               </label>
             </div>
           </div>
@@ -222,9 +223,9 @@
             </div>
             <div class="discussion-point__actions">
               <button class="discussion-point__video-link" data-video="dna-storage">🎥 Watch video</button>
-              <label class="form-check" style="padding:0">
+              <label class="form-check form-check--inline">
                 <input type="checkbox" class="dp-check" data-point="4">
-                <span class="form-check__label" style="font-weight:600;color:var(--color-success)">I understand this</span>
+                <span class="form-check__label form-check__label--success">I understand this</span>
               </label>
             </div>
           </div>
@@ -252,9 +253,9 @@
             </div>
             <div class="discussion-point__actions">
               <button class="discussion-point__video-link" data-video="data-storage">🎥 Watch video</button>
-              <label class="form-check" style="padding:0">
+              <label class="form-check form-check--inline">
                 <input type="checkbox" class="dp-check" data-point="5">
-                <span class="form-check__label" style="font-weight:600;color:var(--color-success)">I understand this</span>
+                <span class="form-check__label form-check__label--success">I understand this</span>
               </label>
             </div>
           </div>
@@ -279,9 +280,9 @@
             </div>
             <div class="discussion-point__actions">
               <button class="discussion-point__video-link" data-video="health-records">🎥 Watch video</button>
-              <label class="form-check" style="padding:0">
+              <label class="form-check form-check--inline">
                 <input type="checkbox" class="dp-check" data-point="6">
-                <span class="form-check__label" style="font-weight:600;color:var(--color-success)">I understand this</span>
+                <span class="form-check__label form-check__label--success">I understand this</span>
               </label>
             </div>
           </div>
@@ -305,9 +306,9 @@
             </div>
             <div class="discussion-point__actions">
               <button class="discussion-point__video-link" data-video="research">🎥 Watch video</button>
-              <label class="form-check" style="padding:0">
+              <label class="form-check form-check--inline">
                 <input type="checkbox" class="dp-check" data-point="7">
-                <span class="form-check__label" style="font-weight:600;color:var(--color-success)">I understand this</span>
+                <span class="form-check__label form-check__label--success">I understand this</span>
               </label>
             </div>
           </div>
@@ -315,7 +316,7 @@
           <div class="alert alert--info mt-6" id="step1-incomplete" style="display:none">
             <div class="alert__icon">ℹ️</div>
             <div class="alert__content">
-              <p class="alert__text" style="margin-bottom:0">Please complete all required fields and confirm you understand all 7 discussion points before proceeding.</p>
+              <p class="alert__text mb-0">Please complete all required fields and confirm you understand all 7 discussion points before proceeding.</p>
             </div>
           </div>
         </div>
@@ -334,7 +335,7 @@
           <div class="alert alert--info mb-6">
             <div class="alert__icon">ℹ️</div>
             <div class="alert__content">
-              <p class="alert__text" style="margin-bottom:0"><strong>The NHS invites you to contribute to the National Genomic Research Library, managed by Genomics England.</strong> Participation is voluntary and will not affect your clinical care. Please read the information below and then make your choice.</p>
+              <p class="alert__text mb-0"><strong>The NHS invites you to contribute to the National Genomic Research Library, managed by Genomics England.</strong> Participation is voluntary and will not affect your clinical care. Please read the information below and then make your choice.</p>
             </div>
           </div>
 
@@ -374,35 +375,47 @@
           </div>
         </div>
 
+        <h4 class="mt-8 mb-4">Make Your Choice</h4>
+        <p class="text-muted text-sm mb-6">Based on the information above, please indicate your choice:</p>
+
+        <div class="choice-card mt-6" id="choice-a">
+          <p class="choice-card__question">A. I have discussed taking part in the National Genomic Research Library</p>
+          <div class="choice-card__options">
+            <button class="choice-btn" data-choice="a" data-value="yes" id="choice-a-yes">YES</button>
+            <button class="choice-btn" data-choice="a" data-value="no" id="choice-a-no">NO</button>
+          </div>
+        </div>
+
+        <div id="choice-b-wrapper">
+          <p class="text-muted text-sm mt-4 mb-2"><em>If your answer to A is NO then please ignore B and skip to the next step.</em></p>
+          <div class="choice-card" id="choice-b">
+            <p class="choice-card__question">B. I agree that my data and remainder sample may contribute to the National Genomic Research Library</p>
+            <div class="choice-card__options">
+              <button class="choice-btn" data-choice="b" data-value="yes" id="choice-b-yes">YES</button>
+              <button class="choice-btn" data-choice="b" data-value="no" id="choice-b-no">NO</button>
+            </div>
+          </div>
+        </div>
+
         <div class="form-nav">
           <button class="btn btn--ghost" id="back-to-1">← Back</button>
           <div class="form-nav__info">Step 2 of 3 — Research Choices</div>
-          <button class="btn btn--primary" id="next-to-3">Continue to Confirmation →</button>
+          <button class="btn btn--primary" id="next-to-3">Continue to Review & Sign →</button>
         </div>
       </div>
 
-      <!-- STEP 3: Confirmation -->
+      <!-- STEP 3: Review & Sign -->
       <div class="form-step" id="step-3">
         <div class="form-section">
-          <div class="form-section__title"><h3>✅ Confirmation of Your Genomic Test and Research Choices</h3></div>
-          <p><strong>I confirm that I have had the opportunity to discuss information about genomic testing, I agree to the genomic test, and my research choice is indicated below.</strong></p>
+          <div class="form-section__title"><h3>✅ Review & Sign</h3></div>
+          <p><strong>I confirm that I have had the opportunity to discuss information about genomic testing, I agree to the genomic test, and my research choice is shown below.</strong></p>
 
-          <div class="choice-card mt-6" id="choice-a">
-            <p class="choice-card__question">A. I have discussed taking part in the National Genomic Research Library</p>
-            <div class="choice-card__options">
-              <button class="choice-btn" data-choice="a" data-value="yes" id="choice-a-yes">YES</button>
-              <button class="choice-btn" data-choice="a" data-value="no" id="choice-a-no">NO</button>
-            </div>
-          </div>
-
-          <div id="choice-b-wrapper">
-            <p class="text-muted text-sm mt-4 mb-2"><em>If your answer to A is NO then please ignore B and sign directly below.</em></p>
-            <div class="choice-card" id="choice-b">
-              <p class="choice-card__question">B. I agree that my data and remainder sample may contribute to the National Genomic Research Library</p>
-              <div class="choice-card__options">
-                <button class="choice-btn" data-choice="b" data-value="yes" id="choice-b-yes">YES</button>
-                <button class="choice-btn" data-choice="b" data-value="no" id="choice-b-no">NO</button>
-              </div>
+          <div class="alert alert--info mb-6" id="choice-summary">
+            <div class="alert__icon">🔬</div>
+            <div class="alert__content">
+              <div class="alert__title">Your Research Choice</div>
+              <p class="alert__text">Your selections from the previous step are shown below. You can go back to change them.</p>
+              <div id="choice-summary-text" class="mt-4" style="font-weight:600"></div>
             </div>
           </div>
         </div>
@@ -459,7 +472,7 @@
 
           <div class="form-group">
             <label class="form-label">Patient category</label>
-            <div style="display:flex;flex-direction:column;gap:var(--space-2)">
+            <div class="form-options--tight">
               <label class="form-check"><input type="checkbox" name="patient-cat" value="adult"><span class="form-check__label">Adult (made their own choices)</span></label>
               <label class="form-check"><input type="checkbox" name="patient-cat" value="adult-lacking"><span class="form-check__label">Adult lacking capacity (choices advised by consultee)</span></label>
               <label class="form-check"><input type="checkbox" name="patient-cat" value="child"><span class="form-check__label">Child (parent or guardian choices)</span></label>
@@ -470,7 +483,7 @@
 
           <div class="form-group">
             <label class="form-label">Test type</label>
-            <div style="display:flex;flex-direction:column;gap:var(--space-2)">
+            <div class="form-options--tight">
               <label class="form-check"><input type="radio" name="test-type" value="rare-disease"><span class="form-check__label">Rare and Inherited Diseases — WGS</span></label>
               <label class="form-check"><input type="radio" name="test-type" value="cancer"><span class="form-check__label">Cancer (paired tumour normal) — WGS</span></label>
             </div>
@@ -478,7 +491,7 @@
 
           <div class="form-group" id="research-no-reason" style="display:none">
             <label class="form-label">If answer to research choice A is NO</label>
-            <div style="display:flex;flex-direction:column;gap:var(--space-2)">
+            <div class="form-options--tight">
               <label class="form-check"><input type="checkbox" name="research-no" value="discuss-later"><span class="form-check__label">Patient would like to discuss at a later date</span></label>
               <label class="form-check"><input type="checkbox" name="research-no" value="inappropriate"><span class="form-check__label">Inappropriate to have discussion</span></label>
               <label class="form-check"><input type="checkbox" name="research-no" value="lacks-capacity"><span class="form-check__label">Patient lacks capacity and no consultee available</span></label>
@@ -524,10 +537,10 @@
 
         <div class="form-nav mt-6">
           <button class="btn btn--ghost" id="back-to-2">← Back</button>
-          <div style="display:flex;gap:var(--space-3);flex-wrap:wrap">
+          <div class="btn-group--tight">
             <button class="btn btn--secondary" id="save-draft">💾 Save Draft</button>
             <button class="btn btn--primary" id="download-pdf">📄 Download PDF</button>
-            <button class="btn btn--primary" id="email-pdf" style="background:var(--color-secondary-500)">📧 Email to Consultant</button>
+            <button class="btn btn--primary btn--email" id="email-pdf">📧 Email to Consultant</button>
           </div>
         </div>
 

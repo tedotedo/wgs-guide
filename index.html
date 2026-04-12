@@ -33,16 +33,16 @@
       <div class="hero__content">
         <div class="hero__text">
           <h1>Your Healthcare Professional Has Referred You for a Genomic Test</h1>
-          <p style="font-size:1.15rem;margin-bottom:0.75rem">Your clinician has recommended <strong>whole genome sequencing (WGS)</strong> and has directed you to this website to help you prepare.</p>
+          <p class="hero__lead">Your clinician has recommended <strong>whole genome sequencing (WGS)</strong> and has directed you to this website to help you prepare.</p>
           <p>Before having the test, you need to understand what it involves and complete an NHS <strong>Record of Discussion</strong> form. This guide explains everything in plain English — what WGS is, what results can show, important things to be aware of (including unexpected findings and non-paternity), and your research choices.</p>
           <p>🧬 <strong>Trio testing?</strong> If your child is the person being tested, the test works best when <strong>both parents also provide a DNA sample</strong> (called a "trio"). This means you may need to complete <strong>two forms</strong> — one for yourself (as a participant in the trio) and one on behalf of your child. You can do both on this website.</p>
-          <p style="font-size:0.9rem;opacity:0.85;margin-bottom:1.5rem">📄 When you're ready, you can complete each form online, download a PDF, and email it to your consultant. <strong>No data is collected by this website.</strong></p>
+          <p class="hero__note">📄 When you're ready, you can complete each form online, download a PDF, and email it to your consultant. <strong>No data is collected by this website.</strong></p>
           <div class="hero__actions">
             <a href="understanding-wgs.html" class="btn btn--primary btn--lg" id="hero-learn-btn">
               Learn About WGS
               <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="form.html" class="btn btn--secondary btn--lg" id="hero-form-btn" style="background:rgba(255,255,255,0.15);color:white;border-color:rgba(255,255,255,0.4)">
+            <a href="form.html" class="btn btn--secondary btn--lg btn--hero-ghost" id="hero-form-btn">
               Complete the Form
               <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
             </a>
@@ -57,9 +57,9 @@
     </section>
 
     <!-- Trust Bar -->
-    <section class="section--sm" style="background:var(--surface-secondary);border-bottom:1px solid var(--color-neutral-100)">
+    <section class="section--sm trust-bar">
       <div class="container text-center">
-        <p class="text-muted text-sm" style="margin-bottom:0">
+        <p class="text-muted text-sm mb-0">
           📋 Based on the <strong>NHS Genomic Medicine Service — Record of Discussion Form v4.03</strong> &nbsp;|&nbsp;
           🏥 Information sourced from <a href="https://www.nhs.uk/conditions/genetics/" target="_blank" rel="noopener">NHS.uk</a>,
           <a href="https://www.genomicsengland.co.uk/" target="_blank" rel="noopener">Genomics England</a>, and the
@@ -73,7 +73,7 @@
       <div class="container">
         <div class="text-center mb-8">
           <h2 class="mb-4">How This Guide Helps You</h2>
-          <p class="text-muted" style="max-width:600px;margin:0 auto">Before having a whole genome sequencing test on the NHS, you need to complete a Record of Discussion form. This guide walks you through every step.</p>
+          <p class="text-muted text-measure">Before having a whole genome sequencing test on the NHS, you need to complete a Record of Discussion form. This guide walks you through every step.</p>
         </div>
 
         <div class="grid grid-4 gap-6">
@@ -105,34 +105,34 @@
     </section>
 
     <!-- What to Expect -->
-    <section class="section" style="background:var(--surface-secondary)">
+    <section class="section bg-secondary">
       <div class="container">
         <div class="text-center mb-8">
           <h2 class="mb-4">What to Expect</h2>
-          <p class="text-muted" style="max-width:600px;margin:0 auto">The Record of Discussion form covers three key areas. Here's a quick overview of what you'll be asked about.</p>
+          <p class="text-muted text-measure">The Record of Discussion form covers three key areas. Here's a quick overview of what you'll be asked about.</p>
         </div>
 
         <div class="grid grid-3 gap-6">
           <div class="card animate-on-scroll" id="expect-discussion">
-            <div style="display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-4)">
-              <div style="width:36px;height:36px;border-radius:50%;background:var(--color-primary-600);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.875rem">1</div>
-              <h4 style="margin-bottom:0">Discussion Points</h4>
+            <div class="step-header">
+              <div class="step-circle step-circle--primary">1</div>
+              <h4 class="mb-0">Discussion Points</h4>
             </div>
             <p class="card__desc">Seven key topics your healthcare professional will discuss with you, covering family implications, uncertainty, unexpected findings, DNA & data storage, health records, and research.</p>
           </div>
 
           <div class="card animate-on-scroll delay-1" id="expect-research">
-            <div style="display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-4)">
-              <div style="width:36px;height:36px;border-radius:50%;background:var(--color-secondary-600);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.875rem">2</div>
-              <h4 style="margin-bottom:0">Research Choices</h4>
+            <div class="step-header">
+              <div class="step-circle step-circle--teal">2</div>
+              <h4 class="mb-0">Research Choices</h4>
             </div>
             <p class="card__desc">The NHS invites you to contribute to the National Genomic Research Library managed by Genomics England. You'll learn what this means and decide whether to take part.</p>
           </div>
 
           <div class="card animate-on-scroll delay-2" id="expect-confirm">
-            <div style="display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-4)">
-              <div style="width:36px;height:36px;border-radius:50%;background:var(--color-success);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.875rem">3</div>
-              <h4 style="margin-bottom:0">Confirmation</h4>
+            <div class="step-header">
+              <div class="step-circle step-circle--green">3</div>
+              <h4 class="mb-0">Confirmation</h4>
             </div>
             <p class="card__desc">Confirm your genomic test and research choices with your signature. Your healthcare professional will also complete their section of the form.</p>
           </div>
@@ -143,10 +143,10 @@
     <!-- CTA -->
     <section class="section">
       <div class="container text-center">
-        <div class="animate-on-scroll" style="max-width:700px;margin:0 auto">
+        <div class="animate-on-scroll text-measure--wide">
           <h2 class="mb-4">Ready to Learn More?</h2>
           <p class="text-muted mb-6">Start by understanding what whole genome sequencing is and why it's been recommended for you, or jump straight to the form if you're ready.</p>
-          <div style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap">
+          <div class="btn-group">
             <a href="understanding-wgs.html" class="btn btn--primary btn--lg" id="cta-learn-btn">
               Start Learning
               <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>

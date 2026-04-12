@@ -17,13 +17,13 @@
   <main id="main">
     <div class="page-header">
       <div class="page-header__content">
-        <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>Resources</span></div>
+        <div class="breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">›</span><span>Resources</span></div>
         <h1>UK Genomics Resources</h1>
         <p>Curated links to authoritative UK genomics resources for patients, families, and healthcare professionals.</p>
       </div>
     </div>
 
-    <div class="container" style="max-width:1000px;padding-top:var(--space-8);padding-bottom:var(--space-16)">
+    <div class="container page-content page-content--medium">
 
       <!-- NHS & Government -->
       <div class="resource-category animate-on-scroll">
@@ -73,7 +73,7 @@
         </div>
         <div class="resource-grid">
           <a href="https://www.genomicsengland.co.uk/understanding-genomics" target="_blank" rel="noopener" class="resource-card" id="res-ge-understanding">
-            <div class="resource-card__icon" style="background:var(--color-secondary-100);color:var(--color-secondary-600)">🧬</div>
+            <div class="resource-card__icon resource-card__icon--teal">🧬</div>
             <div class="resource-card__content">
               <div class="resource-card__title">Understanding Genomics</div>
               <p class="resource-card__desc">Learn about genomes, how genome sequencing works, and why we sequence genomes. Includes educational videos and infographics.</p>
@@ -81,7 +81,7 @@
             <span class="resource-card__badge">Genomics England</span>
           </a>
           <a href="https://www.genomicsengland.co.uk/patients-participants/taking-part" target="_blank" rel="noopener" class="resource-card" id="res-ge-taking-part">
-            <div class="resource-card__icon" style="background:var(--color-secondary-100);color:var(--color-secondary-600)">🤝</div>
+            <div class="resource-card__icon resource-card__icon--teal">🤝</div>
             <div class="resource-card__content">
               <div class="resource-card__title">Taking Part in Research</div>
               <p class="resource-card__desc">Information about contributing to the National Genomic Research Library, what it means, and how your data is used for research.</p>
@@ -89,7 +89,7 @@
             <span class="resource-card__badge">Genomics England</span>
           </a>
           <a href="https://www.genomicsengland.co.uk/patients-participants/stories" target="_blank" rel="noopener" class="resource-card" id="res-ge-stories">
-            <div class="resource-card__icon" style="background:var(--color-secondary-100);color:var(--color-secondary-600)">📖</div>
+            <div class="resource-card__icon resource-card__icon--teal">📖</div>
             <div class="resource-card__content">
               <div class="resource-card__title">Participant Stories</div>
               <p class="resource-card__desc">Real stories from people who have taken part in genomic research, sharing their experiences and outcomes.</p>
@@ -97,7 +97,7 @@
             <span class="resource-card__badge">Genomics England</span>
           </a>
           <a href="https://www.genomicsengland.co.uk/privacy-policy/" target="_blank" rel="noopener" class="resource-card" id="res-ge-privacy">
-            <div class="resource-card__icon" style="background:var(--color-secondary-100);color:var(--color-secondary-600)">🔒</div>
+            <div class="resource-card__icon resource-card__icon--teal">🔒</div>
             <div class="resource-card__content">
               <div class="resource-card__title">Genomics England Privacy Policy</div>
               <p class="resource-card__desc">Details of how Genomics England collects, stores, and uses health data from participants.</p>
@@ -114,7 +114,7 @@
         </div>
         <div class="resource-grid">
           <a href="https://www.genomicseducation.hee.nhs.uk/" target="_blank" rel="noopener" class="resource-card" id="res-hee">
-            <div class="resource-card__icon" style="background:var(--color-warning-bg);color:#B8860B">🎓</div>
+            <div class="resource-card__icon resource-card__icon--amber">🎓</div>
             <div class="resource-card__content">
               <div class="resource-card__title">Genomics Education Programme (HEE)</div>
               <p class="resource-card__desc">NHS Health Education England's genomics education resources for healthcare professionals and patients. Includes courses, videos, and learning materials.</p>
@@ -122,7 +122,7 @@
             <span class="resource-card__badge">HEE</span>
           </a>
           <a href="https://www.yourgenome.org/" target="_blank" rel="noopener" class="resource-card" id="res-yourgenome">
-            <div class="resource-card__icon" style="background:var(--color-warning-bg);color:#B8860B">🧪</div>
+            <div class="resource-card__icon resource-card__icon--amber">🧪</div>
             <div class="resource-card__content">
               <div class="resource-card__title">Your Genome (Wellcome)</div>
               <p class="resource-card__desc">Educational website by the Wellcome Genome Campus, explaining genetics and genomics in an accessible way with interactive tools.</p>
@@ -139,7 +139,7 @@
         </div>
         <div class="resource-grid">
           <a href="https://www.geneticalliance.org.uk/" target="_blank" rel="noopener" class="resource-card" id="res-genetic-alliance">
-            <div class="resource-card__icon" style="background:var(--color-info-bg);color:var(--color-info)">💙</div>
+            <div class="resource-card__icon resource-card__icon--info">💙</div>
             <div class="resource-card__content">
               <div class="resource-card__title">Genetic Alliance UK</div>
               <p class="resource-card__desc">National charity supporting people affected by genetic conditions. Provides information on genetic testing, benefits and risks, and peer support.</p>
@@ -147,7 +147,7 @@
             <span class="resource-card__badge">Charity</span>
           </a>
           <a href="https://www.geneticalliance.org.uk/information/service-and-testing/benefits-and-risks-of-genetic-testing/" target="_blank" rel="noopener" class="resource-card" id="res-benefits-risks">
-            <div class="resource-card__icon" style="background:var(--color-info-bg);color:var(--color-info)">⚖️</div>
+            <div class="resource-card__icon resource-card__icon--info">⚖️</div>
             <div class="resource-card__content">
               <div class="resource-card__title">Benefits and Risks of Genetic Testing</div>
               <p class="resource-card__desc">Detailed guide from Genetic Alliance UK about what to consider before genetic testing, including emotional and practical impacts.</p>
@@ -155,7 +155,7 @@
             <span class="resource-card__badge">Genetic Alliance</span>
           </a>
           <a href="http://www.bsgm.org.uk/public-patients-families/" target="_blank" rel="noopener" class="resource-card" id="res-bsgm">
-            <div class="resource-card__icon" style="background:var(--color-info-bg);color:var(--color-info)">🏛️</div>
+            <div class="resource-card__icon resource-card__icon--info">🏛️</div>
             <div class="resource-card__content">
               <div class="resource-card__title">British Society for Genetic Medicine</div>
               <p class="resource-card__desc">Lists of support organisations for patients and families affected by genetic conditions. Includes links to condition-specific charities.</p>
@@ -163,7 +163,7 @@
             <span class="resource-card__badge">BSGM</span>
           </a>
           <a href="https://www.raredisease.org.uk/" target="_blank" rel="noopener" class="resource-card" id="res-rare-disease">
-            <div class="resource-card__icon" style="background:var(--color-info-bg);color:var(--color-info)">🦋</div>
+            <div class="resource-card__icon resource-card__icon--info">🦋</div>
             <div class="resource-card__content">
               <div class="resource-card__title">Rare Disease UK</div>
               <p class="resource-card__desc">National alliance of people with rare diseases and their families, campaigning for equitable access to diagnosis and treatment.</p>
@@ -180,7 +180,7 @@
         </div>
         <div class="resource-grid">
           <a href="https://www.abi.org.uk/data-and-resources/tools-and-resources/genetics/code-on-genetic-testing-and-insurance/" target="_blank" rel="noopener" class="resource-card" id="res-abi">
-            <div class="resource-card__icon" style="background:var(--color-success-bg);color:var(--color-success)">🛡️</div>
+            <div class="resource-card__icon resource-card__icon--success">🛡️</div>
             <div class="resource-card__content">
               <div class="resource-card__title">ABI Code on Genetic Testing and Insurance</div>
               <p class="resource-card__desc">The official code governing how insurers can use genetic test results. Key protection: predictive genetic test results do not usually need to be disclosed to insurers.</p>
@@ -199,7 +199,7 @@
           <div class="alert__icon">🎥</div>
           <div class="alert__content">
             <div class="alert__title">Video links coming soon</div>
-            <p class="alert__text" style="margin-bottom:0">Video explanations for each section of the Record of Discussion form will be added here. These will cover what WGS is, trio testing, unexpected findings, non-paternity disclosure, insurance, and more.</p>
+            <p class="alert__text mb-0">Video explanations for each section of the Record of Discussion form will be added here. These will cover what WGS is, trio testing, unexpected findings, non-paternity disclosure, insurance, and more.</p>
           </div>
         </div>
       </div>
