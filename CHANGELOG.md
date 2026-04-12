@@ -6,6 +6,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and the 
 
 ## [Unreleased]
 
+### Changed
+- **Eliminated inline `style=""` attributes across all 7 HTML files.** Created proper CSS utility classes (`.mb-0`, `.bg-secondary`, `.text-measure`, `.btn-group`, `.page-content`, `.form-options`, `.step-circle`, etc.) in `design-system.css`, `components.css`, and `pages.css`. Approximately 80+ inline styles replaced with reusable classes. Dynamic/JS-controlled inline styles (e.g. `display:none` on toggled elements, progress bar width) and hero particle positioning are intentionally preserved.
+- **Hero section cleanup (`index.html`).** Replaced inline font-size overrides with `.hero__lead` and `.hero__note` classes. Added `.btn--hero-ghost` for the secondary CTA. Reduced `hero__text p` margin from `var(--space-8)` to `var(--space-4)` for tighter, more readable spacing. Created `.trust-bar` class for the source-attribution strip.
+- **Deduplicated CSS across `components.css` and `pages.css`.** `.resource-card`, `.signature-pad`, and `.page-header` were defined in both files. Merged unique properties into `components.css` (the canonical location) and removed the duplicates from `pages.css`.
+- **Colour palette nudged toward NHS Digital.** Warning colour changed from `#FFB81C` (amber) to `#FFD700` (gold), halfway toward NHS's `#FFEB3B`. Warning background adjusted to `#FFF9E6`. Primary blue (`#005EB8`), success green (`#007F3B`), and danger red (`#D5281B`) already matched NHS Digital exactly.
+- **Research choice UX tightened.** Moved the yes/no choice cards from Step 3 into Step 2 so the user reads the research information and makes their choice in the same step. Step 3 is now "Review & Sign" — it shows a summary of the user's research selections and focuses on signatures. The 3-step wizard structure is preserved.
+- **Video-coming-soon placeholders made subtle.** Replaced the large 16:9 gradient boxes with compact inline notes (dashed border, small play icon, muted text). Reduces visual noise and "unfinished" feel.
+- **Mobile nav backdrop added.** Opening the hamburger menu now shows a semi-transparent overlay behind the nav panel. Tapping the backdrop closes the menu. Implemented via `.nav__backdrop` in CSS and toggle logic in `app.js`.
+- **Touch hover artifacts addressed.** Expanded `@media(hover:none)` guards to also reset `box-shadow`, `border-color`, and `background` on hover states (cards, buttons, accordion headers, nav links) so touch devices don't show sticky hover states.
+- **Accordion animation improved.** Replaced the `max-height: 2000px` transition hack with `grid-template-rows: 0fr → 1fr` for both `.accordion__body` and `.discussion-point__explanation`. Provides smooth, content-aware height transitions.
+- **Footer condensed on mobile.** Footer columns now flow into a 2-column grid on tablet/mobile (brand description spans full width). Text sizes reduced at small breakpoints for a more compact layout.
+- **Dark mode gaps fixed.** Added missing overrides for `.dashboard-row`, `.trust-bar`, `.step__circle`, `.step__connector`, and `.btn--email`. Fixed undefined `--border-primary` variable in dashboard row (replaced with `--color-neutral-200`).
+- **Progress bar labelled for accessibility.** Added `role="progressbar"` with `aria-valuenow/min/max` and `aria-label` attributes. Added a visible `.progress-bar__label` element showing "Step X of 3 — [title]". Both label and ARIA attributes update dynamically via `wizard.js`.
+- **FAQ chat height made flexible.** Replaced rigid `calc()` height with `clamp()` to prevent the chat from being too tall on large screens or too short on small ones.
+- **Font fallback comment added.** Clarified that the Google Fonts `@import` with `display=swap` fails silently offline and degrades to the system-ui/sans-serif fallback stack.
+- **Breadcrumb separators made accessible.** Added `aria-hidden="true"` to all `<span>›</span>` breadcrumb separators across 6 HTML files.
+- **Print styles expanded.** Now also hides cookie banner, hero background/particles, nav backdrop, and video placeholders. Disables scroll animations, removes gradients from headers, strips card shadows, and appends link URLs via `::after`.
+- **Container widths made consistent.** All pages now use named classes (`.page-content`, `.page-content--narrow`, `.page-content--medium`) instead of ad-hoc inline max-width values.
+
 ### Added
 - **Fourth unexpected-findings bullet in `pitfalls.html`.** Added "previously undiagnosed condition" (e.g. familial hypercholesterolaemia) to the list of example secondary/incidental findings, noting potential medical, family, and financial (life insurance) implications.
 
