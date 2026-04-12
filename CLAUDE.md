@@ -40,7 +40,7 @@ Initial walk-through of the codebase surfaced the following findings. Items mark
 5. **Docs** — created this `CLAUDE.md` and rewrote `README.md` to reflect the current architecture (jsPDF path, signature embedding, reduced-motion, test harness, full project tree).
 
 ## Layout
-- `index.html`, `understanding-wgs.html`, `pitfalls.html`, `resources.html`, `faq.html`, `form.html` — top-level pages
+- `index.html`, `understanding-wgs.html`, `pitfalls.html`, `resources.html`, `faq.html`, `form.html`, `dashboard.html` — top-level pages
 - `css/design-system.css` — tokens + dark mode (`[data-theme="dark"]`) + `prefers-reduced-motion` overrides
 - `css/*.css` — per-page styles
 - `js/chrome.js` — single source of truth for the site nav + footer; each page declares `#site-nav` / `#site-footer` placeholder divs that this script mounts into
@@ -75,7 +75,7 @@ The form logic is split across five files — `form.js` (orchestrator) plus four
 
 - 3-step wizard with progress bar. Progress formula: `((step - 1) / 2) * 100`. Lives in `wizard.js`.
 - `goToStep(n)` is deliberately at module level in `wizard.js` (not nested inside `initFormSteps`) so `startNewForm` in `form.js` can reuse it when resetting the wizard. Don't re-nest it.
-- `localStorage` key is **`rod-form-data`** (not `wgs-rod-form` — this caused a real bug; see history). All autosave logic is in `persistence.js`.
+- `localStorage` keys are **`rod-form-data:<id>`** (e.g. `rod-form-data:proband`, `rod-form-data:mother`). The bare `rod-form-data` key is legacy and must not be written — it's only read during migration. Never use `wgs-rod-form` (the original bug source). All autosave logic is in `persistence.js`.
 - Three signature canvases: `patientSig`, `guardianSig`, `hcpSig`. `setupSignaturePad` in `signature-pads.js` snapshots via `toDataURL` on resize so drawings survive window resizes; resize listener is debounced 150ms (the `debounce` helper lives in `form.js` and is resolved at runtime).
 - Consent basis: `self` | `child` | `best-interests`. Non-self paths require guardian name + relationship and show a guardian signature pad.
 - Discussion points: 7 items, each with an expand toggle (ARIA wired: `aria-expanded`, `aria-controls`) and an acknowledgment checkbox. All 7 must be ticked for the declaration to render without a warning.
@@ -91,6 +91,14 @@ Each module is a flat set of globally-scoped functions that the orchestrator cal
 - **`js/pdf-render.js`** (~740 lines) — Everything jsPDF. `initPdfDownload` (wires `#download-pdf` and `#email-pdf`), `getConsentBasis`, `getFormDataForPdf`, `buildPdfHtml` (print fallback), the jsPDF lazy loader with memoised `_jsPdfPromise`, and `renderPdfDocument` with its nested layout primitives (`drawWrapped`, `drawSectionHeading`, `drawBox`, `drawChoiceBox`, `drawSignatureBlock`, etc.). This is where the drawn ✓ / ⚠ glyph workaround lives.
 
 **Cross-module runtime dependencies** — some modules reference functions that are defined in later-loaded files. This works because the references are inside function bodies, not at parse time. If you re-shuffle load order or wrap anything in an IIFE, re-check that `debounce`, `showToast`, `saveFormData`, and `goToStep` are still reachable globally at call time.
+
+## Trio dashboard (`dashboard.html` / `js/dashboard.js`)
+- Lists all `rod-form-data:*` keys in localStorage with a summary row each (name, DOB, consent basis, how many discussion points acknowledged, last-saved timestamp).
+- Create / Open / Duplicate / Rename / Delete operations all work on localStorage directly — no server.
+- "Create new form" prompts for an id (letters, digits, hyphens, underscores only — sanitized by `sanitizeFormId`), then redirects to `form.html?id=<id>`.
+- `dashboard.html` loads `persistence.js` to reuse `migrateLegacyFormStorage`, `listStoredForms`, `FORM_KEY_PREFIX`, etc. It does NOT load the rest of the form modules.
+- Migration: on DOMContentLoaded, `migrateLegacyFormStorage` is called so any pre-trio flat-key draft appears as `proband` immediately.
+- `form.html?id=mother` sets `currentFormId = 'mother'` via `initFormId()`. All save/load/reset operations scope to `rod-form-data:mother`. A small badge below the trio notice says "Editing: mother" when the id isn't the default.
 
 ## PDF generation
 Two paths exist:
@@ -150,11 +158,12 @@ There is no in-repo test harness. The bugfix session ran a Node smoke harness fr
 If you re-create it, the important part is the verification step: use `pdftotext -layout <file> -` to catch glyph-encoding regressions. The WinAnsi issue (see "jsPDF gotchas" above) is invisible in visual inspection but shows up immediately in extracted text. Any future smoke harness should live under `pdftest/` at the repo root.
 
 ## Known future work
-- Multi-form trio dashboard — namespaced `rod-form-data:<id>` keys, `dashboard.html` entry point, form wizard reads `?id=…`
+- Bulk PDF export from the trio dashboard (download all three at once)
+- PWA web manifest / install banner (service worker is in place, but no manifest yet)
 
 ## Things NOT to do
 - Do **not** add a build step or framework. The README and the design both commit to "static, no build".
-- Do **not** use localStorage key `wgs-rod-form`. Always `rod-form-data`.
+- Do **not** use localStorage key `wgs-rod-form`. Do **not** write to the bare `rod-form-data` key — that's the legacy flat key and is only read during migration. Always use `rod-form-data:<id>` via the `getFormStorageKey()` helper in `persistence.js`.
 - Do **not** put non-WinAnsi glyphs (`✓`, `⚠`, `✗`, `→`, emoji, etc.) inside jsPDF text — only inside the legacy `buildPdfHtml` path, which uses real HTML and handles them fine.
 - Do **not** add network calls or analytics. Privacy guarantee is load-bearing for user trust.
 - Do **not** re-declare signature canvas dimensions on every resize without snapshotting first — wipes the drawing.

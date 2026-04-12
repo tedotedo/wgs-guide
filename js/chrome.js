@@ -28,10 +28,11 @@
   // the live site; the active class is applied by matching `page`
   // against `location.pathname`.
   const NAV_LINKS = [
-    { page: 'index.html',            label: 'Home' },
+    { page: 'index.html',             label: 'Home' },
     { page: 'understanding-wgs.html', label: 'Understanding WGS' },
     { page: 'pitfalls.html',          label: 'Important Information' },
     { page: 'form.html',              label: 'Complete Form' },
+    { page: 'dashboard.html',         label: 'Trio Dashboard' },
     { page: 'faq.html',               label: 'FAQ' },
     { page: 'resources.html',         label: 'Resources' }
   ];
@@ -91,6 +92,7 @@
               <li><a href="understanding-wgs.html">Understanding WGS</a></li>
               <li><a href="pitfalls.html">Important Information</a></li>
               <li><a href="form.html">Complete Form</a></li>
+              <li><a href="dashboard.html">Trio Dashboard</a></li>
               <li><a href="faq.html">FAQ</a></li>
             </ul>
           </div>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trio Dashboard — WGS Guide</title>
+  <meta name="description" content="Manage multiple Record of Discussion forms for a trio test. Each family member can have their own independent form stored only in your browser.">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
+</head>
+<body>
+  <a href="#main" class="skip-to-content">Skip to main content</a>
+  <div id="site-nav"></div>
+
+  <main id="main">
+    <div class="page-header">
+      <div class="page-header__content">
+        <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>Trio Dashboard</span></div>
+        <h1>Trio Dashboard</h1>
+        <p>Manage separate Record of Discussion forms for each person in a trio test. Every form is stored independently in your browser — editing one never overwrites another.</p>
+      </div>
+    </div>
+
+    <div class="container" style="padding-top:var(--space-8);padding-bottom:var(--space-16);max-width:900px">
+
+      <div class="alert alert--success mb-6">
+        <div class="alert__icon">🔒</div>
+        <div class="alert__content">
+          <div class="alert__title">Everything stays on this device</div>
+          <p class="alert__text" style="margin-bottom:0">Each form is saved to <code>localStorage</code> under a unique key (<code>rod-form-data:&lt;id&gt;</code>). Nothing is uploaded anywhere. Clearing your browser's site data removes every saved form.</p>
+        </div>
+      </div>
+
+      <div class="alert alert--info mb-6">
+        <div class="alert__icon">🧬</div>
+        <div class="alert__content">
+          <div class="alert__title">Typical trio setup</div>
+          <p class="alert__text" style="margin-bottom:0">For a proband (affected child) and both parents, you'll want three forms with ids like <code>proband</code>, <code>mother</code>, and <code>father</code>. You can also use names if you prefer — <code>alex</code>, <code>sam</code>, <code>jamie</code> all work.</p>
+        </div>
+      </div>
+
+      <div class="form-section" style="margin-top:var(--space-8)">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--space-4);margin-bottom:var(--space-4)">
+          <h2 style="margin:0">Your forms</h2>
+          <button class="btn btn--primary" id="create-form-btn">+ Create new form</button>
+        </div>
+
+        <div id="dashboard-empty" style="display:none;padding:var(--space-6);background:var(--surface-secondary);border-radius:12px;text-align:center">
+          <p style="margin-bottom:var(--space-4);color:var(--text-secondary)">You haven't saved any forms yet.</p>
+          <button class="btn btn--primary" id="create-form-btn-empty">+ Create your first form</button>
+        </div>
+
+        <div id="dashboard-list" class="dashboard-list"></div>
+      </div>
+
+      <div style="margin-top:var(--space-8);text-align:center">
+        <a href="form.html" class="btn btn--secondary">Open default form (proband) →</a>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/chrome.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/persistence.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

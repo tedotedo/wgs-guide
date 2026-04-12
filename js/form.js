@@ -38,10 +38,15 @@ function showToast(msg) {
 
 /* ============ RESET ORCHESTRATOR ============ */
 function startNewForm() {
-  if (!confirm('This will clear all current form data so you can start a new form (e.g. for a trio test). Make sure you have downloaded your PDF first.\n\nClear the form and start again?')) return;
+  const id = getCurrentFormId();
+  const msg = id === 'proband'
+    ? 'This will clear all current form data so you can start again. Make sure you have downloaded your PDF first.\n\nClear the form and start again?'
+    : `This will clear the "${id}" form only. Other forms in your trio dashboard are unaffected. Make sure you have downloaded your PDF first.\n\nClear the "${id}" form and start again?`;
+  if (!confirm(msg)) return;
 
-  // Clear localStorage — must match the key used by saveFormData()
-  localStorage.removeItem('rod-form-data');
+  // Clear localStorage for the CURRENT form id — must match the key
+  // that saveFormData() would write to.
+  localStorage.removeItem(getFormStorageKey());
 
   // Reset all form fields
   document.querySelectorAll('input[type="text"], input[type="date"]').forEach(f => f.value = '');
@@ -79,6 +84,11 @@ function startNewForm() {
 
 /* ============ BOOTSTRAP ============ */
 document.addEventListener('DOMContentLoaded', () => {
+  // Must run before any persistence so the correct namespaced key is
+  // in scope for saveFormData / loadSavedData.
+  initFormId();
+  migrateLegacyFormStorage();
+
   initFormSteps();
   initDiscussionPoints();
   initChoiceCards();
@@ -86,6 +96,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initAutoSave();
   loadSavedData();
   initPdfDownload();
+
+  // Show a small banner if we're editing a non-default form (e.g.
+  // "mother" or "father") so trio users can tell which file they're in.
+  renderFormIdBadge();
+
   // start-new-form lives here rather than initPdfDownload because it's a
   // reset action, not a PDF action.
   document.getElementById('start-new-form')?.addEventListener('click', startNewForm);

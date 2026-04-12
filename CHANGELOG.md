@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and the 
 ## [Unreleased]
 
 ### Added
+- **Trio dashboard (`dashboard.html`) with namespaced per-form localStorage keys.** Each form is now stored under `rod-form-data:<id>` instead of the flat `rod-form-data` key. The `?id=...` query parameter on `form.html` selects which form is being edited; bare `form.html` defaults to `proband` for backwards compatibility. A one-time migration moves any pre-existing flat-key draft to `rod-form-data:proband` automatically. The new dashboard page lets users create, open, rename, duplicate, and delete forms — so a mother, father, and child can each have their own independent Record of Discussion. The site nav and footer (via `js/chrome.js`) now include a "Trio Dashboard" link, and the service worker's precache list includes the two new files (`dashboard.html`, `js/dashboard.js`). `CACHE_VERSION` bumps to `wgs-rod-v3`.
 - **Vendored jsPDF 2.5.1 locally at `js/vendor/jspdf.umd.min.js`** (MIT, 356 kB, with `jspdf.LICENSE` alongside). `js/pdf-render.js` now lazy-loads the library from the local path instead of cdnjs; the script-tag fallback, memoised promise, and WinAnsi-safe render path are otherwise unchanged. This was the site's last network dependency — with Fuse.js, jsPDF, and the service worker all vendored locally, the app now contacts zero third-party origins. The privacy guarantee is airtight: a patient or clinician can download the site, disconnect the machine from the network, and still complete a full Record of Discussion and export a PDF. The service worker precache now includes the vendored jsPDF and its `CACHE_VERSION` bumps to `wgs-rod-v2` so previously-installed workers evict the old shell.
 
 ### Added
@@ -34,4 +35,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and the 
 - **Declaration of Understanding glyph rendering.** jsPDF's default font uses WinAnsi (CP1252) encoding, which does not contain `✓` (U+2713) or `⚠` (U+26A0) — those characters were silently rendering as `'` and `&` in the generated PDFs (invisible on-screen but caught by `pdftotext -layout`). Replaced the inline glyphs with drawn shapes: green filled squares with a white check line for confirmation items, and a red filled square for the "not all acknowledged" warning. Text is indented past the marker through `drawWrapped`'s `x` / `maxWidth` options.
 
 ### Known limitations / future work
-- Currently each family member's form overwrites the others in `localStorage`. A multi-form "trio dashboard" would let mother, father, and child fill independent RoDs and export all three in one session.
+- The dashboard does not yet support bulk PDF export (downloading all three trio forms in one action). Users export each form individually.
+- No web manifest or PWA install banner. The service worker is in place, but the site doesn't present itself as installable yet.

@@ -19,7 +19,7 @@
  * stale entries from previous deployments.
  */
 
-const CACHE_VERSION = 'wgs-rod-v2';
+const CACHE_VERSION = 'wgs-rod-v3';
 const PRECACHE_URLS = [
   './',
   'index.html',
@@ -28,6 +28,7 @@ const PRECACHE_URLS = [
   'resources.html',
   'faq.html',
   'form.html',
+  'dashboard.html',
   'css/design-system.css',
   'css/components.css',
   'css/pages.css',
@@ -39,6 +40,7 @@ const PRECACHE_URLS = [
   'js/signature-pads.js',
   'js/persistence.js',
   'js/pdf-render.js',
+  'js/dashboard.js',
   'js/vendor/fuse.min.js',
   'js/vendor/jspdf.umd.min.js',
   'assets/data/faq-knowledge.json'

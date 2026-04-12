@@ -1,9 +1,17 @@
 /* WGS Record of Discussion — Persistence
  *
- * Autosave / load for form state. Key is ALWAYS `rod-form-data`.
- * Never use `wgs-rod-form` — that name was the source of a real bug
- * where startNewForm cleared one key while saveFormData wrote to
- * another, leaking previous-patient data into new forms.
+ * Autosave / load for form state. Keys are **namespaced** per form:
+ * `rod-form-data:<id>`. Each id represents one person in a trio
+ * (e.g. `proband`, `mother`, `father`) so a family can fill
+ * independent forms without overwriting each other. Never use the
+ * bare `rod-form-data` key for writes — that was the pre-trio
+ * layout and is now only read once during migration. And never use
+ * `wgs-rod-form`, which was the source of a real bug where
+ * startNewForm cleared one key while saveFormData wrote to another.
+ *
+ * The current form's id comes from the `?id=...` query parameter
+ * on `form.html`. If absent it defaults to `proband` so plain
+ * `form.html` links keep working after the upgrade.
  *
  * Includes HCP-only fields (patient-cat, test-type, research-no
  * reasons, remote-consent) — these were silently dropped from
@@ -12,6 +20,94 @@
  * Depends on `debounce` and `showToast` from form.js (resolved at
  * runtime, not parse time — form.js loads after this file).
  */
+
+// Prefix every stored form. The full key is `FORM_KEY_PREFIX + id`.
+// Keep this exported-shaped constant so chrome.js and dashboard.js
+// can enumerate forms without duplicating the string.
+const FORM_KEY_PREFIX = 'rod-form-data:';
+const LEGACY_FORM_KEY = 'rod-form-data';
+const DEFAULT_FORM_ID = 'proband';
+
+// The id of the form currently being edited. Set by initFormId()
+// from the URL query string before load/save runs.
+let currentFormId = DEFAULT_FORM_ID;
+
+// Only [a-z0-9_-] up to 40 chars. Anything else is stripped. This
+// prevents stray `?id=../../etc` or malformed localStorage keys.
+function sanitizeFormId(raw) {
+  if (!raw) return DEFAULT_FORM_ID;
+  const cleaned = String(raw).trim().replace(/[^a-zA-Z0-9_\-]/g, '').slice(0, 40);
+  return cleaned || DEFAULT_FORM_ID;
+}
+
+function getCurrentFormId() {
+  return currentFormId;
+}
+
+function getFormStorageKey(id) {
+  return FORM_KEY_PREFIX + sanitizeFormId(id == null ? currentFormId : id);
+}
+
+// Read the ?id= query param on form.html and set currentFormId.
+// Safe to call from any page — returns the default if there's no
+// query string or the id is missing.
+function initFormId() {
+  try {
+    const params = new URLSearchParams(window.location.search || '');
+    currentFormId = sanitizeFormId(params.get('id'));
+  } catch (e) {
+    currentFormId = DEFAULT_FORM_ID;
+  }
+  return currentFormId;
+}
+
+// One-time migration: move any pre-trio value stored under the flat
+// `rod-form-data` key into `rod-form-data:proband`. Idempotent —
+// later calls are no-ops because legacy is deleted on success.
+function migrateLegacyFormStorage() {
+  try {
+    const legacy = localStorage.getItem(LEGACY_FORM_KEY);
+    if (!legacy) return;
+    const probandKey = FORM_KEY_PREFIX + DEFAULT_FORM_ID;
+    if (!localStorage.getItem(probandKey)) {
+      localStorage.setItem(probandKey, legacy);
+    }
+    localStorage.removeItem(LEGACY_FORM_KEY);
+  } catch (e) { /* storage unavailable */ }
+}
+
+// Small UI badge that tells the user which form they're editing
+// when it isn't the default proband. Mounts into #form-id-badge if
+// the element exists on the page (form.html does; other pages skip).
+function renderFormIdBadge() {
+  const host = document.getElementById('form-id-badge');
+  if (!host) return;
+  if (currentFormId === DEFAULT_FORM_ID) {
+    host.style.display = 'none';
+    return;
+  }
+  host.style.display = '';
+  host.textContent = 'Editing: ' + currentFormId;
+}
+
+// Enumerate every `rod-form-data:*` key so the dashboard can list
+// forms without each caller re-implementing key iteration. Returns
+// an array of { id, data } where data is the parsed stored object
+// (or null if parse failed).
+function listStoredForms() {
+  const out = [];
+  try {
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (!k || !k.startsWith(FORM_KEY_PREFIX)) continue;
+      const id = k.slice(FORM_KEY_PREFIX.length);
+      let data = null;
+      try { data = JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { data = null; }
+      out.push({ id, data });
+    }
+  } catch (e) { /* storage unavailable */ }
+  return out.sort((a, b) => a.id.localeCompare(b.id));
+}
 
 function initAutoSave() {
   const inputs = document.querySelectorAll('.form-input, .form-check input');
@@ -69,13 +165,13 @@ function saveFormData() {
   else if (bNo?.classList.contains('selected-no')) data.choiceB = 'no';
 
   try {
-    localStorage.setItem('rod-form-data', JSON.stringify(data));
+    localStorage.setItem(getFormStorageKey(), JSON.stringify(data));
   } catch (e) { /* storage full */ }
 }
 
 function loadSavedData() {
   try {
-    const saved = localStorage.getItem('rod-form-data');
+    const saved = localStorage.getItem(getFormStorageKey());
     if (!saved) return;
     const data = JSON.parse(saved);
 
