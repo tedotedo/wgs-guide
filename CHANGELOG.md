@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and the 
 
 ## [Unreleased]
 
+### Fixed
+- **Mobile horizontal padding restored.** The `.page-header` had zero left/right padding on screens ≤ 480 px, causing headings and subtitle text to touch the screen edges. Added `var(--space-5)` (1.25 rem) horizontal padding to `.page-header` in the mobile breakpoint. Also increased `.container` mobile padding from `var(--space-4)` (1 rem) to `var(--space-5)` (1.25 rem) for more breathing room on body content. The fix is global — all pages (pitfalls, FAQ, resources, understanding-wgs, form, dashboard) share these classes.
+
 ### Changed
 - **Text alignment normalised to left-justified across the site.** Removed `text-align:center` from `.page-header`, `.faq-hero`, and the mobile hero breakpoint in CSS. Removed the `text-center` utility class from section headings on `index.html` (×2), CTA sections on `index.html`, `pitfalls.html`, and `understanding-wgs.html`, and the FAQ disclaimer on `faq.html`. Also removed `margin:0 auto` from `.page-header p` so the subtitle left-aligns with the heading. Centering is intentionally preserved on the trust-bar attribution strip, footer copyright, breadcrumb nav, button groups, progress-bar labels, empty-state messages, signature-pad label, choice buttons, the dashboard CTA button, and PDF footer/privacy lines.
 - **Eliminated inline `style=""` attributes across all 7 HTML files.** Created proper CSS utility classes (`.mb-0`, `.bg-secondary`, `.text-measure`, `.btn-group`, `.page-content`, `.form-options`, `.step-circle`, etc.) in `design-system.css`, `components.css`, and `pages.css`. Approximately 80+ inline styles replaced with reusable classes. Dynamic/JS-controlled inline styles (e.g. `display:none` on toggled elements, progress bar width) and hero particle positioning are intentionally preserved.

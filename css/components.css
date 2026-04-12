@@ -329,7 +329,7 @@
 /* ============ MOBILE-FIRST RESPONSIVE ============ */
 @media(max-width:480px){
   /* Spacing & containers */
-  .container{padding-left:var(--space-4);padding-right:var(--space-4)}
+  .container{padding-left:var(--space-5);padding-right:var(--space-5)}
   .section{padding:var(--space-8) 0}
   .hero{padding:var(--space-12) 0;min-height:auto}
   .hero__text h1{font-size:1.6rem;margin-bottom:var(--space-4)}
@@ -361,7 +361,7 @@
   .alert__text{font-size:var(--text-xs)}
 
   /* Page header */
-  .page-header{padding:var(--space-10) 0 var(--space-8)}
+  .page-header{padding:var(--space-10) var(--space-5) var(--space-8)}
   .page-header h1{font-size:1.6rem}
   .page-header p{font-size:var(--text-base)}
 
