@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and the 
 
 ## [Unreleased]
 
+### Added
+- **Fourth unexpected-findings bullet in `pitfalls.html`.** Added "previously undiagnosed condition" (e.g. familial hypercholesterolaemia) to the list of example secondary/incidental findings, noting potential medical, family, and financial (life insurance) implications.
+
 ### Fixed
 - **Null-guard `loadSavedData()` in `js/persistence.js`.** Element lookups via `getElementById` were assigned to `.value` without checking for `null`, causing crashes on pages that don't contain every form field (e.g. the dashboard). Introduced a `setVal` helper with a null guard, matching the optional-chaining style already used in `saveFormData()`.
 - **Removed duplicate active-link detection in `js/app.js`.** `chrome.js` already applies the `.active` class and `aria-current="page"` to the current nav link at injection time; the same logic in `initNav()` was dead code and has been replaced with a comment pointing to `chrome.js`.
