@@ -140,8 +140,8 @@ img{max-width:100%;height:auto;display:block}
 /* Hero Component Classes */
 .hero__lead{font-size:1.15rem;margin-bottom:0.75rem}
 .hero__note{font-size:0.9rem;opacity:0.85;margin-bottom:1.5rem}
-.btn--hero-ghost{background:rgba(255,255,255,0.25);color:white;border-color:rgba(255,255,255,0.6)}
-.btn--hero-ghost:hover{background:rgba(255,255,255,0.35);border-color:rgba(255,255,255,0.8)}
+.btn--hero-ghost{background:white;color:var(--color-primary-800);border:2px solid white;font-weight:600}
+.btn--hero-ghost:hover,.btn--hero-ghost:active{background:var(--color-primary-50);color:var(--color-primary-900);border-color:var(--color-primary-50)}
 .trust-bar{background:var(--surface-secondary);border-bottom:1px solid var(--color-neutral-100)}
 [data-theme="dark"] .trust-bar{border-color:var(--color-neutral-800)}
 .step-circle{width:36px;height:36px;border-radius:50%;color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.875rem}
