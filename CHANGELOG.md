@@ -7,6 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and the 
 ## [Unreleased]
 
 ### Added
+- **Vendored jsPDF 2.5.1 locally at `js/vendor/jspdf.umd.min.js`** (MIT, 356 kB, with `jspdf.LICENSE` alongside). `js/pdf-render.js` now lazy-loads the library from the local path instead of cdnjs; the script-tag fallback, memoised promise, and WinAnsi-safe render path are otherwise unchanged. This was the site's last network dependency — with Fuse.js, jsPDF, and the service worker all vendored locally, the app now contacts zero third-party origins. The privacy guarantee is airtight: a patient or clinician can download the site, disconnect the machine from the network, and still complete a full Record of Discussion and export a PDF. The service worker precache now includes the vendored jsPDF and its `CACHE_VERSION` bumps to `wgs-rod-v2` so previously-installed workers evict the old shell.
+
+### Added
 - **Service worker (`sw.js`) for fully offline use.** Precaches the full site shell (all 6 HTML pages, the 3 CSS files, the 9 JS files including `js/chrome.js` and the Fuse.js vendor bundle, and `assets/data/faq-knowledge.json`) on install. Strategy: cache-first for same-origin static assets, network-first for HTML navigations with a cache fallback (and an `index.html` fallback when navigation and cache both miss). Cache is versioned via `CACHE_VERSION` so bumping the constant is sufficient to evict stale entries. Registration lives in `js/app.js` and is **protocol-gated** on `https:` / `localhost` / `127.0.0.1`, so the service worker is a no-op when the site is opened from `file://` — opening a page directly from disk remains a first-class use case for a privacy-focused clinical tool.
 
 ### Changed
@@ -31,5 +34,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and the 
 - **Declaration of Understanding glyph rendering.** jsPDF's default font uses WinAnsi (CP1252) encoding, which does not contain `✓` (U+2713) or `⚠` (U+26A0) — those characters were silently rendering as `'` and `&` in the generated PDFs (invisible on-screen but caught by `pdftotext -layout`). Replaced the inline glyphs with drawn shapes: green filled squares with a white check line for confirmation items, and a red filled square for the "not all acknowledged" warning. Text is indented past the marker through `drawWrapped`'s `x` / `maxWidth` options.
 
 ### Known limitations / future work
-- Vendoring jsPDF locally under `js/vendor/` instead of loading it from cdnjs would eliminate the last network dependency and tighten the privacy story.
 - Currently each family member's form overwrites the others in `localStorage`. A multi-form "trio dashboard" would let mother, father, and child fill independent RoDs and export all three in one session.

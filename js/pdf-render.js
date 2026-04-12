@@ -1,7 +1,8 @@
 /* WGS Record of Discussion — PDF Render
  *
  * Two PDF generation paths:
- *   1. jsPDF (primary) — lazy-loaded from cdnjs on demand. Produces a
+ *   1. jsPDF (primary) — lazy-loaded from js/vendor/jspdf.umd.min.js
+ *      on demand (see loadJsPdf below). Produces a
  *      proper A4 document with embedded PNG signatures.
  *   2. window.print() on an HTML template (fallback) — if the CDN
  *      fetch fails (e.g. offline in a hospital clinic).
@@ -275,17 +276,22 @@ ${sigImg(hcpSignature, 'Healthcare professional signature')}
 // The previous implementation opened window.print() on an HTML template.
 // That works but (a) relies on popup permissions, (b) produces no
 // downloaded file on many mobile browsers, and (c) cannot embed the
-// canvas signatures. We now lazy-load jsPDF from a CDN on first use and
-// fall back to the old print path if the CDN is unreachable (e.g. offline
-// in a hospital clinic).
-const JSPDF_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+// canvas signatures. We lazy-load jsPDF on first use and fall back to
+// the old print path if the load fails for any reason.
+//
+// The library is vendored locally at js/vendor/jspdf.umd.min.js
+// (jsPDF 2.5.1 UMD build, MIT license, see jspdf.LICENSE next to it).
+// This is the last network dependency the site used to have — the
+// privacy guarantee is now airtight: no third-party origins are
+// contacted at any point.
+const JSPDF_LOCAL = 'js/vendor/jspdf.umd.min.js';
 let _jsPdfPromise = null;
 function loadJsPdf() {
   if (window.jspdf && window.jspdf.jsPDF) return Promise.resolve(window.jspdf);
   if (_jsPdfPromise) return _jsPdfPromise;
   _jsPdfPromise = new Promise((resolve, reject) => {
     const script = document.createElement('script');
-    script.src = JSPDF_CDN;
+    script.src = JSPDF_LOCAL;
     script.async = true;
     script.onload = () => {
       if (window.jspdf && window.jspdf.jsPDF) resolve(window.jspdf);
@@ -293,7 +299,7 @@ function loadJsPdf() {
     };
     script.onerror = () => {
       _jsPdfPromise = null; // allow retry
-      reject(new Error('Failed to load jsPDF from CDN'));
+      reject(new Error('Failed to load jsPDF from ' + JSPDF_LOCAL));
     };
     document.head.appendChild(script);
   });

@@ -52,6 +52,7 @@ Initial walk-through of the codebase surfaced the following findings. Items mark
 - `js/pdf-render.js` — jsPDF lazy loader, A4 render path, print fallback, email-to-clinician wiring
 - `js/faq.js` — FAQ chat/search over 37 Q&A pairs, backed by Fuse.js
 - `js/vendor/fuse.min.js` — Fuse.js 6.6.2 UMD build (vendored, Apache 2.0, see `fuse.LICENSE`)
+- `js/vendor/jspdf.umd.min.js` — jsPDF 2.5.1 UMD build (vendored, MIT, see `jspdf.LICENSE`)
 - `assets/` — images + the ROD PDF reference
 - `sw.js` — service worker at repo root: precaches the shell on install, serves cache-first for static assets and network-first for navigations
 
@@ -94,7 +95,7 @@ Each module is a flat set of globally-scoped functions that the orchestrator cal
 ## PDF generation
 Two paths exist:
 
-1. **jsPDF path (primary).** `generatePdf()` calls `loadJsPdf()` which lazy-loads jsPDF 2.5.1 UMD from cdnjs on demand, then `renderPdfDocument(doc, data)` lays out a proper A4 document with:
+1. **jsPDF path (primary).** `generatePdf()` calls `loadJsPdf()` which lazy-loads jsPDF 2.5.1 UMD from `js/vendor/jspdf.umd.min.js` (vendored locally — there is no CDN request, the load is same-origin), then `renderPdfDocument(doc, data)` lays out a proper A4 document with:
    - Header, patient details, consent basis box
    - All 7 discussion points with bold/green `ACKNOWLEDGED` or red `NOT ACKNOWLEDGED` pills
    - Research choice boxes (A/B)
@@ -103,7 +104,7 @@ Two paths exist:
    - HCP-only section
    - Footer with `Page N of M` and a generation timestamp
    - Output filename: `RoD-<First>-<Last>.pdf`
-2. **Print fallback.** If the CDN fetch fails, it degrades to `buildPdfHtml(data)` opened in a new window with `window.print()`. Keep both paths in sync when adding fields.
+2. **Print fallback.** If the local jsPDF script fails to load (e.g. missing vendor file), it degrades to `buildPdfHtml(data)` opened in a new window with `window.print()`. Keep both paths in sync when adding fields.
 
 ### jsPDF gotchas (learned the hard way)
 - **Default font is WinAnsi (CP1252) encoded.** Characters outside that set render as garbage. Confirmed broken: `✓` (U+2713) → `'`, `⚠` (U+26A0) → `&`. Confirmed working: `\u2019` (right single quote) e.g. "patient's".
@@ -116,7 +117,7 @@ Two paths exist:
 - Precaches the site shell on `install` (all HTML, CSS, JS, the Fuse.js vendor bundle, and `assets/data/faq-knowledge.json`). Strategy is cache-first for static assets, network-first for HTML navigations with a cache fallback that ends at `index.html`. `CACHE_VERSION` is the single knob for evicting stale entries — bump it after adding/removing files from `PRECACHE_URLS`.
 - Registration lives in `registerServiceWorker()` inside `js/app.js` and is **protocol-gated**: `location.protocol === 'https:'` OR `hostname === 'localhost'` / `'127.0.0.1'`. `file://` is deliberately excluded — browsers block SW on `file://` anyway, but the gate keeps the console clean and preserves "open straight from disk" as a supported workflow.
 - When you add a new HTML page, CSS file, JS module, vendored asset, or JSON data file, add it to `PRECACHE_URLS` AND bump `CACHE_VERSION`. Forgetting the bump leaves existing visitors on the old shell until their cache expires.
-- Cross-origin requests (including the current jsPDF cdnjs URL, until it's vendored) fall straight through to the network — the worker does not attempt to cache them.
+- Cross-origin requests fall straight through to the network — the worker does not attempt to cache them. As of `CACHE_VERSION = wgs-rod-v2` the site has no intentional cross-origin assets (both Fuse.js and jsPDF are vendored under `js/vendor/`), so in practice nothing takes this path.
 
 ## Page chrome (`js/chrome.js`)
 - Renders the `<nav>` and `<footer>` for every page from template literals. Each page declares two placeholder containers:
@@ -149,7 +150,6 @@ There is no in-repo test harness. The bugfix session ran a Node smoke harness fr
 If you re-create it, the important part is the verification step: use `pdftotext -layout <file> -` to catch glyph-encoding regressions. The WinAnsi issue (see "jsPDF gotchas" above) is invisible in visual inspection but shows up immediately in extracted text. Any future smoke harness should live under `pdftest/` at the repo root.
 
 ## Known future work
-- Vendor jsPDF locally under `js/vendor/` and drop the cdnjs load path
 - Multi-form trio dashboard — namespaced `rod-form-data:<id>` keys, `dashboard.html` entry point, form wizard reads `?id=…`
 
 ## Things NOT to do

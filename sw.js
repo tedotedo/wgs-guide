@@ -19,7 +19,7 @@
  * stale entries from previous deployments.
  */
 
-const CACHE_VERSION = 'wgs-rod-v1';
+const CACHE_VERSION = 'wgs-rod-v2';
 const PRECACHE_URLS = [
   './',
   'index.html',
@@ -40,6 +40,7 @@ const PRECACHE_URLS = [
   'js/persistence.js',
   'js/pdf-render.js',
   'js/vendor/fuse.min.js',
+  'js/vendor/jspdf.umd.min.js',
   'assets/data/faq-knowledge.json'
 ];
 
@@ -72,8 +73,10 @@ self.addEventListener('fetch', event => {
 
   const url = new URL(req.url);
 
-  // Never cache cross-origin. jsPDF's cdnjs URL, if the refactor
-  // hasn't yet vendored it locally, must still work online-only.
+  // Never cache cross-origin. As of v2 the site has no intentional
+  // cross-origin fetches, but anything that appears in future (e.g.
+  // external tracking the user explicitly opts into) should pass
+  // straight through the worker.
   if (url.origin !== self.location.origin) return;
 
   // Navigation requests: try network first so users see fresh HTML
