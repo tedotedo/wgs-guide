@@ -299,7 +299,7 @@
 .hero__text h1{color:white;margin-bottom:var(--space-6)}
 .hero__text p{color:rgba(255,255,255,0.85);font-size:var(--text-lg);margin-bottom:var(--space-4)}
 .hero__actions{display:flex;gap:var(--space-4);flex-wrap:wrap}
-@media(max-width:768px){.hero__actions{justify-content:center}}
+@media(max-width:768px){.hero__actions{justify-content:flex-start}}
 .hero__visual{display:flex;align-items:center;justify-content:center}
 @media(max-width:768px){.hero__visual{display:none}}
 
@@ -341,10 +341,10 @@
   .section{padding:var(--space-8) 0}
   .hero{padding:var(--space-12) 0;min-height:auto}
   .hero__content{padding-left:max(var(--space-8),env(safe-area-inset-left,0px));padding-right:max(var(--space-8),env(safe-area-inset-right,0px))}
-  .hero__text{text-align:center}
+  .hero__text{text-align:left}
   .hero__text h1{font-size:1.6rem;margin-bottom:var(--space-4)}
   .hero__text p{font-size:var(--text-base);margin-bottom:var(--space-4)}
-  .hero__actions{flex-direction:column;gap:var(--space-3);align-items:center}
+  .hero__actions{flex-direction:column;gap:var(--space-3);align-items:stretch}
   .hero__actions .btn{width:100%;justify-content:center}
 
   /* Form page */
