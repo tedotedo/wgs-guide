@@ -175,21 +175,26 @@ function loadSavedData() {
     if (!saved) return;
     const data = JSON.parse(saved);
 
-    if (data.firstName) document.getElementById('first-name').value = data.firstName;
-    if (data.lastName) document.getElementById('last-name').value = data.lastName;
-    if (data.nhsNumber) document.getElementById('nhs-number').value = data.nhsNumber;
-    if (data.dob) document.getElementById('dob').value = data.dob;
+    // Helper: set .value on an element by id, with a null guard so
+    // pages that don't contain every field (e.g. dashboard.html) won't
+    // throw. Mirrors the optional-chaining style used in saveFormData.
+    const setVal = (id, v) => { const el = document.getElementById(id); if (el) el.value = v; };
+
+    if (data.firstName) setVal('first-name', data.firstName);
+    if (data.lastName) setVal('last-name', data.lastName);
+    if (data.nhsNumber) setVal('nhs-number', data.nhsNumber);
+    if (data.dob) setVal('dob', data.dob);
     if (data.consentBasis) {
       const radio = document.getElementById(data.consentBasis === 'self' ? 'consent-self' : data.consentBasis === 'child' ? 'consent-child' : 'consent-bestinterest');
       if (radio) radio.checked = true;
     }
-    if (data.guardianName) document.getElementById('guardian-name').value = data.guardianName;
-    if (data.guardianDate) document.getElementById('guardian-date').value = data.guardianDate;
-    if (data.sigDate) document.getElementById('sig-date').value = data.sigDate;
-    if (data.hcpClinician) document.getElementById('hcp-clinician').value = data.hcpClinician;
-    if (data.hcpHospital) document.getElementById('hcp-hospital').value = data.hcpHospital;
-    if (data.hcpName) document.getElementById('hcp-name').value = data.hcpName;
-    if (data.hcpDate) document.getElementById('hcp-date').value = data.hcpDate;
+    if (data.guardianName) setVal('guardian-name', data.guardianName);
+    if (data.guardianDate) setVal('guardian-date', data.guardianDate);
+    if (data.sigDate) setVal('sig-date', data.sigDate);
+    if (data.hcpClinician) setVal('hcp-clinician', data.hcpClinician);
+    if (data.hcpHospital) setVal('hcp-hospital', data.hcpHospital);
+    if (data.hcpName) setVal('hcp-name', data.hcpName);
+    if (data.hcpDate) setVal('hcp-date', data.hcpDate);
     if (Array.isArray(data.patientCategories)) {
       document.querySelectorAll('input[name="patient-cat"]').forEach(i => {
         i.checked = data.patientCategories.includes(i.value);

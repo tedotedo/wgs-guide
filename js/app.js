@@ -77,15 +77,9 @@ function initNav() {
       });
     });
   }
-
-  // Active link
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav__link').forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-      link.classList.add('active');
-    }
-  });
+  // Active-link highlighting is handled by chrome.js at injection
+  // time (it applies `.active` and `aria-current="page"`). No need
+  // to duplicate the logic here.
 }
 
 /* ============ SCROLL ANIMATIONS ============ */
