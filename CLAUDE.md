@@ -26,11 +26,11 @@ Initial walk-through of the codebase surfaced the following findings. Items mark
 
 **Open items from the review**
 - ✅ Split `js/form.js` into modules: `wizard.js`, `signature-pads.js`, `persistence.js`, `pdf-render.js`. (See "Form module layout" below.)
-- Replace the hand-rolled scoring + Levenshtein search in `js/faq.js` with Fuse.js for better recall on typos and synonyms.
-- Deduplicate the copy-pasted `<nav>` and `<footer>` across the 6 HTML pages. Options: a tiny JS include, or server-side templating at deploy time. Must preserve "works with view-source and file://" behaviour.
-- Add a service worker for fully offline use (the site has no network dependencies beyond jsPDF on CDN — bundling jsPDF locally would make it 100% offline-capable).
-- Multi-form trio dashboard: currently each family member's form overwrites the others in `localStorage`. A trio dashboard would let a mother/father/child each fill their own RoD and export all three in one session.
-- Consider bundling jsPDF locally (vendor it in `js/vendor/`) instead of CDN-loading. Removes the one network dependency and makes the privacy claim airtight.
+- ✅ Replace the hand-rolled scoring + Levenshtein search in `js/faq.js` with Fuse.js for better recall on typos and synonyms.
+- ✅ Deduplicate the copy-pasted `<nav>` and `<footer>` across the 6 HTML pages — done via `js/chrome.js` (DOM injection from template literals, works under `file://`).
+- ✅ Add a service worker for fully offline use — `sw.js` precaches the shell, all assets vendored locally.
+- ✅ Multi-form trio dashboard — `dashboard.html` / `js/dashboard.js` with create/open/duplicate/rename/delete per-form.
+- ✅ Bundle jsPDF locally — vendored at `js/vendor/jspdf.umd.min.js`, no CDN dependency.
 
 ## Work completed this session
 1. **Bug fixes** — the eight ✅ items above, all landed in `js/form.js`, `js/app.js`, `css/design-system.css`, and `form.html`.
@@ -125,7 +125,8 @@ Two paths exist:
 - Precaches the site shell on `install` (all HTML, CSS, JS, the Fuse.js vendor bundle, and `assets/data/faq-knowledge.json`). Strategy is cache-first for static assets, network-first for HTML navigations with a cache fallback that ends at `index.html`. `CACHE_VERSION` is the single knob for evicting stale entries — bump it after adding/removing files from `PRECACHE_URLS`.
 - Registration lives in `registerServiceWorker()` inside `js/app.js` and is **protocol-gated**: `location.protocol === 'https:'` OR `hostname === 'localhost'` / `'127.0.0.1'`. `file://` is deliberately excluded — browsers block SW on `file://` anyway, but the gate keeps the console clean and preserves "open straight from disk" as a supported workflow.
 - When you add a new HTML page, CSS file, JS module, vendored asset, or JSON data file, add it to `PRECACHE_URLS` AND bump `CACHE_VERSION`. Forgetting the bump leaves existing visitors on the old shell until their cache expires.
-- Cross-origin requests fall straight through to the network — the worker does not attempt to cache them. As of `CACHE_VERSION = wgs-rod-v2` the site has no intentional cross-origin assets (both Fuse.js and jsPDF are vendored under `js/vendor/`), so in practice nothing takes this path.
+- Cross-origin requests fall straight through to the network — the worker does not attempt to cache them. The site has no intentional cross-origin assets (both Fuse.js and jsPDF are vendored under `js/vendor/`), so in practice nothing takes this path.
+- **Important:** The service worker aggressively caches CSS. When making style changes, always bump `CACHE_VERSION` in `sw.js` or users (including on mobile) will see stale styles until the old cache expires. As of April 2026 the version is `wgs-rod-v7`.
 
 ## Page chrome (`js/chrome.js`)
 - Renders the `<nav>` and `<footer>` for every page from template literals. Each page declares two placeholder containers:
@@ -156,6 +157,14 @@ Two paths exist:
 There is no in-repo test harness. The bugfix session ran a Node smoke harness from an ephemeral sandbox (`/sessions/focused-ecstatic-edison/pdftest/smoke.js`) that mocked `document`/`window`/`localStorage`/`Image`, pre-populated `window.jspdf` from `require('jspdf')` so `loadJsPdf` short-circuited, ran four scenarios (`self-all-acknowledged`, `self-some-missing`, `child-flow`, `best-interests-flow`), and wrote PDFs to disk for inspection. That file is NOT in this repository and the path no longer exists.
 
 If you re-create it, the important part is the verification step: use `pdftotext -layout <file> -` to catch glyph-encoding regressions. The WinAnsi issue (see "jsPDF gotchas" above) is invisible in visual inspection but shows up immediately in extracted text. Any future smoke harness should live under `pdftest/` at the repo root.
+
+## CSS specificity — hero ghost button
+The hero CTA "Complete the Form" button has class `btn btn--secondary btn--lg btn--hero-ghost`. Because `btn--secondary` sets `background:transparent`, the `btn--hero-ghost` override uses `!important` to guarantee it wins regardless of source order. This is intentional — do not remove the `!important` declarations without also removing `btn--secondary` from the element's class list.
+
+The `btn--hero-ghost` rule appears in three places:
+1. `css/design-system.css` — base definition (lowest priority, overridden by components.css)
+2. `css/components.css` — non-media-query rule after `btn--secondary` (the one that actually wins)
+3. `css/components.css` — inside `@media(max-width:768px)` block (mobile override)
 
 ## Known future work
 - Bulk PDF export from the trio dashboard (download all three at once)
