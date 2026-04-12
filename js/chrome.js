@@ -74,6 +74,7 @@
             </button>
           </div>
         </div>
+        <div class="nav__backdrop" id="nav-backdrop"></div>
       </nav>
     `;
   }

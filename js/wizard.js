@@ -36,9 +36,22 @@ function goToStep(n) {
 
   // 0% on step 1 (nothing done yet), 50% on step 2, 100% on step 3
   if (progressFill) progressFill.style.width = `${((n - 1) / 2) * 100}%`;
+
+  // Update progress bar ARIA attributes and visible label
+  const progressBar = document.querySelector('[role="progressbar"]');
+  const progressLabel = document.getElementById('progress-label');
+  const stepTitles = ['Discussion Points', 'Research Choices', 'Confirmation'];
+  if (progressBar) {
+    progressBar.setAttribute('aria-valuenow', String(((n - 1) / 2) * 100));
+    progressBar.setAttribute('aria-label', `Form progress: Step ${n} of 3`);
+  }
+  if (progressLabel) {
+    progressLabel.textContent = `Step ${n} of 3 — ${stepTitles[n - 1]}`;
+  }
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  // Auto-fill patient name on step 3
+  // Auto-fill patient name on step 3 and populate choice summary
   if (n === 3) {
     const fn = document.getElementById('first-name').value;
     const ln = document.getElementById('last-name').value;
@@ -46,6 +59,27 @@ function goToStep(n) {
     const today = new Date().toISOString().split('T')[0];
     if (!document.getElementById('sig-date').value) {
       document.getElementById('sig-date').value = today;
+    }
+
+    // Populate choice summary
+    const choiceAYes = document.getElementById('choice-a-yes');
+    const choiceBYes = document.getElementById('choice-b-yes');
+    const summaryText = document.getElementById('choice-summary-text');
+
+    let summary = '';
+    if (choiceAYes && choiceAYes.classList.contains('selected')) {
+      summary += '✓ A. Yes, I have discussed taking part in the National Genomic Research Library<br>';
+      if (choiceBYes && choiceBYes.classList.contains('selected')) {
+        summary += '✓ B. Yes, I agree that my data and remainder sample may contribute to the library';
+      } else {
+        summary += '✗ B. No, I do not agree to contribute data and samples';
+      }
+    } else {
+      summary = '✗ A. No, I have not discussed taking part in the National Genomic Research Library<br><em>(Choice B is not applicable)</em>';
+    }
+
+    if (summaryText) {
+      summaryText.innerHTML = summary;
     }
   }
 }

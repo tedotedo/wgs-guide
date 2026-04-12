@@ -51,6 +51,7 @@ function initNav() {
   const nav = document.querySelector('.nav');
   const hamburger = document.getElementById('nav-hamburger');
   const links = document.getElementById('nav-links');
+  const backdrop = document.getElementById('nav-backdrop');
   if (!nav) return;
 
   // Scroll effect
@@ -66,6 +67,7 @@ function initNav() {
       const isOpen = links.classList.contains('open');
       hamburger.setAttribute('aria-expanded', isOpen);
       document.body.style.overflow = isOpen ? 'hidden' : '';
+      if (backdrop) backdrop.classList.toggle('open', isOpen);
     });
 
     // Close on link click
@@ -74,9 +76,21 @@ function initNav() {
         links.classList.remove('open');
         hamburger.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
+        if (backdrop) backdrop.classList.remove('open');
       });
     });
   }
+
+  // Close nav when backdrop is clicked
+  if (backdrop) {
+    backdrop.addEventListener('click', () => {
+      links.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      backdrop.classList.remove('open');
+    });
+  }
+
   // Active-link highlighting is handled by chrome.js at injection
   // time (it applies `.active` and `aria-current="page"`). No need
   // to duplicate the logic here.
