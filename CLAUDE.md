@@ -53,6 +53,7 @@ Initial walk-through of the codebase surfaced the following findings. Items mark
 - `js/faq.js` — FAQ chat/search over 37 Q&A pairs, backed by Fuse.js
 - `js/vendor/fuse.min.js` — Fuse.js 6.6.2 UMD build (vendored, Apache 2.0, see `fuse.LICENSE`)
 - `assets/` — images + the ROD PDF reference
+- `sw.js` — service worker at repo root: precaches the shell on install, serves cache-first for static assets and network-first for navigations
 
 ### Form module loading
 `form.html` loads the six form-related scripts in a strict order so that the orchestrator can reference functions from the other modules at runtime:
@@ -111,6 +112,12 @@ Two paths exist:
 - Colors are arrays: `BLUE`, `GREEN`, `RED`, `BLACK`. Helpers: `setColor` (text), `setDraw` (stroke), `setFill` (fill).
 - `ensureSpace(h)` handles page breaks; always call it before any multi-line block you're about to draw.
 
+## Service worker (`sw.js`)
+- Precaches the site shell on `install` (all HTML, CSS, JS, the Fuse.js vendor bundle, and `assets/data/faq-knowledge.json`). Strategy is cache-first for static assets, network-first for HTML navigations with a cache fallback that ends at `index.html`. `CACHE_VERSION` is the single knob for evicting stale entries — bump it after adding/removing files from `PRECACHE_URLS`.
+- Registration lives in `registerServiceWorker()` inside `js/app.js` and is **protocol-gated**: `location.protocol === 'https:'` OR `hostname === 'localhost'` / `'127.0.0.1'`. `file://` is deliberately excluded — browsers block SW on `file://` anyway, but the gate keeps the console clean and preserves "open straight from disk" as a supported workflow.
+- When you add a new HTML page, CSS file, JS module, vendored asset, or JSON data file, add it to `PRECACHE_URLS` AND bump `CACHE_VERSION`. Forgetting the bump leaves existing visitors on the old shell until their cache expires.
+- Cross-origin requests (including the current jsPDF cdnjs URL, until it's vendored) fall straight through to the network — the worker does not attempt to cache them.
+
 ## Page chrome (`js/chrome.js`)
 - Renders the `<nav>` and `<footer>` for every page from template literals. Each page declares two placeholder containers:
 
@@ -142,7 +149,6 @@ There is no in-repo test harness. The bugfix session ran a Node smoke harness fr
 If you re-create it, the important part is the verification step: use `pdftotext -layout <file> -` to catch glyph-encoding regressions. The WinAnsi issue (see "jsPDF gotchas" above) is invisible in visual inspection but shows up immediately in extracted text. Any future smoke harness should live under `pdftest/` at the repo root.
 
 ## Known future work
-- PWA / service worker for fully offline use — gate registration on `https:` / `localhost` so `file://` is unaffected
 - Vendor jsPDF locally under `js/vendor/` and drop the cdnjs load path
 - Multi-form trio dashboard — namespaced `rod-form-data:<id>` keys, `dashboard.html` entry point, form wizard reads `?id=…`
 

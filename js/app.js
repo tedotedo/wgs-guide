@@ -6,7 +6,28 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
   initAccordions();
   initCookieBanner();
+  registerServiceWorker();
 });
+
+/* ============ SERVICE WORKER ============
+ * Register sw.js for fully-offline use when served over HTTP(S).
+ * Protocol-gated: service workers are blocked on file:// anyway, but
+ * the gate keeps the console clean when the site is opened directly
+ * from disk — a first-class use case for this privacy-focused tool.
+ */
+function registerServiceWorker() {
+  if (!('serviceWorker' in navigator)) return;
+  const { protocol, hostname } = window.location;
+  const allowedHost = hostname === 'localhost' || hostname === '127.0.0.1';
+  if (protocol !== 'https:' && !allowedHost) return;
+  // Delay the registration slightly so it does not compete with the
+  // initial page render for bandwidth or main-thread time.
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(err => {
+      console.warn('Service worker registration failed:', err);
+    });
+  });
+}
 
 /* ============ THEME TOGGLE ============ */
 function initTheme() {
