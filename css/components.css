@@ -311,7 +311,7 @@
 /* ============ PAGE HEADER ============ */
 .page-header{background:linear-gradient(135deg,var(--color-primary-600) 0%,var(--color-primary-800) 100%);
   padding:var(--space-12) var(--space-6);color:white}
-.page-header__content{max-width:var(--container-md);margin:0 auto}
+.page-header__content{max-width:var(--container-md);margin:0 auto;padding:0 var(--space-4)}
 .page-header h1{color:white;margin-bottom:var(--space-3)}
 .page-header p{color:rgba(255,255,255,0.85);font-size:var(--text-lg);max-width:600px}
 .breadcrumb{display:flex;align-items:center;justify-content:center;gap:var(--space-2);
@@ -329,7 +329,7 @@
 /* ============ MOBILE-FIRST RESPONSIVE ============ */
 @media(max-width:480px){
   /* Spacing & containers */
-  .container{padding-left:var(--space-5);padding-right:var(--space-5)}
+  .container{padding-left:var(--space-6);padding-right:var(--space-6)}
   .section{padding:var(--space-8) 0}
   .hero{padding:var(--space-12) 0;min-height:auto}
   .hero__text h1{font-size:1.6rem;margin-bottom:var(--space-4)}
@@ -361,7 +361,7 @@
   .alert__text{font-size:var(--text-xs)}
 
   /* Page header */
-  .page-header{padding:var(--space-10) var(--space-5) var(--space-8)}
+  .page-header{padding:var(--space-10) var(--space-6) var(--space-8)}
   .page-header h1{font-size:1.6rem}
   .page-header p{font-size:var(--text-base)}
 
@@ -407,6 +407,8 @@
 
 /* Tablet tweaks */
 @media(min-width:481px) and (max-width:768px){
+  .container{padding-left:var(--space-8);padding-right:var(--space-8)}
+  .page-header{padding-left:var(--space-8);padding-right:var(--space-8)}
   .hero{min-height:auto;padding:var(--space-16) 0}
   .hero__text h1{font-size:2rem}
   .form-nav>div{flex-wrap:wrap}
