@@ -43,7 +43,8 @@ Initial walk-through of the codebase surfaced the following findings. Items mark
 - `index.html`, `understanding-wgs.html`, `pitfalls.html`, `resources.html`, `faq.html`, `form.html` — top-level pages
 - `css/design-system.css` — tokens + dark mode (`[data-theme="dark"]`) + `prefers-reduced-motion` overrides
 - `css/*.css` — per-page styles
-- `js/app.js` — shared nav, theme toggle, accordions, scroll-reveal
+- `js/chrome.js` — single source of truth for the site nav + footer; each page declares `#site-nav` / `#site-footer` placeholder divs that this script mounts into
+- `js/app.js` — theme toggle, mobile nav hamburger, accordions, scroll-reveal
 - `js/form.js` — thin orchestrator: shared helpers (`debounce`, `showToast`), `startNewForm` reset, and the DOMContentLoaded bootstrap
 - `js/wizard.js` — 3-step wizard state machine, progress bar, step-1 validation, discussion-point expand/collapse, research choice cards
 - `js/signature-pads.js` — signature canvas setup with toDataURL snapshot-before-resize
@@ -110,6 +111,19 @@ Two paths exist:
 - Colors are arrays: `BLUE`, `GREEN`, `RED`, `BLACK`. Helpers: `setColor` (text), `setDraw` (stroke), `setFill` (fill).
 - `ensureSpace(h)` handles page breaks; always call it before any multi-line block you're about to draw.
 
+## Page chrome (`js/chrome.js`)
+- Renders the `<nav>` and `<footer>` for every page from template literals. Each page declares two placeholder containers:
+
+  ```html
+  <div id="site-nav"></div>
+  <div id="site-footer"></div>
+  ```
+
+- `js/chrome.js` loads **before** `js/app.js` and runs synchronously at script-tag time (no `DOMContentLoaded` wrapper). It's safe because the `<script>` tag sits at the end of `<body>`, so the placeholder divs are already parsed. `app.js` then finds `#theme-toggle` and `#nav-hamburger` inside the injected nav with no extra wiring.
+- Active link is marked with the class **`active`** (not `nav__link--active`) and `aria-current="page"`, matching the existing CSS at `css/components.css`.
+- DOM injection (`outerHTML`) rather than `fetch`-based includes because `fetch` is blocked for `file://` in most browsers and the site has to keep working on local disk.
+- When adding a page, update the `NAV_LINKS` array in `chrome.js` — that's the single source of truth.
+
 ## FAQ search (`js/faq.js`)
 - Backed by **Fuse.js 6.6.2**, vendored at `js/vendor/fuse.min.js` (UMD, ~23 kB, Apache 2.0).
 - `faq.html` loads `js/vendor/fuse.min.js` **before** `js/faq.js`. Fuse attaches itself to `window.Fuse`; `loadFaqData` builds a `new Fuse(...)` after the knowledge base arrives.
@@ -128,7 +142,6 @@ There is no in-repo test harness. The bugfix session ran a Node smoke harness fr
 If you re-create it, the important part is the verification step: use `pdftotext -layout <file> -` to catch glyph-encoding regressions. The WinAnsi issue (see "jsPDF gotchas" above) is invisible in visual inspection but shows up immediately in extracted text. Any future smoke harness should live under `pdftest/` at the repo root.
 
 ## Known future work
-- Deduplicate `<nav>` / `<footer>` across the 6 pages (currently copy-pasted) — must preserve `file://` behaviour, so DOM injection, not `fetch`-based includes
 - PWA / service worker for fully offline use — gate registration on `https:` / `localhost` so `file://` is unaffected
 - Vendor jsPDF locally under `js/vendor/` and drop the cdnjs load path
 - Multi-form trio dashboard — namespaced `rod-form-data:<id>` keys, `dashboard.html` entry point, form wizard reads `?id=…`

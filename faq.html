@@ -12,26 +12,7 @@
 </head>
 <body>
   <a href="#main" class="skip-to-content">Skip to main content</a>
-  <nav class="nav" role="navigation" aria-label="Main navigation">
-    <div class="nav__inner">
-      <a href="index.html" class="nav__brand"><div class="nav__brand-icon">🧬</div><div class="nav__brand-text"><span>WGS</span> Guide</div></a>
-      <ul class="nav__links" id="nav-links" role="menubar">
-        <li role="none"><a href="index.html" class="nav__link" role="menuitem">Home</a></li>
-        <li role="none"><a href="understanding-wgs.html" class="nav__link" role="menuitem">Understanding WGS</a></li>
-        <li role="none"><a href="pitfalls.html" class="nav__link" role="menuitem">Important Information</a></li>
-        <li role="none"><a href="form.html" class="nav__link" role="menuitem">Complete Form</a></li>
-        <li role="none"><a href="faq.html" class="nav__link" role="menuitem">FAQ</a></li>
-        <li role="none"><a href="resources.html" class="nav__link" role="menuitem">Resources</a></li>
-      </ul>
-      <div class="nav__actions">
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-          <svg class="icon-moon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          <svg class="icon-sun" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        </button>
-        <button class="nav__hamburger" id="nav-hamburger" aria-label="Menu" aria-expanded="false"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
-      </div>
-    </div>
-  </nav>
+  <div id="site-nav"></div>
 
   <main id="main">
     <div class="page-header">
@@ -89,16 +70,9 @@
     </div>
   </main>
 
-  <footer class="footer">
-    <div class="footer__inner">
-      <div><div class="footer__brand">🧬 WGS Guide</div><p class="footer__desc">A companion guide for the NHS Record of Discussion form.</p></div>
-      <div><div class="footer__heading">Navigate</div><ul class="footer__list"><li><a href="understanding-wgs.html">Understanding WGS</a></li><li><a href="pitfalls.html">Important Information</a></li><li><a href="form.html">Complete Form</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
-      <div><div class="footer__heading">Resources</div><ul class="footer__list"><li><a href="https://www.nhs.uk/conditions/genetics/" target="_blank" rel="noopener">NHS Genetics</a></li><li><a href="https://www.genomicsengland.co.uk/" target="_blank" rel="noopener">Genomics England</a></li><li><a href="resources.html">All Resources</a></li></ul></div>
-      <div><div class="footer__heading">Support</div><ul class="footer__list"><li><a href="https://www.geneticalliance.org.uk/" target="_blank" rel="noopener">Genetic Alliance UK</a></li></ul></div>
-    </div>
-    <div class="footer__bottom"><p>For educational purposes. Based on NHS RoD form (01-NGIS-ROD v4.03).</p></div>
-  </footer>
+  <div id="site-footer"></div>
   <div class="cookie-banner" id="cookie-banner"><div class="cookie-banner__inner"><p class="cookie-banner__text">This site uses local storage. No data is sent externally.</p><div class="cookie-banner__actions"><button class="btn btn--primary btn--sm" id="cookie-accept">Accept</button></div></div></div>
+  <script src="js/chrome.js"></script>
   <script src="js/app.js"></script>
   <script src="js/vendor/fuse.min.js"></script>
   <script src="js/faq.js"></script>
