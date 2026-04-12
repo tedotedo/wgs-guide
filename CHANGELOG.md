@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and the 
 
 ## [Unreleased]
 
+### Changed
+- **Split `js/form.js` into four modules.** The monolithic `form.js` (1188 lines after the bugfix session) is now a ~90-line orchestrator that only defines shared helpers (`debounce`, `showToast`), the cross-cutting `startNewForm` reset, and the `DOMContentLoaded` bootstrap. The rest has moved to dedicated modules: `js/wizard.js` (3-step state machine, step-1 validation, discussion-point expand/collapse, choice cards), `js/signature-pads.js` (canvas setup with snapshot-before-resize), `js/persistence.js` (autosave / load against `rod-form-data`), and `js/pdf-render.js` (jsPDF lazy loader, A4 render path, print fallback, email wiring). `goToStep` is promoted to module level in `wizard.js` so `startNewForm` can reuse it cleanly. Everything stays as plain `<script>` tags with a strict load order in `form.html` — no ES modules, no IIFE namespaces, no build step, fully behaviour-preserving under `file://`.
+
 ### Added
 - **Real client-side PDF generation** via jsPDF 2.5.1 (lazy-loaded from cdnjs on demand). The generated file is a proper A4 document with page numbers, a generation timestamp, coloured acknowledgment pills for each of the 7 discussion points, research choice boxes, a declaration section, signature blocks with embedded PNG images, and a healthcare-professional section. The previous `window.print()` route is retained as a graceful fallback for when the CDN cannot be reached.
 - **Signature embedding.** Patient, guardian, and HCP signature canvases are exported as PNG via `toDataURL` and added directly to the PDF through `doc.addImage`. If a pad has no drawing, a dashed placeholder is rendered instead.
@@ -23,7 +26,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and the 
 - **Declaration of Understanding glyph rendering.** jsPDF's default font uses WinAnsi (CP1252) encoding, which does not contain `✓` (U+2713) or `⚠` (U+26A0) — those characters were silently rendering as `'` and `&` in the generated PDFs (invisible on-screen but caught by `pdftotext -layout`). Replaced the inline glyphs with drawn shapes: green filled squares with a white check line for confirmation items, and a red filled square for the "not all acknowledged" warning. Text is indented past the marker through `drawWrapped`'s `x` / `maxWidth` options.
 
 ### Known limitations / future work
-- `js/form.js` is around 900 lines and would benefit from being split into `wizard.js`, `signature-pads.js`, `persistence.js`, and `pdf-render.js`.
 - `js/faq.js` currently uses a hand-rolled scoring search with Levenshtein fuzzy matching. Swapping it for Fuse.js would improve recall on typos and synonyms.
 - `<nav>` and `<footer>` are copy-pasted across the 6 HTML pages. Deduplicating them (via a tiny JS include or a build-time template) would reduce drift, provided the "works with `file://` and view-source" property is preserved.
 - A service worker would make the site usable fully offline. Vendoring jsPDF locally under `js/vendor/` instead of loading it from cdnjs would eliminate the last network dependency and tighten the privacy story.

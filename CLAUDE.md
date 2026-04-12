@@ -24,8 +24,8 @@ Initial walk-through of the codebase surfaced the following findings. Items mark
 - ✅ No `prefers-reduced-motion` handling — animations, particles, and the DNA helix all ran regardless.
 - ✅ PDF generation went through `window.print()` of an HTML template, which is fragile (depends on user's print dialog, header/footer settings, "save as PDF" availability) and produced inconsistent output. Replaced with a proper jsPDF render path and kept the old route as fallback.
 
-**Open items from the review (NOT yet approved)**
-- Split `js/form.js` (~900 lines) into modules: `wizard.js`, `signature-pads.js`, `persistence.js`, `pdf-render.js`.
+**Open items from the review**
+- ✅ Split `js/form.js` into modules: `wizard.js`, `signature-pads.js`, `persistence.js`, `pdf-render.js`. (See "Form module layout" below.)
 - Replace the hand-rolled scoring + Levenshtein search in `js/faq.js` with Fuse.js for better recall on typos and synonyms.
 - Deduplicate the copy-pasted `<nav>` and `<footer>` across the 6 HTML pages. Options: a tiny JS include, or server-side templating at deploy time. Must preserve "works with view-source and file://" behaviour.
 - Add a service worker for fully offline use (the site has no network dependencies beyond jsPDF on CDN — bundling jsPDF locally would make it 100% offline-capable).
@@ -44,17 +44,49 @@ Initial walk-through of the codebase surfaced the following findings. Items mark
 - `css/design-system.css` — tokens + dark mode (`[data-theme="dark"]`) + `prefers-reduced-motion` overrides
 - `css/*.css` — per-page styles
 - `js/app.js` — shared nav, theme toggle, accordions, scroll-reveal
-- `js/form.js` — wizard, signature pads, save/load, PDF generation (the bulk of the logic)
+- `js/form.js` — thin orchestrator: shared helpers (`debounce`, `showToast`), `startNewForm` reset, and the DOMContentLoaded bootstrap
+- `js/wizard.js` — 3-step wizard state machine, progress bar, step-1 validation, discussion-point expand/collapse, research choice cards
+- `js/signature-pads.js` — signature canvas setup with toDataURL snapshot-before-resize
+- `js/persistence.js` — `rod-form-data` autosave / load (including HCP-only fields)
+- `js/pdf-render.js` — jsPDF lazy loader, A4 render path, print fallback, email-to-clinician wiring
 - `js/faq.js` — hand-rolled scoring search over 37 Q&A pairs with Levenshtein fuzzy matching
 - `assets/` — images + the ROD PDF reference
 
-## Form architecture (`js/form.js`)
-- 3-step wizard with progress bar. Progress formula: `((step - 1) / 2) * 100`.
-- `localStorage` key is **`rod-form-data`** (not `wgs-rod-form` — this caused a real bug; see history).
-- Three signature canvases: `patientSig`, `guardianSig`, `hcpSig`. `setupSignaturePad` snapshots via `toDataURL` on resize so drawings survive window resizes; resize listener is debounced 150ms.
+### Form module loading
+`form.html` loads the six form-related scripts in a strict order so that the orchestrator can reference functions from the other modules at runtime:
+
+```html
+<script src="js/app.js"></script>
+<script src="js/signature-pads.js"></script>
+<script src="js/persistence.js"></script>
+<script src="js/pdf-render.js"></script>
+<script src="js/wizard.js"></script>
+<script src="js/form.js"></script>
+```
+
+Everything is plain `<script>` tags (no `type="module"`) because the site must work under `file://`, where ES modules are blocked. Functions live in the global scope — the same flat-globals pattern as `js/app.js`.
+
+## Form architecture
+The form logic is split across five files — `form.js` (orchestrator) plus four modules (`wizard.js`, `signature-pads.js`, `persistence.js`, `pdf-render.js`). See "Form module layout" below for the per-module responsibilities.
+
+- 3-step wizard with progress bar. Progress formula: `((step - 1) / 2) * 100`. Lives in `wizard.js`.
+- `goToStep(n)` is deliberately at module level in `wizard.js` (not nested inside `initFormSteps`) so `startNewForm` in `form.js` can reuse it when resetting the wizard. Don't re-nest it.
+- `localStorage` key is **`rod-form-data`** (not `wgs-rod-form` — this caused a real bug; see history). All autosave logic is in `persistence.js`.
+- Three signature canvases: `patientSig`, `guardianSig`, `hcpSig`. `setupSignaturePad` in `signature-pads.js` snapshots via `toDataURL` on resize so drawings survive window resizes; resize listener is debounced 150ms (the `debounce` helper lives in `form.js` and is resolved at runtime).
 - Consent basis: `self` | `child` | `best-interests`. Non-self paths require guardian name + relationship and show a guardian signature pad.
 - Discussion points: 7 items, each with an expand toggle (ARIA wired: `aria-expanded`, `aria-controls`) and an acknowledgment checkbox. All 7 must be ticked for the declaration to render without a warning.
 - HCP section: `patient-cat` (checkbox group), `test-type` (radio), `research-no` reasons (checkbox group), `remote-consent` (radio). These are persisted and exported to the PDF — do not drop them.
+
+### Form module layout
+Each module is a flat set of globally-scoped functions that the orchestrator calls from `DOMContentLoaded`. There are no IIFE namespaces and no ES modules — plain `<script>` tags with a strict load order in `form.html`.
+
+- **`js/form.js`** (~90 lines) — Thin entry point. Defines two shared helpers (`debounce`, `showToast`), the cross-cutting `startNewForm` reset (which clears `rod-form-data`, resets every widget, and walks the wizard back via `goToStep(1)`), and the `DOMContentLoaded` bootstrap that initialises the other modules in order. Any widget-specific logic belongs in a sibling module, not here.
+- **`js/wizard.js`** (~180 lines) — `goToStep`, `initFormSteps`, `validateStep1` (with firstInvalid scroll/focus), `initDiscussionPoints` (ARIA wiring), `initChoiceCards`. Calls `saveFormData` at runtime from `initChoiceCards` — resolved at call time because `persistence.js` loads first.
+- **`js/signature-pads.js`** (~110 lines) — `initSignaturePads`, `setupSignaturePad(canvasId, clearBtnId, padId)`. Self-contained except for the `debounce` helper it grabs from `form.js` at call time.
+- **`js/persistence.js`** (~130 lines) — `initAutoSave`, `saveFormData`, `loadSavedData`. Owns the `rod-form-data` key. Uses `debounce` and `showToast` from `form.js` at runtime.
+- **`js/pdf-render.js`** (~740 lines) — Everything jsPDF. `initPdfDownload` (wires `#download-pdf` and `#email-pdf`), `getConsentBasis`, `getFormDataForPdf`, `buildPdfHtml` (print fallback), the jsPDF lazy loader with memoised `_jsPdfPromise`, and `renderPdfDocument` with its nested layout primitives (`drawWrapped`, `drawSectionHeading`, `drawBox`, `drawChoiceBox`, `drawSignatureBlock`, etc.). This is where the drawn ✓ / ⚠ glyph workaround lives.
+
+**Cross-module runtime dependencies** — some modules reference functions that are defined in later-loaded files. This works because the references are inside function bodies, not at parse time. If you re-shuffle load order or wrap anything in an IIFE, re-check that `debounce`, `showToast`, `saveFormData`, and `goToStep` are still reachable globally at call time.
 
 ## PDF generation
 Two paths exist:
@@ -83,25 +115,16 @@ Two paths exist:
 - Step 1 validation scrolls + focuses the first invalid field (`firstInvalid`).
 
 ## Testing
-`/sessions/focused-ecstatic-edison/pdftest/smoke.js` is a Node harness that:
-- Mocks `document`, `window`, `localStorage`, `Image`
-- Pre-populates `window.jspdf` from `require('jspdf')` so `loadJsPdf` short-circuits
-- Runs 4 scenarios (`self-all-acknowledged`, `self-some-missing`, `child-flow`, `best-interests-flow`)
-- Writes PDFs to disk next to the script
+There is no in-repo test harness. The bugfix session ran a Node smoke harness from an ephemeral sandbox (`/sessions/focused-ecstatic-edison/pdftest/smoke.js`) that mocked `document`/`window`/`localStorage`/`Image`, pre-populated `window.jspdf` from `require('jspdf')` so `loadJsPdf` short-circuited, ran four scenarios (`self-all-acknowledged`, `self-some-missing`, `child-flow`, `best-interests-flow`), and wrote PDFs to disk for inspection. That file is NOT in this repository and the path no longer exists.
 
-Verify with `pdftotext -layout <file> -` to catch glyph-encoding regressions (invisible in visual inspection but show up in extracted text).
+If you re-create it, the important part is the verification step: use `pdftotext -layout <file> -` to catch glyph-encoding regressions. The WinAnsi issue (see "jsPDF gotchas" above) is invisible in visual inspection but shows up immediately in extracted text. Any future smoke harness should live under `pdftest/` at the repo root.
 
-Run:
-```bash
-cd /sessions/focused-ecstatic-edison/pdftest && node smoke.js
-```
-
-## Known future work (not yet approved by user)
-- Split `form.js` (~900 lines) into modules: wizard, signature pads, persistence, pdf-render
-- Replace `faq.js` scoring search with Fuse.js
-- Deduplicate `<nav>` / `<footer>` across the 6 pages (currently copy-pasted)
-- PWA / service worker for fully offline use
-- Multi-form trio dashboard
+## Known future work
+- Replace `faq.js` scoring search with Fuse.js (vendored locally, not via CDN)
+- Deduplicate `<nav>` / `<footer>` across the 6 pages (currently copy-pasted) — must preserve `file://` behaviour, so DOM injection, not `fetch`-based includes
+- PWA / service worker for fully offline use — gate registration on `https:` / `localhost` so `file://` is unaffected
+- Vendor jsPDF locally under `js/vendor/` and drop the cdnjs load path
+- Multi-form trio dashboard — namespaced `rod-form-data:<id>` keys, `dashboard.html` entry point, form wizard reads `?id=…`
 
 ## Things NOT to do
 - Do **not** add a build step or framework. The README and the design both commit to "static, no build".
