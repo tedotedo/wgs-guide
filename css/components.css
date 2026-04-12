@@ -28,8 +28,9 @@
 @media(max-width:768px){
   .nav__links{position:fixed;top:var(--nav-height);left:0;right:0;bottom:0;background:var(--surface-primary);
     flex-direction:column;padding:var(--space-6);gap:var(--space-2);
-    transform:translateX(100%);transition:transform var(--duration-normal) var(--ease-out);z-index:var(--z-overlay)}
-  .nav__links.open{transform:translateX(0)}
+    transform:translateX(100%);transition:transform var(--duration-normal) var(--ease-out),visibility 0s linear var(--duration-normal);
+    z-index:var(--z-overlay);visibility:hidden}
+  .nav__links.open{transform:translateX(0);visibility:visible;transition:transform var(--duration-normal) var(--ease-out),visibility 0s}
   .nav__link{font-size:var(--text-lg);padding:var(--space-3) var(--space-4)}
   .nav__hamburger{display:flex}
   .nav__backdrop{display:none;position:fixed;inset:0;top:var(--nav-height);
@@ -310,7 +311,8 @@
 
 /* ============ PAGE HEADER ============ */
 .page-header{background:linear-gradient(135deg,var(--color-primary-600) 0%,var(--color-primary-800) 100%);
-  padding:var(--space-12) var(--space-6);color:white}
+  padding:var(--space-12) max(var(--space-6),env(safe-area-inset-right,0px)) var(--space-12) max(var(--space-6),env(safe-area-inset-left,0px));
+  color:white;box-sizing:border-box;max-width:100%}
 .page-header__content{max-width:var(--container-md);margin:0 auto;padding:0 var(--space-4)}
 .page-header h1{color:white;margin-bottom:var(--space-3)}
 .page-header p{color:rgba(255,255,255,0.85);font-size:var(--text-lg);max-width:600px}
@@ -328,13 +330,16 @@
 
 /* ============ MOBILE-FIRST RESPONSIVE ============ */
 @media(max-width:480px){
-  /* Spacing & containers */
-  .container{padding-left:var(--space-6);padding-right:var(--space-6)}
+  /* Spacing & containers — generous mobile padding so text never hugs the edge */
+  .container{padding-left:max(var(--space-8),env(safe-area-inset-left,0px));
+    padding-right:max(var(--space-8),env(safe-area-inset-right,0px))}
   .section{padding:var(--space-8) 0}
   .hero{padding:var(--space-12) 0;min-height:auto}
+  .hero__content{padding-left:max(var(--space-8),env(safe-area-inset-left,0px));padding-right:max(var(--space-8),env(safe-area-inset-right,0px))}
+  .hero__text{text-align:center}
   .hero__text h1{font-size:1.6rem;margin-bottom:var(--space-4)}
   .hero__text p{font-size:var(--text-base);margin-bottom:var(--space-4)}
-  .hero__actions{flex-direction:column;gap:var(--space-3)}
+  .hero__actions{flex-direction:column;gap:var(--space-3);align-items:center}
   .hero__actions .btn{width:100%;justify-content:center}
 
   /* Form page */
@@ -360,10 +365,11 @@
   .alert__title{font-size:var(--text-sm)}
   .alert__text{font-size:var(--text-xs)}
 
-  /* Page header */
-  .page-header{padding:var(--space-10) var(--space-6) var(--space-8)}
+  /* Page header — centre-align on small screens so text isn't left-flush */
+  .page-header{padding:var(--space-10) max(var(--space-8),env(safe-area-inset-right,0px)) var(--space-8) max(var(--space-8),env(safe-area-inset-left,0px))}
+  .page-header__content{text-align:center;padding:0 var(--space-4)}
   .page-header h1{font-size:1.6rem}
-  .page-header p{font-size:var(--text-base)}
+  .page-header p{font-size:var(--text-base);margin-left:auto;margin-right:auto}
 
   /* Cards */
   .card{padding:var(--space-4)}
@@ -407,9 +413,14 @@
 
 /* Tablet tweaks */
 @media(min-width:481px) and (max-width:768px){
-  .container{padding-left:var(--space-8);padding-right:var(--space-8)}
-  .page-header{padding-left:var(--space-8);padding-right:var(--space-8)}
+  .container{padding-left:max(var(--space-8),env(safe-area-inset-left,0px));
+    padding-right:max(var(--space-8),env(safe-area-inset-right,0px))}
+  .page-header{padding-left:max(var(--space-8),env(safe-area-inset-left,0px));
+    padding-right:max(var(--space-8),env(safe-area-inset-right,0px))}
+  .page-header__content{text-align:center;padding:0 var(--space-4)}
+  .page-header p{margin-left:auto;margin-right:auto}
   .hero{min-height:auto;padding:var(--space-16) 0}
+  .hero__content{padding-left:max(var(--space-8),env(safe-area-inset-left,0px));padding-right:max(var(--space-8),env(safe-area-inset-right,0px))}
   .hero__text h1{font-size:2rem}
   .form-nav>div{flex-wrap:wrap}
   .choice-card__options{flex-direction:column}
