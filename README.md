@@ -1,6 +1,6 @@
 # WGS Guide
 
-A static, privacy-first companion website for the **NHS Record of Discussion Regarding Genomic Testing** (form `01-NGIS-ROD`, v4.03). Helps patients and families prepare for whole genome sequencing conversations, work through the consent discussion points at their own pace, and take a filled-in summary into the clinic.
+A static, privacy-first companion website for the **NHS Record of Discussion Regarding Genomic Testing** (form `01-NGIS-ROD`, v4.04). Helps patients and families prepare for whole genome sequencing conversations, work through the consent discussion points at their own pace, and take a filled-in summary into the clinic.
 
 ## Features
 

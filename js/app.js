@@ -218,7 +218,7 @@ function getFooterHTML() {
       </div>
     </div>
     <div class="footer__bottom">
-      <p>This website is for educational purposes. It is based on the NHS Genomic Medicine Service Record of Discussion form (01-NGIS-ROD v4.03). Always consult your healthcare professional for personalised advice. &copy; ${new Date().getFullYear()}</p>
+      <p>This website is for educational purposes. It is based on the NHS Genomic Medicine Service Record of Discussion form (01-NGIS-ROD v4.04). Always consult your healthcare professional for personalised advice. &copy; ${new Date().getFullYear()}</p>
     </div>
   </footer>
   <div class="cookie-banner" id="cookie-banner">
