@@ -19,7 +19,7 @@
  * stale entries from previous deployments.
  */
 
-const CACHE_VERSION = 'wgs-rod-v7';
+const CACHE_VERSION = 'wgs-rod-v8';
 const PRECACHE_URLS = [
   './',
   'index.html',

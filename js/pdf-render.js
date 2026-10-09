@@ -189,7 +189,7 @@ function buildPdfHtml(data) {
 </style></head><body>
 
 <h1>Record of Discussion Regarding Genomic Testing</h1>
-<p style="font-size:10pt;color:#666;margin-top:0"><em>NHS Genomic Medicine Service | Form version 4.03 (01-NGIS-ROD)</em></p>
+<p style="font-size:10pt;color:#666;margin-top:0"><em>NHS Genomic Medicine Service | Form version 4.04 (01-NGIS-ROD)</em></p>
 
 <table class="header-table">
   <tr><td><strong>Patient first name:</strong> ${firstName}</td><td><strong>Patient last name:</strong> ${lastName}</td></tr>
@@ -263,7 +263,7 @@ ${sigImg(hcpSignature, 'Healthcare professional signature')}
 
 <div class="footer">
   <p><strong>This document is a record of the patient's understanding and choices regarding genomic testing.</strong></p>
-  <p>Please print, sign, and email or hand to your consultant. The official NHS Record of Discussion form (01-NGIS-ROD v4.03) should be submitted to your Genomic Laboratory Hub.</p>
+  <p>Please print, sign, and email or hand to your consultant. The official NHS Record of Discussion form (01-NGIS-ROD v4.04) should be submitted to your Genomic Laboratory Hub.</p>
   <p>Generated: ${dateStr} at ${timeStr}</p>
 </div>
 
@@ -410,7 +410,7 @@ function renderPdfDocument(doc, data) {
   doc.setFont('helvetica', 'italic');
   doc.setFontSize(9);
   setColor(GRAY);
-  doc.text('NHS Genomic Medicine Service  |  Form version 4.03 (01-NGIS-ROD)', M, y);
+  doc.text('NHS Genomic Medicine Service  |  Form version 4.04 (01-NGIS-ROD)', M, y);
   y += 6;
   setDraw(BLUE);
   doc.setLineWidth(0.8);
@@ -688,7 +688,7 @@ function renderPdfDocument(doc, data) {
     const dateStr = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
     const timeStr = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
     doc.text(`Generated ${dateStr} at ${timeStr}  |  No data was collected or transmitted by the WGS Guide website.`, pageW / 2, pageH - 8, { align: 'center' });
-    doc.text(`Page ${i} of ${pageCount}  |  This is a companion summary — the official 01-NGIS-ROD v4.03 form must be signed with your clinician.`, pageW / 2, pageH - 5, { align: 'center' });
+    doc.text(`Page ${i} of ${pageCount}  |  This is a companion summary — the official 01-NGIS-ROD v4.04 form must be signed with your clinician.`, pageW / 2, pageH - 5, { align: 'center' });
   }
 }
 

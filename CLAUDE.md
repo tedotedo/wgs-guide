@@ -3,7 +3,7 @@
 Notes for future Claude sessions working on this repo. Not user-facing.
 
 ## What this is
-Privacy-first static companion site for the NHS **Record of Discussion Regarding Genomic Testing** (form `01-NGIS-ROD` v4.03). Plain HTML/CSS/JS, no build step, no backend, no analytics. All state lives in `localStorage`.
+Privacy-first static companion site for the NHS **Record of Discussion Regarding Genomic Testing** (form `01-NGIS-ROD` v4.04). Plain HTML/CSS/JS, no build step, no backend, no analytics. All state lives in `localStorage`.
 
 ## Original review (April 2026 session)
 Initial walk-through of the codebase surfaced the following findings. Items marked ✅ were fixed in this session; unmarked items remain open and not yet approved by the user.
@@ -126,7 +126,7 @@ Two paths exist:
 - Registration lives in `registerServiceWorker()` inside `js/app.js` and is **protocol-gated**: `location.protocol === 'https:'` OR `hostname === 'localhost'` / `'127.0.0.1'`. `file://` is deliberately excluded — browsers block SW on `file://` anyway, but the gate keeps the console clean and preserves "open straight from disk" as a supported workflow.
 - When you add a new HTML page, CSS file, JS module, vendored asset, or JSON data file, add it to `PRECACHE_URLS` AND bump `CACHE_VERSION`. Forgetting the bump leaves existing visitors on the old shell until their cache expires.
 - Cross-origin requests fall straight through to the network — the worker does not attempt to cache them. The site has no intentional cross-origin assets (both Fuse.js and jsPDF are vendored under `js/vendor/`), so in practice nothing takes this path.
-- **Important:** The service worker aggressively caches CSS. When making style changes, always bump `CACHE_VERSION` in `sw.js` or users (including on mobile) will see stale styles until the old cache expires. As of April 2026 the version is `wgs-rod-v7`.
+- **Important:** The service worker aggressively caches CSS. When making style changes, always bump `CACHE_VERSION` in `sw.js` or users (including on mobile) will see stale styles until the old cache expires. As of October 2026 the version is `wgs-rod-v8`.
 
 ## Page chrome (`js/chrome.js`)
 - Renders the `<nav>` and `<footer>` for every page from template literals. Each page declares two placeholder containers:

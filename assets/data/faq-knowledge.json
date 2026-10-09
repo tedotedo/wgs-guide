@@ -236,7 +236,7 @@
   {
     "id": 27,
     "question": "What is the Record of Discussion form?",
-    "answer": "The Record of Discussion (RoD) form is the official NHS consent document for whole genome sequencing. Version 4.03 (01-NGIS-ROD) has three pages covering: the discussion points you should understand before testing (7 points), information about the National Genomic Research Library, and confirmation of your test and research choices with signatures.",
+    "answer": "The Record of Discussion (RoD) form is the official NHS consent document for whole genome sequencing. Version 4.04 (01-NGIS-ROD) has three pages covering: the discussion points you should understand before testing (7 points), information about the National Genomic Research Library, and confirmation of your test and research choices with signatures.",
     "source": "NHS Genomic Medicine Service",
     "sourceUrl": "https://www.england.nhs.uk/genomics/nhs-genomic-med-service/",
     "tags": ["rod", "form", "record of discussion", "consent", "document", "pages"],
